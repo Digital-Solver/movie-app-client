@@ -1,5 +1,7 @@
+/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import MainView from './components/main-view/main-view';
 
 // Import to bundle './index.scss
 import './index.scss';
@@ -7,14 +9,10 @@ import './index.scss';
 // Main component
 class MovieApp extends React.Component {
   render() {
-    return (
-      <div className="movie-app">
-        <div>Good morning</div>
-      </div>
-    );
+    return (<MainView />);
   }
 }
 
 // App root & render
-const container = document.getElementsByClassName('app-container')[0];
-ReactDOM.render(React.createElement(MovieApp), container);
+const container = document.getElementsByClassName('app-container')[0]; // Find root element
+ReactDOM.render(React.createElement(MovieApp), container); // Render app in root element
