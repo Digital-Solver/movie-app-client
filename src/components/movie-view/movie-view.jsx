@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 class MovieView extends React.Component {
   render() {
     const { movie, onBackClick } = this.props;
+    const posterAlt = `${movie.Title} Poster`;
+
     return (
       <div className="movie-view">
         <div className="movie-poster">
-          <img src={movie.ImageURL} alt="{movie.Title} poster" />
+          <img src={movie.ImageURL} alt={posterAlt} />
         </div>
         <div className="movie-title">
           <span className="label">Title: </span>
