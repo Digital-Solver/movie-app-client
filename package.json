@@ -4,6 +4,7 @@
   "description": "The front end repository for the movie app.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx parcel src/index.html",
     "build": "babel src -d lib"
   },
   "repository": {
@@ -36,6 +37,7 @@
     "axios": "^0.27.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0"
   },
   "default": "src/index.html"
