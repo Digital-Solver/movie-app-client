@@ -2,6 +2,10 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import {
+  Form, Button, Container, Card, CardGroup, Row, Col,
+} from 'react-bootstrap';
+// import './login-view.scss';
 
 export default function loginView(props) {
   const [username, setUsername] = useState('');
@@ -10,40 +14,63 @@ export default function loginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
-    props.onLoggedInUser(username);
+    props.onLoginFormSubmission(username);
   };
 
   return (
-    <form action="submit">
+    <Container>
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card>
+              <Card.Body>
+                <Card.Title>Login with Existing Account</Card.Title>
+                <Form action="submit">
+                  <Form.Group>
 
-      <label>
-        Existing Username:
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
+                    {/* Username input */}
+                    <Form.Label>
+                      Username:
+                      <Form.Control
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                        placeholder="Username"
+                      />
+                    </Form.Label>
+                  </Form.Group>
 
-      <br />
+                  {/* Password Input */}
+                  <Form.Group>
+                    <Form.Label>
+                      Password:
+                      <Form.Control
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        min={8}
+                        placeholder="Password (min. 8 chars)"
+                      />
+                    </Form.Label>
+                  </Form.Group>
 
-      <label>
-        Existing Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
+                  {/* Submit button */}
+                  <Form.Group>
+                    <Button type="submit" onClick={handleSubmit}>Login</Button>
+                  </Form.Group>
 
-      <br />
-
-      <button type="submit" onClick={handleSubmit}>Login</button>
-
-    </form>
+                </Form>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
 loginView.propTypes = {
-  onLoggedInUser: PropTypes.func.isRequired,
+  onLoginFormSubmission: PropTypes.func.isRequired,
 };

@@ -1,6 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button, Card } from 'react-bootstrap';
+import './movie-view.scss';
 
 class MovieView extends React.Component {
   render() {
@@ -8,20 +10,12 @@ class MovieView extends React.Component {
     const posterAlt = `${movie.Title} Poster`;
 
     return (
-      <div className="movie-view">
-        <div className="movie-poster">
-          <img src={movie.ImageURL} alt={posterAlt} />
-        </div>
-        <div className="movie-title">
-          <span className="label">Title: </span>
-          <span className="value">{movie.Title}</span>
-        </div>
-        <div className="movie-description">
-          <span className="label">Description: </span>
-          <span className="Value">{movie.Description}</span>
-        </div>
-        <button type="button" onClick={() => { onBackClick(null); }}>Back</button>
-      </div>
+      <Card className="movie-view justify-content-md-center" style={{ backgroundColor: '#77685D', borderRadius: '5px' }}>
+        <Card.Img variation="top" className="movie-poster" src={movie.ImageURL} alt={posterAlt} style={{ width: '15rem', marginInline: 'auto' }} />
+        <Card.Title style={{ color: 'white' }} className="movie-title">{movie.Title}</Card.Title>
+        <Card.Body style={{ color: 'white' }} className="movie-description">{movie.Description}</Card.Body>
+        <Button style={{ backgroundColor: '#058ED9' }} type="button" onClick={() => { onBackClick(null); }}>Back</Button>
+      </Card>
     );
   }
 }
