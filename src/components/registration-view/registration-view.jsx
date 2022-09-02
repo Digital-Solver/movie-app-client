@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -5,10 +6,51 @@ import {
   Form, Button, Container, Card, CardGroup, Row, Col,
 } from 'react-bootstrap';
 import './registration-view.scss';
+import axios from 'axios';
 
-export default function registrationView() {
+export default function registrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [usernameErr, setUsernameErr] = useState('');
+  const [passwordErr, passwordErr] = setPasswordErr('');
+
+  const validate = () => {
+    let isReq = true;
+
+    if (!username) {
+      isReq = false;
+      setUsernameErr('You must enter a valid username.');
+    } else if (username.length < 2) {
+      isReq = false;
+      setUsernameErr('Your username must be at least 2 characters.');
+    }
+
+    if (!password) {
+      isReq = false;
+      setPasswordErr('You setPasswordErr enter a valid password.');
+    } else if (password.length < 8) {
+      isReq = false;
+      setPasswordErr('Your setPasswordErr must be at least 8 characters.');
+    }
+
+    return isReq;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefeault();
+    const isReq = validate();
+    if (isReq) {
+      axios.post('https://kds-movie-api.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+      })
+        .then((res) => {
+          const { data } = res;
+          props.onLoggedIn(data);
+        })
+        .catch((err) => { console.log(err); });
+    }
+  };
 
   return (
 
@@ -31,6 +73,7 @@ export default function registrationView() {
                         required
                         placeholder="Username"
                       />
+                      {usernameErr && <p>{usernameErr}</p>}
                     </Form.Label>
                   </Form.Group>
 
@@ -45,11 +88,12 @@ export default function registrationView() {
                         min={8}
                         placeholder="Password (min. 8 chars)"
                       />
+                      {passwordErr && <p>{passwordErr}</p>}
                     </Form.Label>
                   </Form.Group>
 
                   <Form.Group>
-                    <Button type="submit">Register</Button>
+                    <Button type="submit" onClick={handleSubmit()}>Register</Button>
                   </Form.Group>
 
                 </Form>

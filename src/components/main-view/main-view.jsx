@@ -24,17 +24,46 @@ class MainView extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://kds-movie-api.herokuapp.com/movies')
-      .then((res) => { this.setState({ movies: res.data }); })
-      .catch((err) => { console.log(err); });
+    const accessToken = localStorage.getItem('token');
+
+    // TODO: accessToken should equal token supplied by the API, not just 'exist'.
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user'),
+      });
+      this.getMovies(accessToken);
+    }
   }
 
-  onLoginFormSubmission(username) {
-    this.setState({ user: username });
+  onLoginRequest(authData) {
+    console.log(authData);
+    this.setState({
+      user: authData.user.Username,
+    });
+
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
+
+  onLogoutRequest() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null,
+    });
   }
 
   setSelectedMovie(newSelectedMovie) {
     this.setState({ selectedMovie: newSelectedMovie });
+  }
+
+  getMovies(token) {
+    axios
+      .get('https://kds-movie-api.herokuapp.com/movies', {
+        headers: { Authorization: `Bearer ${token}` } })
+      .then((res) => { this.setState({ movies: res.data }); })
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -44,7 +73,7 @@ class MainView extends React.Component {
       return (
         <div>
           <LoginView
-            onLoginFormSubmission={(username) => this.onLoginFormSubmission(username)}
+            onLoginRequest={(username) => this.onLoginRequest(username)}
           />
           <br />
           <RegistrationView />
@@ -58,6 +87,7 @@ class MainView extends React.Component {
       <>
         <PrimaryNav
           onBackClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie); }}
+          onLogoutRequest={() => this.onLogoutRequest()}
         />
 
         <Row className="main-view justify-content-md-center" style={{ maxWidth: '1200px', marginInline: 'auto' }}>
