@@ -5,16 +5,25 @@ import PropTypes from 'prop-types';
 import {
   Form, Button, Container, Card, CardGroup, Row, Col,
 } from 'react-bootstrap';
-// import './login-view.scss';
+import axios from 'axios';
 
 export default function loginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { // Requests login via a POST request
     e.preventDefault();
-    console.log(username, password);
-    props.onLoginFormSubmission(username);
+    axios
+      .post('https://kds-movie-api.herokuapp.com/login', {
+        Username: username,
+        Password: password,
+      })
+      .then((res) => {
+        const { data } = res;
+        const authData = data;
+        props.onLoginRequest(authData);
+      })
+      .catch((err) => { console.log(err); });
   };
 
   return (
@@ -72,5 +81,5 @@ export default function loginView(props) {
 }
 
 loginView.propTypes = {
-  onLoginFormSubmission: PropTypes.func.isRequired,
+  onLoginRequest: PropTypes.func.isRequired,
 };

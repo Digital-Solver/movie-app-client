@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 // import './PrimaryNav.scss';
 
 export default function PrimaryNav(props) {
-  const { onBackClick } = props;
+  const { onBackClick, onLogoutRequest } = props;
 
   return (
     <div>
@@ -16,6 +16,9 @@ export default function PrimaryNav(props) {
             <Nav className="me-auto">
               <Nav.Link href="#home" style={{ color: 'white' }} onClick={() => { onBackClick(null); }}>Home</Nav.Link>
             </Nav>
+            <Nav className="me-auto">
+              <Nav.Link href="#logout" style={{ color: 'white' }} onClick={() => { onLogoutRequest(); }}>Logout</Nav.Link>
+            </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -25,4 +28,5 @@ export default function PrimaryNav(props) {
 
 PrimaryNav.propTypes = {
   onBackClick: PropTypes.func.isRequired,
+  onLogoutRequest: PropTypes.func.isRequired,
 };
