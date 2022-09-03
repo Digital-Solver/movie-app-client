@@ -12,7 +12,7 @@ export default function registrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [usernameErr, setUsernameErr] = useState('');
-  const [passwordErr, passwordErr] = setPasswordErr('');
+  const [passwordErr, setPasswordErr] = useState('');
 
   const validate = () => {
     let isReq = true;
