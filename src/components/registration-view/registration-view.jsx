@@ -19,7 +19,7 @@ export default function registrationView(props) {
 
     if (!username) {
       isReq = false;
-      setUsernameErr('You must enter a valid username.');
+      setUsernameErr('You must enter a username.');
     } else if (username.length < 2) {
       isReq = false;
       setUsernameErr('Your username must be at least 2 characters.');
@@ -27,10 +27,10 @@ export default function registrationView(props) {
 
     if (!password) {
       isReq = false;
-      setPasswordErr('You setPasswordErr enter a valid password.');
+      setPasswordErr('You must enter a password.');
     } else if (password.length < 8) {
       isReq = false;
-      setPasswordErr('Your setPasswordErr must be at least 8 characters.');
+      setPasswordErr('Your password must be at least 8 characters.');
     }
 
     return isReq;
