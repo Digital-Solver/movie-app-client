@@ -6,6 +6,7 @@ import {
   Form, Button, Container, Card, CardGroup, Row, Col,
 } from 'react-bootstrap';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function loginView(props) {
   const [username, setUsername] = useState('');
@@ -71,6 +72,7 @@ export default function loginView(props) {
                   </Form.Group>
 
                 </Form>
+                <Link to="/register">Register</Link>
               </Card.Body>
             </Card>
           </CardGroup>

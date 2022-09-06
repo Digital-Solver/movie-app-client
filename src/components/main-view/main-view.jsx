@@ -6,19 +6,22 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import LoginView from '../login-view/login-view';
-import RegistrationView from '../registration-view/registration-view';
 import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
-import PrimaryNav from '../PrimaryNav/PrimaryNav';
+import PrimaryNav from '../primary-nav/primary-nav';
+import LoginView from '../login-view/login-view';
+import RegistrationView from '../registration-view/registration-view';
+import DirectorView from '../director-view/director-view';
+import GenreView from '../genre-view/genre-view';
+import ProfileView from '../profile-view/profile-view';
 
 class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
       movies: [],
-      selectedMovie: null,
       user: null,
     };
   }
@@ -26,7 +29,6 @@ class MainView extends React.Component {
   componentDidMount() {
     const accessToken = localStorage.getItem('token');
 
-    // TODO: accessToken should equal token supplied by the API, not just 'exist'.
     if (accessToken !== null) {
       this.setState({
         user: localStorage.getItem('user'),
@@ -52,10 +54,7 @@ class MainView extends React.Component {
     this.setState({
       user: null,
     });
-  }
-
-  setSelectedMovie(newSelectedMovie) {
-    this.setState({ selectedMovie: newSelectedMovie });
+    window.open('/', '_self');
   }
 
   getMovies(token) {
@@ -67,56 +66,147 @@ class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie, user } = this.state;
-
-    if (!user) {
-      return (
-        <div>
-          <LoginView
-            onLoginRequest={(username) => this.onLoginRequest(username)}
-          />
-          <br />
-          <RegistrationView />
-        </div>
-      );
-    }
-
-    if (movies.length === 0) return <div className="main-view" />;
+    const { movies, user } = this.state;
 
     return (
-      <>
-        <PrimaryNav
-          onBackClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie); }}
-          onLogoutRequest={() => this.onLogoutRequest()}
+      <Router>
+        <Route
+          path="/"
+          render={() => (
+            <PrimaryNav
+              onLogoutRequest={() => this.onLogoutRequest()}
+              user={localStorage.getItem('user')}
+            />
+          )}
         />
 
         <Row className="main-view justify-content-md-center" style={{ maxWidth: '1200px', marginInline: 'auto' }}>
-          {selectedMovie
-            ? (
-              <Col md={4}>
-                <MovieView
-                  movie={selectedMovie}
-                  onBackClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie); }}
-                />
-              </Col>
-            )
-            : movies.map((movie) => (
+
+          <Route
+            exact
+            path="/"
+            render={() => {
+              if (!user) { // Show login view if there is no user logged in
+                return (
+                  <Col>
+                    <LoginView onLoginRequest={(username) => this.onLoginRequest(username)} />
+                  </Col>
+                );
+              }
+
+              if (movies.length === 0) { return <div className="main-view" />; } // Show empty div until data is loaded
+
+              return () => movies.map((movie) => ( // When movies load, show them in a card list
+                <Col lg="auto" md={4} sm={6} xs="auto" style={{ marginInline: 'auto' }}>
+                  <MovieCard
+                    key={movie._id}
+                    movieData={movie}
+                  />
+                </Col>
+              ));
+            }}
+          />
+
+          <Route // Registration view as alternative to login view
+            exact
+            path="/register"
+            render={() => {
+              if (user) {
+                return <Redirect to="/" />;
+              }
+              return (
+                <Col>
+                  <RegistrationView />
+                </Col>
+              );
+            }}
+          />
+
+          <Route // Card list of movies (master)
+            exact
+            path="/"
+            render={() => movies.map((movie) => (
               <Col lg="auto" md={4} sm={6} xs="auto" style={{ marginInline: 'auto' }}>
                 <MovieCard
                   key={movie._id}
                   movieData={movie}
-                  onMovieClick={() => { this.setSelectedMovie(movie); }}
                 />
               </Col>
             ))}
+          />
+
+          <Route // View of an individual movie (detail)
+            path="/movies/:movieId"
+            render={({ match, history }) => {
+              if (movies.length === 0) { return <div className="main-view" />; } // Show empty div until data is loaded
+              return (
+                <Col md="auto">
+                  <MovieView
+                    movieData={movies.find((m) => m._id === match.params.movieId)}
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
+              );
+            }}
+          />
+
+          <Route
+            path="/directors/:directorName"
+            render={({ match, history }) => {
+              if (movies.length === 0) { return <div className="director-view" />; } // Show empty div until data is loaded
+              return (
+                <Col md="auto">
+                  <DirectorView
+                    movieData={movies.find((m) => m.Director.Name === match.params.directorName)}
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
+              );
+            }}
+          />
+
+          <Route
+            path="/genres/:genreName"
+            render={({ match, history }) => {
+              if (movies.length === 0) { return <div className="genre-view" />; } // Show empty div until data is loaded
+              return (
+                <Col md="auto">
+                  <GenreView
+                    movieData={movies.find((m) => m.Genre.Name === match.params.genreName)}
+                    onBackClick={() => history.goBack()}
+                  />
+                </Col>
+              );
+            }}
+          />
+
+          <Route
+            path="/users/:username"
+            render={(history, match) => {
+              if (!user) {
+                return (
+                  <LoginView
+                    onLoginRequest={(user) => this.onLoggedIn(user)}
+                  />
+                );
+              }
+              if (movies.length === 0) { return <div className="profile-view" />; } // Show empty div until data is loaded
+              return (
+                <Col md="auto">
+                  <ProfileView
+                    user={user}
+                  />
+                </Col>
+              );
+            }}
+          />
         </Row>
-      </>
+      </Router>
     );
   }
 }
 
 MainView.propTypes = {
-  // eslint-disable-next-line react/no-unused-prop-types
   movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   selectedMovie: PropTypes.shape({}).isRequired,
   user: PropTypes.shape({}).isRequired,

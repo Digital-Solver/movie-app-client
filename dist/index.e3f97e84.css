@@ -1,3 +1,10 @@
+.movie-card {
+  width: 200px;
+  margin: 15px;
+}
+
+
+
 label {
   width: 100%;
 }
@@ -5,13 +12,6 @@ label {
 .card {
   margin: 20px;
 }
-
-.movie-card {
-  width: 200px;
-  margin: 15px;
-}
-
-
 
 
 
@@ -26,4 +26,4 @@ label {
   background-color: #f4ebd9;
 }
 
-/*# sourceMappingURL=index.3bb28fe2.css.map */
+/*# sourceMappingURL=index.e3f97e84.css.map */

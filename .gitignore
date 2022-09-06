@@ -3,3 +3,4 @@ node_modules
 .cache
 .parcel-cache
 .env
+src/components/profile-view/profile-view-original.jsx
