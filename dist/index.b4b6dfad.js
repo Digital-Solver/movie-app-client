@@ -42914,24 +42914,12 @@ var _reactRouterDom = require("react-router-dom");
 class MovieCard extends (0, _reactDefault.default).Component {
     render() {
         const { movieData , favorite  } = this.props;
-        function favoriteVariant() {
-            if (favorite) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                variant: "secondary" /** onClick={() => removeFavorite(movieData._id, movieData.Title)} */ ,
-                children: "Unfavorite"
-            }, void 0, false, {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 19,
-                columnNumber: 16
-            }, this);
-            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                variant: "secondary" /** onClick={ () => addFavorite(movieData._id, movieData.Title)} */ ,
-                children: "Favorite"
-            }, void 0, false, {
-                fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 20,
-                columnNumber: 16
-            }, this);
-        }
+        // TODO: Favouriting Feature is Non-Functional
+        // function favoriteVariant() {
+        //   if (favorite) {
+        //     return <Button variant="secondary"/** onClick={() => removeFavorite(movieData._id, movieData.Title)} */>Unfavorite</Button>;
+        //   } return <Button variant="secondary"/** onClick={ () => addFavorite(movieData._id, movieData.Title)} */>Favorite</Button>;
+        // }
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
             className: "movie-card",
             style: {
@@ -42944,7 +42932,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                     thumbnail: "true"
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 25,
+                    lineNumber: 26,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -42960,7 +42948,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                             children: movieData.Title
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 27,
+                            lineNumber: 28,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -42972,25 +42960,24 @@ class MovieCard extends (0, _reactDefault.default).Component {
                                 children: "See More"
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 30,
+                                lineNumber: 31,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 29,
+                            lineNumber: 30,
                             columnNumber: 11
-                        }, this),
-                        favoriteVariant()
+                        }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 26,
+                    lineNumber: 27,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 24,
+            lineNumber: 25,
             columnNumber: 7
         }, this);
     }
