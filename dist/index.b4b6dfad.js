@@ -44132,6 +44132,16 @@ function ProfileView(props) {
             console.log(err);
         });
     };
+    const removeFavorite = (id, title)=>{
+        (0, _axiosDefault.default).put(`https://kds-movie-api.herokuapp.com/users/${user}/favorites/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res)=>{
+            console.log(res);
+            alert(`Removed ${title} from favourites.`);
+        }).catch((err)=>console.log(err));
+    };
     (0, _react.useEffect)(()=>{
         getUser(user);
     }, []);
@@ -44142,15 +44152,16 @@ function ProfileView(props) {
                 email: Email
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 50,
+                lineNumber: 63,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMoviesDefault.default), {
                 favoriteMovies: favoriteMovies,
-                movies: movies
+                movies: movies,
+                removeFavorite: removeFavorite
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 51,
+                lineNumber: 64,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUserDefault.default), {
@@ -44161,7 +44172,7 @@ function ProfileView(props) {
                 birth: Birth
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 52,
+                lineNumber: 65,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -44170,13 +44181,13 @@ function ProfileView(props) {
                 children: "Delete Profile"
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 53,
+                lineNumber: 66,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 49,
+        lineNumber: 62,
         columnNumber: 5
     }, this);
 }
@@ -44424,22 +44435,14 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
 function FavoriteMovies(props) {
-    const { favoriteMovies , movies  } = props;
-    const removeFavorite = (username, id, title)=>{
-        (0, _axiosDefault.default).put(`https://kds-movie-api.herokuapp.com/users/${username}/favorites/${id}`).then((res)=>{
-            console.log(res);
-            alert(`Removed ${title} from favourites.`);
-        }).catch((err)=>console.log(err));
-    };
+    const { favoriteMovies , movies , removeFavorite  } = props;
     const getFavoriteMovies = ()=>{
         if (!favoriteMovies) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
             children: "Favorite Some Movies To See Your List"
         }, void 0, false, {
             fileName: "src/components/profile-view/favorite-movies.jsx",
-            lineNumber: 23,
+            lineNumber: 12,
             columnNumber: 14
         }, this);
         return favoriteMovies.map(()=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -44449,7 +44452,7 @@ function FavoriteMovies(props) {
                         alt: `Poster of the movie: ${movies.Title}`
                     }, void 0, false, {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 27,
+                        lineNumber: 16,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -44458,27 +44461,27 @@ function FavoriteMovies(props) {
                             children: movies.Title
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 29,
+                            lineNumber: 18,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 28,
+                        lineNumber: 17,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         variant: "secondary",
-                        onClick: ()=>removeFavorite(movies._id),
+                        onClick: ()=>removeFavorite(movies._id, movies.Title),
                         children: "Remove From Favorites"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 31,
+                        lineNumber: 20,
                         columnNumber: 9
                     }, this)
                 ]
             }, movies._id, true, {
                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                lineNumber: 26,
+                lineNumber: 15,
                 columnNumber: 7
             }, this));
     };
@@ -44488,14 +44491,14 @@ function FavoriteMovies(props) {
                 children: "Favorite Movies:"
             }, void 0, false, {
                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                lineNumber: 38,
+                lineNumber: 27,
                 columnNumber: 7
             }, this),
             getFavoriteMovies()
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/favorite-movies.jsx",
-        lineNumber: 37,
+        lineNumber: 26,
         columnNumber: 5
     }, this);
 }
@@ -44507,7 +44510,8 @@ FavoriteMovies.propTypes = {
         _id: (0, _propTypes.PropTypes).string.isRequired,
         Title: (0, _propTypes.PropTypes).string.isRequired,
         ImageURL: (0, _propTypes.PropTypes).string.isRequired
-    }).isRequired
+    }).isRequired,
+    removeFavorite: (0, _propTypes.PropTypes).func.isRequired
 };
 var _c;
 $RefreshReg$(_c, "FavoriteMovies");
@@ -44517,6 +44521,6 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5"}],"lJZlQ":[function() {},{}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequire6ce0")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequire6ce0")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

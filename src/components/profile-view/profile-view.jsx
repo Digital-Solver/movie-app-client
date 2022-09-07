@@ -41,6 +41,19 @@ function ProfileView(props) {
       .catch((err) => { console.log(err); });
   };
 
+  const removeFavorite = (id, title) => {
+    axios
+      .put(
+        `https://kds-movie-api.herokuapp.com/users/${user}/favorites/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } },
+      )
+      .then((res) => {
+        console.log(res);
+        alert(`Removed ${title} from favourites.`);
+      })
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     getUser(user);
   }, []);
@@ -48,7 +61,7 @@ function ProfileView(props) {
   return (
     <div>
       <UserInfo username={Username} email={Email} />
-      <FavoriteMovies favoriteMovies={favoriteMovies} movies={movies} />
+      <FavoriteMovies favoriteMovies={favoriteMovies} movies={movies} removeFavorite={removeFavorite} />
       <UpdateUser token={token} user={user} username={Username} email={Email} birth={Birth} />
       <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
     </div>
