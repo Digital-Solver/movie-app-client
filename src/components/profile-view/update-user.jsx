@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -5,7 +7,7 @@ import PropTypes from 'prop-types';
 
 export default function UpdateUser(props) {
   const {
-    token, user, username, email, birth,
+    token, username, email, birth, password,
   } = props;
 
   const [newUsername, setNewUsername] = useState('');
@@ -16,35 +18,34 @@ export default function UpdateUser(props) {
   const handleSubmit = () => {
     axios
       .put(
-        `https://kds-movie-api.herokuapp.com/users/${user}`,
+        `https://kds-movie-api.herokuapp.com/users/${username}`,
         {
-          Username: newUsername,
-          Password: newPassword,
-          Email: newEmail,
-          Birthday: newBirthday,
+          Username: newUsername || username, // FIX: server-side val: prevent duplicate users
+          Email: newEmail || email,
+          Birthday: newBirthday || birth,
         },
         { headers: { Authorization: `Bearer ${token}` } },
       )
-      .then((res) => {
-        setUserData(res);
-        alert(`${username}'s profile has been updated.`);
-        window.open(`/users/${user}}`, '_self');
+      .then(() => {
+        console.log(`Axios request included; ${{
+          Username: newUsername || username, // FIX: server-side val: prevent duplicate users
+          Email: newEmail || email,
+          Birthday: newBirthday || birth,
+        }}`);
+        console.log(`${username}'s profile has been updated.`);
+        localStorage.setItem('user', newUsername);
+        window.open(`/users/${newUsername}}`, '_self');
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <form className="profile-form" onSubmit={handleSubmit()}>
+    <form className="profile-form" onSubmit={handleSubmit}>
       <h2>Edit Profile: </h2>
 
       <label>
         Username:
         <input type="text" name="Username" defaultValue={username} onChange={(e) => setNewUsername(e.target.value)} />
-      </label>
-
-      <label>
-        Password:
-        <input type="password" name="Password" defaultValue="********" onChange={(e) => setNewPassword(e.target.value)} />
       </label>
 
       <label>
@@ -64,9 +65,9 @@ export default function UpdateUser(props) {
 }
 
 UpdateUser.propTypes = {
-  user: PropTypes.shape().isRequired,
   username: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  birth: PropTypes.instanceOf(Date).isRequired,
+  birth: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
 };
