@@ -44107,7 +44107,7 @@ function ProfileView(props) {
     const { movies  } = props;
     const [userData, setUserData] = (0, _react.useState)({});
     const [favoriteMovies, setFavoriteMovies] = (0, _react.useState)([]);
-    const { Username , Email , Birthday  } = userData; // I can find a list of favourite movie ID's here if needed
+    const { Username , Email , Birthday , Password  } = userData; // Faves in userData if necessary
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
     const deleteUser = ()=>{
@@ -44135,7 +44135,7 @@ function ProfileView(props) {
         });
     };
     const removeFavorite = (id, title)=>{
-        (0, _axiosDefault.default).put(`https://kds-movie-api.herokuapp.com/users/${user}/favorites/${id}`, {
+        (0, _axiosDefault.default).delete(`https://kds-movie-api.herokuapp.com/users/${user}/favorites/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -44170,10 +44170,10 @@ function ProfileView(props) {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUserDefault.default), {
                 token: token,
-                user: user,
                 username: Username,
                 email: Email,
-                birth: Birthday
+                birth: Birthday,
+                password: Password
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
                 lineNumber: 78,
@@ -44287,7 +44287,7 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-/* eslint-disable no-alert */ var _react = require("react");
+/* eslint-disable no-console */ /* eslint-disable jsx-a11y/label-has-associated-control */ /* eslint-disable no-alert */ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
@@ -44296,36 +44296,40 @@ var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _s = $RefreshSig$();
 function UpdateUser(props) {
     _s();
-    const { token , user , username , email , birth ,  } = props;
+    const { token , username , email , birth , password ,  } = props;
     const [newUsername, setNewUsername] = (0, _react.useState)("");
     const [newPassword, setNewPassword] = (0, _react.useState)("");
     const [newEmail, setNewEmail] = (0, _react.useState)("");
     const [newBirthday, setNewBirthday] = (0, _react.useState)("");
     const handleSubmit = ()=>{
-        (0, _axiosDefault.default).put(`https://kds-movie-api.herokuapp.com/users/${user}`, {
-            Username: newUsername,
-            Password: newPassword,
-            Email: newEmail,
-            Birthday: newBirthday
+        (0, _axiosDefault.default).put(`https://kds-movie-api.herokuapp.com/users/${username}`, {
+            Username: newUsername || username,
+            Email: newEmail || email,
+            Birthday: newBirthday || birth
         }, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then((res)=>{
-            setUserData(res);
-            alert(`${username}'s profile has been updated.`);
-            window.open(`/users/${user}}`, "_self");
+        }).then(()=>{
+            console.log(`Axios request included; ${{
+                Username: newUsername || username,
+                Email: newEmail || email,
+                Birthday: newBirthday || birth
+            }}`);
+            console.log(`${username}'s profile has been updated.`);
+            localStorage.setItem("user", newUsername);
+            window.open(`/users/${newUsername}}`, "_self");
         }).catch((err)=>console.log(err));
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
         className: "profile-form",
-        onSubmit: handleSubmit(),
+        onSubmit: handleSubmit,
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                 children: "Edit Profile: "
             }, void 0, false, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 38,
+                lineNumber: 44,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -44338,32 +44342,13 @@ function UpdateUser(props) {
                         onChange: (e)=>setNewUsername(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 42,
+                        lineNumber: 48,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 40,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                children: [
-                    "Password:",
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                        type: "password",
-                        name: "Password",
-                        defaultValue: "********",
-                        onChange: (e)=>setNewPassword(e.target.value)
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 47,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 45,
+                lineNumber: 46,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -44376,13 +44361,13 @@ function UpdateUser(props) {
                         onChange: (e)=>setNewEmail(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 52,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 50,
+                lineNumber: 51,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
@@ -44395,13 +44380,13 @@ function UpdateUser(props) {
                         onChange: (e)=>setNewBirthday(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/update-user.jsx",
-                        lineNumber: 57,
+                        lineNumber: 58,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 55,
+                lineNumber: 56,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -44409,13 +44394,13 @@ function UpdateUser(props) {
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/profile-view/update-user.jsx",
-                lineNumber: 60,
+                lineNumber: 61,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/update-user.jsx",
-        lineNumber: 37,
+        lineNumber: 43,
         columnNumber: 5
     }, this);
 }
@@ -44423,11 +44408,11 @@ exports.default = UpdateUser;
 _s(UpdateUser, "5ybLpXA0sHLLBoM8lv53mBsF0fE=");
 _c = UpdateUser;
 UpdateUser.propTypes = {
-    user: (0, _propTypesDefault.default).shape().isRequired,
     username: (0, _propTypesDefault.default).string.isRequired,
     email: (0, _propTypesDefault.default).string.isRequired,
-    birth: (0, _propTypesDefault.default).instanceOf(Date).isRequired,
-    token: (0, _propTypesDefault.default).string.isRequired
+    birth: (0, _propTypesDefault.default).string.isRequired,
+    token: (0, _propTypesDefault.default).string.isRequired,
+    password: (0, _propTypesDefault.default).string.isRequired
 };
 var _c;
 $RefreshReg$(_c, "UpdateUser");

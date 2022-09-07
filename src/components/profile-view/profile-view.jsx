@@ -13,7 +13,7 @@ function ProfileView(props) {
   const { movies } = props;
   const [userData, setUserData] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const { Username, Email, Birthday } = userData; // I can find a list of favourite movie ID's here if needed
+  const { Username, Email, Birthday, Password } = userData; // Faves in userData if necessary
   const token = localStorage.getItem('token');
   const user = localStorage.getItem('user');
 
@@ -77,10 +77,10 @@ function ProfileView(props) {
 
       <UpdateUser
         token={token}
-        user={user}
         username={Username}
         email={Email}
         birth={Birthday}
+        password={Password}
       />
       <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
     </div>
