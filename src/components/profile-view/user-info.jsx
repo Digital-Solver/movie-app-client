@@ -1,6 +1,8 @@
 import React from 'react';
 
-function UserInfo(username, email, birthday) {
+function UserInfo(props) {
+  const { username, email, birthday } = props;
+
   return (
     <div>
       <h2>Your Info:</h2>
