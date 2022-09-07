@@ -195,6 +195,7 @@ class MainView extends React.Component {
                 <Col md="auto">
                   <ProfileView
                     user={user}
+                    movies={movies}
                   />
                 </Col>
               );
