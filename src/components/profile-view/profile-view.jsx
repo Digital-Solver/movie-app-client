@@ -11,9 +11,9 @@ import FavoriteMovies from './favorite-movies';
 
 function ProfileView(props) {
   const { movies } = props;
-  const [userData, setUserData] = useState('');
+  const [userData, setUserData] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const { Username, Email, Birth } = userData;
+  const { Username, Email, Birthday } = userData; // I can find a list of favourite movie ID's here if needed
   const token = localStorage.getItem('token');
   const user = localStorage.getItem('user');
 
@@ -61,10 +61,12 @@ function ProfileView(props) {
 
   return (
     <div>
+      {console.log(userData)}
+
       <UserInfo
         username={Username}
         email={Email}
-        birth={Birth}
+        birth={Birthday}
       />
 
       <FavoriteMovies
@@ -78,7 +80,7 @@ function ProfileView(props) {
         user={user}
         username={Username}
         email={Email}
-        birth={Birth}
+        birth={Birthday}
       />
       <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
     </div>
