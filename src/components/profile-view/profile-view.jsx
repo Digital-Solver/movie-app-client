@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import UserInfo from './user-info';
 import UpdateUser from './update-user';
 import FavoriteMovies from './favorite-movies';
@@ -61,11 +62,19 @@ function ProfileView(props) {
   return (
     <div>
       <UserInfo username={Username} email={Email} />
-      <FavoriteMovies favoriteMovies={favoriteMovies} movies={movies} removeFavorite={removeFavorite} />
+      <FavoriteMovies
+        favoriteMovies={favoriteMovies}
+        movies={movies}
+        removeFavorite={removeFavorite}
+      />
       <UpdateUser token={token} user={user} username={Username} email={Email} birth={Birth} />
       <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
     </div>
   );
 }
+
+ProfileView.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
 
 export default ProfileView;
