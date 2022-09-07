@@ -208,7 +208,7 @@ class MainView extends React.Component {
 }
 
 MainView.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  // movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   selectedMovie: PropTypes.shape({}).isRequired,
   user: PropTypes.shape({}).isRequired,
 };
