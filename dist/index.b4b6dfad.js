@@ -44090,8 +44090,8 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 /* eslint-disable object-curly-newline */ /* eslint-disable no-console */ /* eslint-disable no-alert */ // Profile view:
 // Receives: movies & Userdata (both objects)
 // State: Userdata
-// Display: User Info, & Favourite Movies List
-// Methods: Update Info, Delete Profile, Remove Favourites
+// Display: User Info, & Favorite Movies List
+// Methods: Update Info, Delete Profile, Remove Favorites
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
@@ -44099,8 +44099,8 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
 var _userInfo = require("./user-info");
 var _userInfoDefault = parcelHelpers.interopDefault(_userInfo);
-var _favouriteMovies = require("./favourite-movies");
-var _favouriteMoviesDefault = parcelHelpers.interopDefault(_favouriteMovies);
+var _favoriteMovies = require("./favorite-movies");
+var _favoriteMoviesDefault = parcelHelpers.interopDefault(_favoriteMovies);
 var _updateUser = require("./update-user");
 var _updateUserDefault = parcelHelpers.interopDefault(_updateUser);
 var _s = $RefreshSig$();
@@ -44144,8 +44144,8 @@ function ProfileView() {
                 lineNumber: 56,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favouriteMoviesDefault.default), {
-                favouriteMovies: FavoriteMovies
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMoviesDefault.default), {
+                favoriteMovies: FavoriteMovies
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
                 lineNumber: 57,
@@ -44189,7 +44189,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","./user-info":"66eot","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./favourite-movies":"9FAJ6","./update-user":"2SBwg","react-bootstrap":"3AD9A"}],"66eot":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","./user-info":"66eot","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./favorite-movies":"9FAJ6","./update-user":"2SBwg","react-bootstrap":"3AD9A"}],"66eot":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1330 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -44201,18 +44201,18 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-function UserInfo(username, email, favouriteMovies) {
+function UserInfo(username, email, favoriteMovies) {
     // BUG: Props are "[object Object]" despite having been destructured
-    const getFavouriteMovies = ()=>{
-        if (!favouriteMovies) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-            children: "Favourite Some Movies To See Your List"
+    const getFavoriteMovies = ()=>{
+        if (!favoriteMovies) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+            children: "Favorite Some Movies To See Your List"
         }, void 0, false, {
             fileName: "src/components/profile-view/user-info.jsx",
             lineNumber: 7,
             columnNumber: 14
         }, this);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-            children: favouriteMovies
+            children: favoriteMovies
         }, void 0, false, {
             fileName: "src/components/profile-view/user-info.jsx",
             lineNumber: 9,
@@ -44243,7 +44243,7 @@ function UserInfo(username, email, favouriteMovies) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: `Favourite Movies: ${getFavouriteMovies()}`
+                children: `Favorite Movies: ${getFavoriteMovies()}`
             }, void 0, false, {
                 fileName: "src/components/profile-view/user-info.jsx",
                 lineNumber: 17,
@@ -44281,22 +44281,22 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
-function FavouriteMovies({ favouriteMovies  }) {
-    const getFavouriteMovies = ()=>{
-        if (!favouriteMovies) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-            children: "Favourite Some Movies To See Your List"
+function FavoriteMovies({ favoriteMovies  }) {
+    const getFavoriteMovies = ()=>{
+        if (!favoriteMovies) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+            children: "Favorite Some Movies To See Your List"
         }, void 0, false, {
-            fileName: "src/components/profile-view/favourite-movies.jsx",
+            fileName: "src/components/profile-view/favorite-movies.jsx",
             lineNumber: 9,
             columnNumber: 14
         }, this);
-        return favouriteMovies.map((movies)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        return favoriteMovies.map((movies)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
                         src: movies.ImageURL,
                         alt: `Poster of the movie: ${movies.Title}`
                     }, void 0, false, {
-                        fileName: "src/components/profile-view/favourite-movies.jsx",
+                        fileName: "src/components/profile-view/favorite-movies.jsx",
                         lineNumber: 13,
                         columnNumber: 9
                     }, this),
@@ -44305,27 +44305,27 @@ function FavouriteMovies({ favouriteMovies  }) {
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
                             children: movies.Title
                         }, void 0, false, {
-                            fileName: "src/components/profile-view/favourite-movies.jsx",
+                            fileName: "src/components/profile-view/favorite-movies.jsx",
                             lineNumber: 15,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
-                        fileName: "src/components/profile-view/favourite-movies.jsx",
+                        fileName: "src/components/profile-view/favorite-movies.jsx",
                         lineNumber: 14,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         variant: "secondary",
-                        onClick: ()=>removeFavourite(movies._id),
-                        children: "Remove From Favourites"
+                        onClick: ()=>removeFavorite(movies._id),
+                        children: "Remove From Favorites"
                     }, void 0, false, {
-                        fileName: "src/components/profile-view/favourite-movies.jsx",
+                        fileName: "src/components/profile-view/favorite-movies.jsx",
                         lineNumber: 17,
                         columnNumber: 9
                     }, this)
                 ]
             }, movies._id, true, {
-                fileName: "src/components/profile-view/favourite-movies.jsx",
+                fileName: "src/components/profile-view/favorite-movies.jsx",
                 lineNumber: 12,
                 columnNumber: 7
             }, this));
@@ -44333,27 +44333,27 @@ function FavouriteMovies({ favouriteMovies  }) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: "Favourite Movies:"
+                children: "Favorite Movies:"
             }, void 0, false, {
-                fileName: "src/components/profile-view/favourite-movies.jsx",
+                fileName: "src/components/profile-view/favorite-movies.jsx",
                 lineNumber: 24,
                 columnNumber: 7
             }, this),
-            getFavouriteMovies()
+            getFavoriteMovies()
         ]
     }, void 0, true, {
-        fileName: "src/components/profile-view/favourite-movies.jsx",
+        fileName: "src/components/profile-view/favorite-movies.jsx",
         lineNumber: 23,
         columnNumber: 5
     }, this);
 }
-_c = FavouriteMovies;
-exports.default = FavouriteMovies;
-FavouriteMovies.PropTypes = {
-    favouriteMoviesList: (0, _propTypes.PropTypes).shape({}).isRequired
+_c = FavoriteMovies;
+exports.default = FavoriteMovies;
+FavoriteMovies.PropTypes = {
+    favoriteMoviesList: (0, _propTypes.PropTypes).shape({}).isRequired
 };
 var _c;
-$RefreshReg$(_c, "FavouriteMovies");
+$RefreshReg$(_c, "FavoriteMovies");
 
   $parcel$ReactRefreshHelpers$7fc5.postlude(module);
 } finally {
