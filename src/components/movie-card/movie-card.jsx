@@ -12,7 +12,13 @@ import { Link } from 'react-router-dom';
 
 class MovieCard extends React.Component {
   render() {
-    const { movieData } = this.props;
+    const { movieData, favorite } = this.props;
+
+    function favoriteVariant() {
+      if (favorite) {
+        return <Button variant="secondary"/** onClick={() => removeFavorite(movieData._id, movieData.Title)} */>Unfavorite</Button>;
+      } return <Button variant="secondary"/** onClick={ () => addFavorite(movieData._id, movieData.Title)} */>Favorite</Button>;
+    }
 
     return (
       <Card className="movie-card" style={{ borderRadius: '5px' }}>
@@ -23,7 +29,7 @@ class MovieCard extends React.Component {
           <Link to={`/movies/${movieData._id}`}>
             <Button style={{ backgroundColor: '#058ED9' }}>See More</Button>
           </Link>
-
+          {favoriteVariant()}
         </Card.Body>
       </Card>
     );
