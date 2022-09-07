@@ -12,15 +12,15 @@ function FavoriteMovies(props) {
     if (!favoriteMovies) {
       return <p>Favorite Some Movies To See Your List</p>;
     }
-    return movies.map((mov) => (
-      // if (favoriteMovies.includes(mov._id)) {
-      //   return
-      // }
-      <Col md={4}>
-        <MovieCard movieData={mov} key={mov._id} />
-        <Button variant="secondary" onClick={() => removeFavorite(movies._id, movies.Title)}>Unfavorite</Button>
-      </Col>
-    ));
+    return movies.map((mov) => {
+      if (favoriteMovies.includes(mov._id)) {
+        return (
+          <Col md={4}>
+            <MovieCard movieData={mov} key={mov._id} favorite />
+          </Col>
+        );
+      }
+    });
   };
 
   return (
