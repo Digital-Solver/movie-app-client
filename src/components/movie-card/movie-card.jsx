@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -9,17 +11,47 @@ import { Button, Card } from 'react-bootstrap';
 import './movie-card.scss';
 
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class MovieCard extends React.Component {
   render() {
-    const { movieData, favorite } = this.props;
+    const {
+      movieData, favorite, user,
+    } = this.props;
 
-    // TODO: Favouriting Feature is Non-Functional
-    // function favoriteVariant() {
-    //   if (favorite) {
-    //     return <Button variant="secondary"/** onClick={() => removeFavorite(movieData._id, movieData.Title)} */>Unfavorite</Button>;
-    //   } return <Button variant="secondary"/** onClick={ () => addFavorite(movieData._id, movieData.Title)} */>Favorite</Button>;
-    // }
+    function addFavorite() {
+      const username = localStorage.getItem('user');
+      axios
+        .post(
+          `https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`,
+          { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } },
+        )
+        .then(() => {
+          alert(`${movieData.Title} was added to favourites.`);
+          window.open(`/users/${username}`, '_self');
+        })
+        .catch((err) => console.log(err));
+    }
+
+    function deleteFavorite() {
+      const username = localStorage.getItem('user');
+      axios
+        .delete(
+          `https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`,
+          { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } },
+        )
+        .then(() => {
+          alert(`${movieData.Title} was removed from favourites.`);
+          window.open(`/users/${user}`, '_self');
+        })
+        .catch((err) => console.log(err));
+    }
+
+    function favoriteVariant() {
+      if (!favorite) {
+        return <Button variant="secondary" onClick={() => addFavorite(movieData._id, movieData.Title)}>Favorite</Button>;
+      } return <Button variant="secondary" onClick={() => deleteFavorite(movieData._id, movieData.Title)}>Unfavorite</Button>;
+    }
 
     return (
       <Card className="movie-card" style={{ borderRadius: '5px' }}>
@@ -30,7 +62,7 @@ class MovieCard extends React.Component {
           <Link to={`/movies/${movieData._id}`}>
             <Button style={{ backgroundColor: '#058ED9' }}>See More</Button>
           </Link>
-          {/* {favoriteVariant()} // TODO: Favouriting feature is non functional */}
+          {favoriteVariant()}
         </Card.Body>
       </Card>
     );
@@ -48,8 +80,8 @@ MovieCard.propTypes = {
     Director: PropTypes.shape({
       Name: PropTypes.string.isRequired,
       Bio: PropTypes.string.isRequired,
-      Birth: PropTypes.instanceOf(Date).isRequired,
-      Death: PropTypes.instanceOf(Date),
+      Birth: PropTypes.string.isRequired,
+      Death: PropTypes.string,
     }).isRequired,
     Featured: PropTypes.bool.isRequired,
     ImageURL: PropTypes.string.isRequired,
