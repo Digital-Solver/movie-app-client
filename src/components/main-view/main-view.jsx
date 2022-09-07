@@ -186,7 +186,7 @@ class MainView extends React.Component {
               if (!user) {
                 return (
                   <LoginView
-                    onLoginRequest={(user) => this.onLoggedIn(user)}
+                    onLoginRequest={() => this.onLoggedIn(user)}
                   />
                 );
               }
