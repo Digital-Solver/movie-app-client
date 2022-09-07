@@ -1,13 +1,6 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
-
-// Profile view:
-// Receives: movies & Userdata (both objects)
-// State: Userdata
-// Display: User Info, & Favourite Movies List
-// Methods: Update Info, Delete Profile, Remove Favourites
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
@@ -15,10 +8,11 @@ import UserInfo from './user-info';
 import FavouriteMovies from './favourite-movies';
 import UpdateUser from './update-user';
 
-export default function ProfileView() {
+export default function ProfileView(props) {
+  const { movies } = props;
   const [userData, setUserData] = useState('');
+  const [favouriteMovies, setFavouriteMovies] = useState([]);
   const { Username, Email, FavoriteMovies, Birth } = userData;
-
   const token = localStorage.getItem('token');
   const user = localStorage.getItem('user');
 
@@ -43,7 +37,7 @@ export default function ProfileView() {
         `https://kds-movie-api.herokuapp.com/users/${user}`,
         { headers: { Authorization: `Bearer ${token}` } },
       )
-      .then((res) => setUserData(res.data))
+      .then((res) => { setUserData(res.data); setFavouriteMovies(res.data.FavoriteMovies); })
       .catch((err) => { console.log(err); });
   };
 
