@@ -44428,12 +44428,18 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 function FavoriteMovies(props) {
     const { favoriteMovies , movies  } = props;
+    const removeFavorite = (username, id, title)=>{
+        (0, _axiosDefault.default).put(`https://kds-movie-api.herokuapp.com/users/${username}/favorites/${id}`).then((res)=>{
+            console.log(res);
+            alert(`Removed ${title} from favourites.`);
+        }).catch((err)=>console.log(err));
+    };
     const getFavoriteMovies = ()=>{
         if (!favoriteMovies) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
             children: "Favorite Some Movies To See Your List"
         }, void 0, false, {
             fileName: "src/components/profile-view/favorite-movies.jsx",
-            lineNumber: 13,
+            lineNumber: 23,
             columnNumber: 14
         }, this);
         return favoriteMovies.map(()=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -44443,7 +44449,7 @@ function FavoriteMovies(props) {
                         alt: `Poster of the movie: ${movies.Title}`
                     }, void 0, false, {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 17,
+                        lineNumber: 27,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -44452,12 +44458,12 @@ function FavoriteMovies(props) {
                             children: movies.Title
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 19,
+                            lineNumber: 29,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 18,
+                        lineNumber: 28,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -44466,13 +44472,13 @@ function FavoriteMovies(props) {
                         children: "Remove From Favorites"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 21,
+                        lineNumber: 31,
                         columnNumber: 9
                     }, this)
                 ]
             }, movies._id, true, {
                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                lineNumber: 16,
+                lineNumber: 26,
                 columnNumber: 7
             }, this));
     };
@@ -44482,14 +44488,14 @@ function FavoriteMovies(props) {
                 children: "Favorite Movies:"
             }, void 0, false, {
                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                lineNumber: 28,
+                lineNumber: 38,
                 columnNumber: 7
             }, this),
             getFavoriteMovies()
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/favorite-movies.jsx",
-        lineNumber: 27,
+        lineNumber: 37,
         columnNumber: 5
     }, this);
 }
