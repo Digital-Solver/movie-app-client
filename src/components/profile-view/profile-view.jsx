@@ -5,14 +5,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import UserInfo from './user-info';
-import FavoriteMovies from './favorite-movies';
 import UpdateUser from './update-user';
+import FavoriteMovies from './favorite-movies';
 
-export default function ProfileView(props) {
+function ProfileView(props) {
   const { movies } = props;
   const [userData, setUserData] = useState('');
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const { Username, Email, FavoriteMovies, Birth } = userData;
+  const { Username, Email, Birth } = userData;
   const token = localStorage.getItem('token');
   const user = localStorage.getItem('user');
 
@@ -48,9 +48,11 @@ export default function ProfileView(props) {
   return (
     <div>
       <UserInfo username={Username} email={Email} />
-      <FavoriteMovies favoriteMovies={FavoriteMovies} />
+      <FavoriteMovies favoriteMovies={favoriteMovies} movies={movies} />
       <UpdateUser token={token} user={user} username={Username} email={Email} birth={Birth} />
       <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
     </div>
   );
 }
+
+export default ProfileView;
