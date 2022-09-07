@@ -44,7 +44,7 @@ function ProfileView(props) {
 
   const removeFavorite = (id, title) => {
     axios
-      .put(
+      .delete(
         `https://kds-movie-api.herokuapp.com/users/${user}/favorites/${id}`,
         { headers: { Authorization: `Bearer ${token}` } },
       )
