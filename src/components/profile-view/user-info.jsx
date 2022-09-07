@@ -9,7 +9,7 @@ function UserInfo(props) {
       <h2>Your Info:</h2>
       <p>{`Username: ${username}`}</p>
       <p>{`Email: ${email}`}</p>
-      <p>{`Birthday: ${birth}`}</p>
+      <p>{`Birthday: ${birth.slice(0, 10)}`}</p>
     </div>
   );
 }
