@@ -1,16 +1,18 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import axios from 'axios';
 
-function FavoriteMovies({ props }) {
-  
-  
+function FavoriteMovies(props) {
+  const { favoriteMovies, movies } = props;
+
   const getFavoriteMovies = () => {
     if (!favoriteMovies) {
       return <p>Favorite Some Movies To See Your List</p>;
     }
-    return favoriteMovies.map((movies) => (
+    return favoriteMovies.map(() => (
       <div key={movies._id}>
         <img src={movies.ImageURL} alt={`Poster of the movie: ${movies.Title}`} />
         <Link to={`/movies/${movies._id}`}>
@@ -31,6 +33,11 @@ function FavoriteMovies({ props }) {
 
 export default FavoriteMovies;
 
-FavoriteMovies.PropTypes = {
-  favoriteMoviesList: PropTypes.shape({}).isRequired,
+FavoriteMovies.propTypes = {
+  favoriteMovies: PropTypes.shape({}).isRequired,
+  movies: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    Title: PropTypes.string.isRequired,
+    ImageURL: PropTypes.string.isRequired,
+  }).isRequired,
 };
