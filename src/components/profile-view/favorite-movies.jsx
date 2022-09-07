@@ -8,6 +8,16 @@ import axios from 'axios';
 function FavoriteMovies(props) {
   const { favoriteMovies, movies } = props;
 
+  const removeFavorite = (username, id, title) => {
+    axios
+      .put(`https://kds-movie-api.herokuapp.com/users/${username}/favorites/${id}`)
+      .then((res) => {
+        console.log(res);
+        alert(`Removed ${title} from favourites.`);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const getFavoriteMovies = () => {
     if (!favoriteMovies) {
       return <p>Favorite Some Movies To See Your List</p>;
