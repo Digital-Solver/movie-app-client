@@ -13,7 +13,7 @@ function ProfileView(props) {
   const { movies } = props;
   const [userData, setUserData] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const { Username, Email, Birthday, Password } = userData; // Faves in userData if necessary
+  const { Username, Email, Birthday, Password } = userData;
   const token = localStorage.getItem('token');
   const user = localStorage.getItem('user');
 
