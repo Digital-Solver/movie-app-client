@@ -2,7 +2,8 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
+import MovieCard from '../movie-card/movie-card';
 
 function FavoriteMovies(props) {
   const { favoriteMovies, movies, removeFavorite } = props;
@@ -11,14 +12,14 @@ function FavoriteMovies(props) {
     if (!favoriteMovies) {
       return <p>Favorite Some Movies To See Your List</p>;
     }
-    return favoriteMovies.map(() => (
-      <div key={movies._id}>
-        <img src={movies.ImageURL} alt={`Poster of the movie: ${movies.Title}`} />
-        <Link to={`/movies/${movies._id}`}>
-          <h4>{movies.Title}</h4>
-        </Link>
-        <Button variant="secondary" onClick={() => removeFavorite(movies._id, movies.Title)}>Remove From Favorites</Button>
-      </div>
+    return movies.map((mov) => (
+      // if (favoriteMovies.includes(mov._id)) {
+      //   return
+      // }
+      <Col md={4}>
+        <MovieCard movieData={mov} key={mov._id} />
+        <Button variant="secondary" onClick={() => removeFavorite(movies._id, movies.Title)}>Unfavorite</Button>
+      </Col>
     ));
   };
 
