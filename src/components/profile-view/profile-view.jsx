@@ -61,7 +61,11 @@ function ProfileView(props) {
 
   return (
     <div>
-      <UserInfo username={Username} email={Email} />
+      <UserInfo
+        username={Username}
+        email={Email}
+        birth={Birth}
+      />
 
       <FavoriteMovies
         favoriteMovies={favoriteMovies}
