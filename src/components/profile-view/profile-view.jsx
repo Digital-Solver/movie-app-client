@@ -5,13 +5,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import UserInfo from './user-info';
-import FavouriteMovies from './favourite-movies';
+import FavoriteMovies from './favorite-movies';
 import UpdateUser from './update-user';
 
 export default function ProfileView(props) {
   const { movies } = props;
   const [userData, setUserData] = useState('');
-  const [favouriteMovies, setFavouriteMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
   const { Username, Email, FavoriteMovies, Birth } = userData;
   const token = localStorage.getItem('token');
   const user = localStorage.getItem('user');
@@ -37,7 +37,7 @@ export default function ProfileView(props) {
         `https://kds-movie-api.herokuapp.com/users/${user}`,
         { headers: { Authorization: `Bearer ${token}` } },
       )
-      .then((res) => { setUserData(res.data); setFavouriteMovies(res.data.FavoriteMovies); })
+      .then((res) => { setUserData(res.data); setFavoriteMovies(res.data.FavoriteMovies); })
       .catch((err) => { console.log(err); });
   };
 
@@ -48,7 +48,7 @@ export default function ProfileView(props) {
   return (
     <div>
       <UserInfo username={Username} email={Email} />
-      <FavouriteMovies favouriteMovies={FavoriteMovies} />
+      <FavoriteMovies favoriteMovies={FavoriteMovies} />
       <UpdateUser token={token} user={user} username={Username} email={Email} birth={Birth} />
       <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
     </div>
