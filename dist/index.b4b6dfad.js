@@ -44105,9 +44105,9 @@ var _s = $RefreshSig$();
 function ProfileView(props) {
     _s();
     const { movies  } = props;
-    const [userData, setUserData] = (0, _react.useState)("");
+    const [userData, setUserData] = (0, _react.useState)({});
     const [favoriteMovies, setFavoriteMovies] = (0, _react.useState)([]);
-    const { Username , Email , Birth  } = userData;
+    const { Username , Email , Birthday  } = userData; // I can find a list of favourite movie ID's here if needed
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
     const deleteUser = ()=>{
@@ -44149,13 +44149,14 @@ function ProfileView(props) {
     }, []);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
+            console.log(userData),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfoDefault.default), {
                 username: Username,
                 email: Email,
-                birth: Birth
+                birth: Birthday
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 64,
+                lineNumber: 66,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMoviesDefault.default), {
@@ -44164,7 +44165,7 @@ function ProfileView(props) {
                 removeFavorite: removeFavorite
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 70,
+                lineNumber: 72,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _updateUserDefault.default), {
@@ -44172,10 +44173,10 @@ function ProfileView(props) {
                 user: user,
                 username: Username,
                 email: Email,
-                birth: Birth
+                birth: Birthday
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 76,
+                lineNumber: 78,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -44184,7 +44185,7 @@ function ProfileView(props) {
                 children: "Delete Profile"
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 83,
+                lineNumber: 85,
                 columnNumber: 7
             }, this)
         ]
@@ -44194,7 +44195,7 @@ function ProfileView(props) {
         columnNumber: 5
     }, this);
 }
-_s(ProfileView, "wn7J+TBthgJ/fU1d3pdE5Bsnttk=");
+_s(ProfileView, "OUiab/+KYAmi5l4mBRwDY93cF8o=");
 _c = ProfileView;
 ProfileView.propTypes = {
     movies: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).shape({})).isRequired
@@ -44223,7 +44224,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 function UserInfo(props) {
-    const { username , email , birthday  } = props;
+    const { username , email , birth  } = props;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
@@ -44248,7 +44249,7 @@ function UserInfo(props) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                children: `Birthday: ${birthday}`
+                children: `Birthday: ${birth}`
             }, void 0, false, {
                 fileName: "src/components/profile-view/user-info.jsx",
                 lineNumber: 12,
@@ -44265,7 +44266,7 @@ _c = UserInfo;
 UserInfo.propTypes = {
     username: (0, _propTypesDefault.default).string.isRequired,
     email: (0, _propTypesDefault.default).string.isRequired,
-    birthday: (0, _propTypesDefault.default).instanceOf(Date).isRequired
+    birth: (0, _propTypesDefault.default).instanceOf(Date).isRequired
 };
 exports.default = UserInfo;
 var _c;
