@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function UserInfo(props) {
   const { username, email, birthday } = props;
@@ -12,5 +13,11 @@ function UserInfo(props) {
     </div>
   );
 }
+
+UserInfo.propTypes = {
+  username: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  birthday: PropTypes.instanceOf(Date).isRequired,
+};
 
 export default UserInfo;
