@@ -130,6 +130,7 @@ class MainView extends React.Component {
                 <MovieCard
                   key={movie._id}
                   movieData={movie}
+                  user={user}
                 />
               </Col>
             ))}
