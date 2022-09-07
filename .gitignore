@@ -1,4 +1,5 @@
 *.txt
+scratchplate.md
 node_modules
 .cache
 .parcel-cache
