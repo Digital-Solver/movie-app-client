@@ -62,12 +62,20 @@ function ProfileView(props) {
   return (
     <div>
       <UserInfo username={Username} email={Email} />
+
       <FavoriteMovies
         favoriteMovies={favoriteMovies}
         movies={movies}
         removeFavorite={removeFavorite}
       />
-      <UpdateUser token={token} user={user} username={Username} email={Email} birth={Birth} />
+
+      <UpdateUser
+        token={token}
+        user={user}
+        username={Username}
+        email={Email}
+        birth={Birth}
+      />
       <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
     </div>
   );

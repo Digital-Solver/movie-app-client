@@ -1,8 +1,13 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
-export default function UpdateUser(user, username, email, birth, token) {
+export default function UpdateUser(props) {
+  const {
+    token, user, username, email, birth,
+  } = props;
+
   const [newUsername, setNewUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [newEmail, setNewEmail] = useState('');
@@ -57,3 +62,11 @@ export default function UpdateUser(user, username, email, birth, token) {
     </form>
   );
 }
+
+UpdateUser.propTypes = {
+  user: PropTypes.shape().isRequired,
+  username: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  birth: PropTypes.instanceOf(Date).isRequired,
+  token: PropTypes.string.isRequired,
+};
