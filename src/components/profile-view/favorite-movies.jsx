@@ -3,20 +3,9 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import axios from 'axios';
 
 function FavoriteMovies(props) {
-  const { favoriteMovies, movies } = props;
-
-  const removeFavorite = (username, id, title) => {
-    axios
-      .put(`https://kds-movie-api.herokuapp.com/users/${username}/favorites/${id}`)
-      .then((res) => {
-        console.log(res);
-        alert(`Removed ${title} from favourites.`);
-      })
-      .catch((err) => console.log(err));
-  };
+  const { favoriteMovies, movies, removeFavorite } = props;
 
   const getFavoriteMovies = () => {
     if (!favoriteMovies) {
@@ -28,7 +17,7 @@ function FavoriteMovies(props) {
         <Link to={`/movies/${movies._id}`}>
           <h4>{movies.Title}</h4>
         </Link>
-        <Button variant="secondary" onClick={() => removeFavorite(movies._id)}>Remove From Favorites</Button>
+        <Button variant="secondary" onClick={() => removeFavorite(movies._id, movies.Title)}>Remove From Favorites</Button>
       </div>
     ));
   };
@@ -50,4 +39,5 @@ FavoriteMovies.propTypes = {
     Title: PropTypes.string.isRequired,
     ImageURL: PropTypes.string.isRequired,
   }).isRequired,
+  removeFavorite: PropTypes.func.isRequired,
 };
