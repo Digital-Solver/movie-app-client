@@ -17,7 +17,7 @@ function UserInfo(props) {
 UserInfo.propTypes = {
   username: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  birth: PropTypes.instanceOf(Date).isRequired,
+  birth: PropTypes.string.isRequired,
 };
 
 export default UserInfo;
