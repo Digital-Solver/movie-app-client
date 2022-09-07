@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function UserInfo(props) {
-  const { username, email, birthday } = props;
+  const { username, email, birth } = props;
 
   return (
     <div>
       <h2>Your Info:</h2>
       <p>{`Username: ${username}`}</p>
       <p>{`Email: ${email}`}</p>
-      <p>{`Birthday: ${birthday}`}</p>
+      <p>{`Birthday: ${birth}`}</p>
     </div>
   );
 }
@@ -17,7 +17,7 @@ function UserInfo(props) {
 UserInfo.propTypes = {
   username: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  birthday: PropTypes.instanceOf(Date).isRequired,
+  birth: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default UserInfo;
