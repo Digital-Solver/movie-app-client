@@ -22,7 +22,7 @@ class MovieCard extends React.Component {
     function addFavorite() {
       const username = localStorage.getItem('user');
       const token = localStorage.getItem('token');
-      console.log(`REQUEST:\nUser: ${username}\nMovieID: ${movieData._id}\nToken: ${token}`);
+      console.log(`REQUEST:\nUser: ${username}\nMovieID: ${movieData._id}\nToken: ${token}`); // These are the relevant variables as available in this scope
       axios
         .post(
           `https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`,
