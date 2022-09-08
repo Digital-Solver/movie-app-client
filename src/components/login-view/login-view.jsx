@@ -11,9 +11,18 @@ import { Link } from 'react-router-dom';
 export default function loginView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [validated, setValidated] = useState(false);
 
   const handleSubmit = (e) => { // Requests login via a POST request
     e.preventDefault();
+
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    setValidated(true);
     axios
       .post('https://kds-movie-api.herokuapp.com/login', {
         Username: username,
@@ -35,7 +44,7 @@ export default function loginView(props) {
             <Card>
               <Card.Body>
                 <Card.Title>Login with Existing Account</Card.Title>
-                <Form action="submit">
+                <Form action="submit" noValidate validated={validated} onSubmit={handleSubmit}>
                   <Form.Group>
 
                     {/* Username input */}
@@ -48,6 +57,9 @@ export default function loginView(props) {
                         required
                         placeholder="Username"
                       />
+                      <Form.Control.Feedback type="invalid">
+                        Please provide a valid username.
+                      </Form.Control.Feedback>
                     </Form.Label>
                   </Form.Group>
 
@@ -63,12 +75,15 @@ export default function loginView(props) {
                         min={8}
                         placeholder="Password (min. 8 chars)"
                       />
+                      <Form.Control.Feedback type="invalid">
+                        Please provide a valid password.
+                      </Form.Control.Feedback>
                     </Form.Label>
                   </Form.Group>
 
                   {/* Submit button */}
                   <Form.Group>
-                    <Button type="submit" onClick={handleSubmit}>Login</Button>
+                    <Button type="submit">Login</Button>
                   </Form.Group>
 
                 </Form>
