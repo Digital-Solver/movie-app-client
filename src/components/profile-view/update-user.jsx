@@ -15,28 +15,22 @@ export default function UpdateUser(props) {
   const [newEmail, setNewEmail] = useState('');
   const [newBirthday, setNewBirthday] = useState('');
 
-  const handleSubmit = () => {
-    axios
-      .put(
-        `https://kds-movie-api.herokuapp.com/users/${username}`,
-        {
-          Username: newUsername || username, // FIX: server-side val: prevent duplicate users
-          Email: newEmail || email,
-          Birthday: newBirthday || birth,
-        },
-        { headers: { Authorization: `Bearer ${token}` } },
-      )
-      .then(() => {
-        console.log(`Axios request included; ${{
-          Username: newUsername || username, // FIX: server-side val: prevent duplicate users
-          Email: newEmail || email,
-          Birthday: newBirthday || birth,
-        }}`);
-        console.log(`${username}'s profile has been updated.`);
-        localStorage.setItem('user', newUsername);
-        window.open(`/users/${newUsername}}`, '_self');
-      })
-      .catch((err) => console.log(err));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.put(
+      `https://kds-movie-api.herokuapp.com/users/${username}`,
+      {
+        Username: newUsername || username,
+        Email: newEmail || email,
+        Password: newPassword,
+        Birthday: newBirthday || birth,
+      },
+      { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' } },
+    ).then((res) => {
+      alert(`${username}'s profile has been updated.`);
+      localStorage.setItem('user', newUsername || username);
+      window.open(`/users/${newUsername || username}}`, '_self');
+    }).catch((err) => console.log(err));
   };
 
   return (
@@ -51,6 +45,11 @@ export default function UpdateUser(props) {
       <label>
         Email:
         <input type="email" name="Email" defaultValue={email} onChange={(e) => setNewEmail(e.target.value)} />
+      </label>
+
+      <label>
+        Password:
+        <input type="password" name="Password" required defaultValue="" onChange={(e) => setNewPassword(e.target.value)} />
       </label>
 
       <label>
