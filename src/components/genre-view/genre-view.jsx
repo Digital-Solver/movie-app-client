@@ -11,7 +11,7 @@ class GenreView extends React.Component {
 
     return (
       <Card className="genre-view justify-content-md-center" style={{ backgroundColor: '#77685D', borderRadius: '5px' }}>
-        {console.log(movieData)}
+
         <Card.Title style={{ color: 'white' }} className="genre-name">{movieData.Genre.Name}</Card.Title>
         <Card.Body style={{ color: 'white' }} className="genre-description">{movieData.Genre.Description}</Card.Body>
         <Button style={{ backgroundColor: '#058ED9' }} type="button" onClick={() => { onBackClick(); }}>Back</Button>

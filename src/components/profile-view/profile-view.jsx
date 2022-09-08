@@ -48,8 +48,6 @@ function ProfileView(props) {
 
   return (
     <div>
-      {console.log(Username)}
-      {console.log(user)}
 
       <UserInfo
         username={Username}
