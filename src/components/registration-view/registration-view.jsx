@@ -69,7 +69,6 @@ export default function registrationView(props) {
         })
         .then((res) => {
           const { data } = res;
-          console.log(data);
           window.open('/', '_self'); //
         })
         .catch((err) => { console.log(err); });
