@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Container } from 'react-bootstrap';
 import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 import moviesApp from './reducers/reducers';
 
 import MainView from './components/main-view/main-view';
@@ -12,7 +13,7 @@ import MainView from './components/main-view/main-view';
 import './index.scss';
 
 // Initialise Redux Store
-const store = createStore(moviesApp);
+const store = createStore(moviesApp, devToolsEnhancer());
 
 // Main component
 class MovieApp extends React.Component {
