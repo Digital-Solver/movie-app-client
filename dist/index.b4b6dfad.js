@@ -42919,7 +42919,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
         function addFavorite() {
             const username = localStorage.getItem("user");
             const token = localStorage.getItem("token");
-            console.log(`REQUEST:\nUser: ${username}\nMovieID: ${movieData._id}\nToken: ${token}`);
+            console.log(`REQUEST:\nUser: ${username}\nMovieID: ${movieData._id}\nToken: ${token}`); // These are the relevant variables as available in this scope
             (0, _axiosDefault.default).post(`https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
