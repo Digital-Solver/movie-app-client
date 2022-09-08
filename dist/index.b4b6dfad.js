@@ -42918,6 +42918,8 @@ class MovieCard extends (0, _reactDefault.default).Component {
         const { movieData , favorite , user ,  } = this.props;
         function addFavorite() {
             const username = localStorage.getItem("user");
+            const token = localStorage.getItem("token");
+            console.log(`REQUEST:\nUser: ${username}\nMovieID: ${movieData._id}\nToken: ${token}`);
             (0, _axiosDefault.default).post(`https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -42945,7 +42947,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                 children: "Favorite"
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 52,
+                lineNumber: 54,
                 columnNumber: 16
             }, this);
             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -42954,7 +42956,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                 children: "Unfavorite"
             }, void 0, false, {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 53,
+                lineNumber: 55,
                 columnNumber: 16
             }, this);
         }
@@ -42970,7 +42972,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                     thumbnail: "true"
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 58,
+                    lineNumber: 60,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -42986,7 +42988,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                             children: movieData.Title
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 60,
+                            lineNumber: 62,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -42998,25 +43000,25 @@ class MovieCard extends (0, _reactDefault.default).Component {
                                 children: "See More"
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 63,
+                                lineNumber: 65,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 62,
+                            lineNumber: 64,
                             columnNumber: 11
                         }, this),
                         favoriteVariant()
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 59,
+                    lineNumber: 61,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 57,
+            lineNumber: 59,
             columnNumber: 7
         }, this);
     }
