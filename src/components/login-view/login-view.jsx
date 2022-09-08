@@ -23,6 +23,7 @@ export default function loginView(props) {
     }
 
     setValidated(true);
+    console.log(username, password);
     axios
       .post('https://kds-movie-api.herokuapp.com/login', {
         Username: username,
