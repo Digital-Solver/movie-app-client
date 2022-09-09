@@ -1,23 +1,14 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/prefer-stateless-function */
-
-// Libraries
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-// Redux Actions
-import { setMovies } from '../../actions/actions';
-
-// Components
-import MoviesList from '../movies-list/movies-list';
-// import MovieCard from '../movie-card/movie-card';
+import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
 import PrimaryNav from '../primary-nav/primary-nav';
 import LoginView from '../login-view/login-view';
@@ -30,6 +21,7 @@ class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
+      movies: [],
       user: null,
     };
   }
@@ -68,13 +60,12 @@ class MainView extends React.Component {
     axios
       .get('https://kds-movie-api.herokuapp.com/movies', {
         headers: { Authorization: `Bearer ${token}` } })
-      .then((res) => { this.props.setMovies(res.data); })
+      .then((res) => { this.setState({ movies: res.data }); })
       .catch((err) => console.log(err));
   }
 
   render() {
-    const { user } = this.state;
-    const { movies } = this.props;
+    const { movies, user } = this.state;
 
     return (
       <Router>
@@ -104,7 +95,14 @@ class MainView extends React.Component {
 
               if (movies.length === 0) { return <div className="main-view" />; } // Show empty div until data is loaded
 
-              return <MoviesList movies={movies} />;
+              return () => movies.map((movie) => ( // When movies load, show them in a card list
+                <Col lg="auto" md={4} sm={6} xs="auto" style={{ marginInline: 'auto' }}>
+                  <MovieCard
+                    key={movie._id}
+                    movieData={movie}
+                  />
+                </Col>
+              ));
             }}
           />
 
@@ -121,6 +119,20 @@ class MainView extends React.Component {
                 </Col>
               );
             }}
+          />
+
+          <Route // Card list of movies (master)
+            exact
+            path="/"
+            render={() => movies.map((movie) => (
+              <Col lg="auto" md={4} sm={6} xs="auto" style={{ marginInline: 'auto' }}>
+                <MovieCard
+                  key={movie._id}
+                  movieData={movie}
+                  user={user}
+                />
+              </Col>
+            ))}
           />
 
           <Route // View of an individual movie (detail)
@@ -195,12 +207,10 @@ class MainView extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ movies: state.movies });
-
 MainView.propTypes = {
   // movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   selectedMovie: PropTypes.shape({}).isRequired,
   user: PropTypes.shape({}).isRequired,
 };
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default MainView;
