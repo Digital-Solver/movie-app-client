@@ -4,8 +4,7 @@ import { Form } from 'react-bootstrap';
 import { setFilter } from '../../actions/actions';
 
 function VisibilityFilterInput(props) {
-  const { setFilter, visibilityFilter } = props;
-
+  const { visibilityFilter, setFilter } = props;
   return (
     <Form.Control
       onChange={(e) => setFilter(e.target.value)}
