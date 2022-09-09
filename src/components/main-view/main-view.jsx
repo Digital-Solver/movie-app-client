@@ -16,7 +16,6 @@ import { setMovies } from '../../actions/actions';
 
 // React Components
 import MoviesList from '../movies-list/movies-list';
-import MovieCard from '../movie-card/movie-card'; // TODO: Remove
 import MovieView from '../movie-view/movie-view';
 import PrimaryNav from '../primary-nav/primary-nav';
 import LoginView from '../login-view/login-view';
