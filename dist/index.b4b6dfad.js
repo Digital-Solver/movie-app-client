@@ -46177,14 +46177,14 @@ var _reactRedux = require("react-redux");
 var _reactBootstrap = require("react-bootstrap");
 var _actions = require("../../actions/actions");
 function VisibilityFilterInput(props) {
-    const { setFilter , visibilityFilter  } = props;
+    const { visibilityFilter , setFilter  } = props;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
         onChange: (e)=>setFilter(e.target.value),
         value: visibilityFilter,
         plcaeholder: "filter"
     }, void 0, false, {
         fileName: "src/components/visibility-filter-input/visibility-filter-input.jsx",
-        lineNumber: 10,
+        lineNumber: 9,
         columnNumber: 5
     }, this);
 }
