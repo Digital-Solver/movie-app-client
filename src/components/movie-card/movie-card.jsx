@@ -58,7 +58,7 @@ class MovieCard extends React.Component {
 
     return (
       <Card className="movie-card" style={{ borderRadius: '5px' }}>
-        <Card.Img variant="top" src={movieData.ImageURL} thumbnail="true" />
+        <Card.Img variant="top" src={movieData.ImageURL} thumbnail="true" crossorigin="anonymous" />
         <Card.Body style={{ backgroundColor: '#77685D', borderRadius: '0px 0px 5px 5px' }}>
           <Card.Title style={{ color: 'white' }}>{movieData.Title}</Card.Title>
 
