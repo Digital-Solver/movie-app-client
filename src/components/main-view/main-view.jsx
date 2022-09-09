@@ -112,17 +112,7 @@ class MainView extends React.Component {
               }
 
               if (movies.length === 0) { return <div className="main-view" />; } // Show empty div until data is loaded
-
-              return () => movies.map((movie) => ( // When movies load, show them in a card list // Ole Version
-                <Col lg="auto" md={4} sm={6} xs="auto" style={{ marginInline: 'auto' }}>
-                  <MovieCard
-                    key={movie._id}
-                    movieData={movie}
-                  />
-                </Col>
-              ));
-
-              // return <MoviesList movies={movies}/> // New Version
+              return <MoviesList movies={movies} />;
             }}
           />
 
@@ -139,20 +129,6 @@ class MainView extends React.Component {
                 </Col>
               );
             }}
-          />
-
-          <Route // Card list of movies (master)
-            exact
-            path="/"
-            render={() => movies.map((movie) => (
-              <Col lg="auto" md={4} sm={6} xs="auto" style={{ marginInline: 'auto' }}>
-                <MovieCard
-                  key={movie._id}
-                  movieData={movie}
-                  user={user}
-                />
-              </Col>
-            ))}
           />
 
           <Route // View of an individual movie (detail)
