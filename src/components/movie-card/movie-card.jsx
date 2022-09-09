@@ -26,6 +26,7 @@ class MovieCard extends React.Component {
       axios
         .post(
           `https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`,
+          {},
           { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }, // Auth not working even though endpoint works in postman and I've checked the backend code too
         )
         .then(() => {
