@@ -101,7 +101,7 @@ class MainView extends React.Component {
               }
 
               if (movies.length === 0) { return <div className="main-view" />; } // Show empty div until data is loaded
-              return <MoviesList movies={movies} />;
+              return <MoviesList movies={movies} user={localStorage.getItem('user')} />;
             }}
           />
 

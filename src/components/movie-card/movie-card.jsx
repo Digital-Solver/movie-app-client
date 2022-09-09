@@ -20,31 +20,31 @@ class MovieCard extends React.Component {
     } = this.props;
 
     function addFavorite() {
-      const username = localStorage.getItem('user');
+      // const username = localStorage.getItem('user');
       const token = localStorage.getItem('token');
-      console.log(`REQUEST:\nUser: ${username}\nMovieID: ${movieData._id}\nToken: ${token}`); // These are the relevant variables as available in this scope
+      console.log(`REQUEST:\nUser: ${user}\nMovieID: ${movieData._id}\nToken: ${token}`); // These are the relevant variables as available in this scope
       axios
         .post(
-          `https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`,
+          `https://kds-movie-api.herokuapp.com/users/${user}/favorites/${movieData._id}`,
           {},
           { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }, // Auth not working even though endpoint works in postman and I've checked the backend code too
         )
         .then(() => {
-          alert(`${movieData.Title} was added to favourites.`);
-          window.open(`/users/${username}`, '_self');
+          alert(`${movieData.Title} was added to ${user}'s favourites.`);
+          window.open(`/users/${user}`, '_self');
         })
         .catch((err) => console.log(err));
     }
 
     function deleteFavorite() {
-      const username = localStorage.getItem('user');
+      // const username = localStorage.getItem('user');
       axios
         .delete(
-          `https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`,
+          `https://kds-movie-api.herokuapp.com/users/${user}/favorites/${movieData._id}`,
           { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } },
         )
         .then(() => {
-          alert(`${movieData.Title} was removed from favourites.`);
+          alert(`${movieData.Title} was removed from ${user}'s favourites.`);
           window.open(`/users/${user}`, '_self');
         })
         .catch((err) => console.log(err));
@@ -58,7 +58,7 @@ class MovieCard extends React.Component {
 
     return (
       <Card className="movie-card" style={{ borderRadius: '5px' }}>
-        <Card.Img variant="top" src={movieData.ImageURL} thumbnail="true" />
+        <Card.Img variant="top" src={movieData.ImageURL} thumbnail="true" crossorigin="anonymous" />
         <Card.Body style={{ backgroundColor: '#77685D', borderRadius: '0px 0px 5px 5px' }}>
           <Card.Title style={{ color: 'white' }}>{movieData.Title}</Card.Title>
 
