@@ -71,7 +71,6 @@ class MainView extends React.Component {
   }
 
   render() {
-    // const { movies, user } = this.state; // Old Version
     const { movies } = this.props; // New Version
     const { user } = this.state; // New Version
 
