@@ -28,7 +28,6 @@ class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: [], // TODO: Remove
       user: null,
     };
   }
@@ -67,22 +66,14 @@ class MainView extends React.Component {
     axios
       .get('https://kds-movie-api.herokuapp.com/movies', {
         headers: { Authorization: `Bearer ${token}` } })
-      .then((res) => { this.setState({ movies: res.data }); })
-      .catch((err) => console.log(err));
-  }
-
-  getMoviesv2(token) {
-    axios
-      .get('https://kds-movie-api.herokuapp.com/movies', {
-        headers: { Authorization: `Bearer ${token}` } })
       .then((res) => { this.props.setMovies(res.data); })
       .catch((err) => console.log(err));
   }
 
   render() {
-    const { movies, user } = this.state; // Old Version
-    // let { movies } =  this.props; // New Version
-    // let { user } = this.state;  // New Version
+    // const { movies, user } = this.state; // Old Version
+    const { movies } = this.props; // New Version
+    const { user } = this.state; // New Version
 
     return (
       <Router>
@@ -205,7 +196,7 @@ class MainView extends React.Component {
 const mapStateToProps = (state) => ({ movies: state.movies });
 
 MainView.propTypes = {
-  // movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   selectedMovie: PropTypes.shape({}).isRequired,
   user: PropTypes.shape({}).isRequired,
 };
