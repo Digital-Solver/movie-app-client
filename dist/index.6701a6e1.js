@@ -40572,7 +40572,8 @@ class MainView extends _reactDefault.default.Component {
                                 }));
                                  // Show empty div until data is loaded
                                 return(/*#__PURE__*/ _jsxRuntime.jsx(_moviesListDefault.default, {
-                                    movies: movies
+                                    movies: movies,
+                                    user: localStorage.getItem('user')
                                 }));
                             },
                             __source: {
@@ -46138,7 +46139,7 @@ const mapStateToProps = (state)=>{
     };
 };
 function MoviesList(props) {
-    const { movies , visibilityFilter  } = props;
+    const { movies , visibilityFilter , user  } = props;
     let filteredMovies = movies;
     if (visibilityFilter !== '') filteredMovies = movies.filter((m)=>m.Title.toLowerCase().includes(visibilityFilter.toLowerCase())
     );
@@ -46184,6 +46185,7 @@ function MoviesList(props) {
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
                         movieData: m,
+                        user: user,
                         __source: {
                             fileName: "src/components/movies-list/movies-list.jsx",
                             lineNumber: 35
@@ -46389,28 +46391,28 @@ class MovieCard extends _reactDefault.default.Component {
     render() {
         const { movieData , favorite , user ,  } = this.props;
         function addFavorite() {
-            const username = localStorage.getItem('user');
+            // const username = localStorage.getItem('user');
             const token = localStorage.getItem('token');
-            console.log(`REQUEST:\nUser: ${username}\nMovieID: ${movieData._id}\nToken: ${token}`); // These are the relevant variables as available in this scope
-            _axiosDefault.default.post(`https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`, {
+            console.log(`REQUEST:\nUser: ${user}\nMovieID: ${movieData._id}\nToken: ${token}`); // These are the relevant variables as available in this scope
+            _axiosDefault.default.post(`https://kds-movie-api.herokuapp.com/users/${user}/favorites/${movieData._id}`, {
             }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             }).then(()=>{
-                alert(`${movieData.Title} was added to favourites.`);
-                window.open(`/users/${username}`, '_self');
+                alert(`${movieData.Title} was added to ${user}'s favourites.`);
+                window.open(`/users/${user}`, '_self');
             }).catch((err)=>console.log(err)
             );
         }
         function deleteFavorite() {
-            const username = localStorage.getItem('user');
-            _axiosDefault.default.delete(`https://kds-movie-api.herokuapp.com/users/${username}/favorites/${movieData._id}`, {
+            // const username = localStorage.getItem('user');
+            _axiosDefault.default.delete(`https://kds-movie-api.herokuapp.com/users/${user}/favorites/${movieData._id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             }).then(()=>{
-                alert(`${movieData.Title} was removed from favourites.`);
+                alert(`${movieData.Title} was removed from ${user}'s favourites.`);
                 window.open(`/users/${user}`, '_self');
             }).catch((err)=>console.log(err)
             );
@@ -48124,7 +48126,7 @@ var _reactBootstrap = require("react-bootstrap");
 var _movieCard = require("../movie-card/movie-card");
 var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
 function FavoriteMovies(props) {
-    const { favoriteMovies , movies , removeFavorite  } = props;
+    const { favoriteMovies , movies , removeFavorite , user  } = props;
     const getFavoriteMovies = ()=>{
         if (!favoriteMovies) return(/*#__PURE__*/ _jsxRuntime.jsx("p", {
             __source: {
@@ -48145,6 +48147,7 @@ function FavoriteMovies(props) {
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
                     movieData: mov,
                     favorite: true,
+                    user: user,
                     __source: {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
                         lineNumber: 19

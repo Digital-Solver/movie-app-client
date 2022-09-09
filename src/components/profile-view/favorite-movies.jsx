@@ -6,7 +6,7 @@ import { Button, Col } from 'react-bootstrap';
 import MovieCard from '../movie-card/movie-card';
 
 function FavoriteMovies(props) {
-  const { favoriteMovies, movies, removeFavorite } = props;
+  const { favoriteMovies, movies, removeFavorite, user } = props;
 
   const getFavoriteMovies = () => {
     if (!favoriteMovies) {
@@ -16,7 +16,7 @@ function FavoriteMovies(props) {
       if (favoriteMovies.includes(mov._id)) {
         return (
           <Col md={4}>
-            <MovieCard movieData={mov} key={mov._id} favorite />
+            <MovieCard movieData={mov} key={mov._id} favorite user={user} />
           </Col>
         );
       }
