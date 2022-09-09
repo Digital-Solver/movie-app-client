@@ -1,0 +1,23 @@
+.movie-card {
+  width: 200px;
+  margin: 15px;
+}
+
+label {
+  width: 100%;
+}
+
+.card {
+  margin: 20px;
+}
+
+
+.movie-app {
+  color: steelblue;
+}
+
+.app-container {
+  background-color: rgb(244, 235, 217);
+  height: 100%;
+}
+/*# sourceMappingURL=index.3f764291.css.map */
