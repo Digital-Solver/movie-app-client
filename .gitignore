@@ -5,3 +5,4 @@ node_modules
 .parcel-cache
 .env
 src/components/profile-view/profile-view-original.jsx
+scratchplate.md
