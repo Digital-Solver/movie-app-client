@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 
 // Redux Actions
 import { setMovies } from '../../actions/actions';
+import { setUser } from '../../actions/actions';
 
 // React Components
 import MoviesList from '../movies-list/movies-list';
@@ -47,6 +48,9 @@ class MainView extends React.Component {
     this.setState({
       user: authData.user.Username,
     });
+    const { setUser } = this.props;
+    setUser(authData);
+    console.log(authData);
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
@@ -203,4 +207,4 @@ MainView.propTypes = {
   setMovies: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);
