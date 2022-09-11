@@ -63,10 +63,12 @@ class MainView extends React.Component {
   }
 
   getMovies(token) {
+    // eslint-disable-next-line no-shadow
+    const { setMovies } = this.props;
     axios
       .get('https://kds-movie-api.herokuapp.com/movies', {
         headers: { Authorization: `Bearer ${token}` } })
-      .then((res) => { this.props.setMovies(res.data); })
+      .then((res) => { setMovies(res.data); })
       .catch((err) => console.log(err));
   }
 
@@ -168,7 +170,7 @@ class MainView extends React.Component {
           <Route
             path="/users/:username"
             exact
-            render={(history, match) => {
+            render={() => {
               if (!user) {
                 return (
                   <LoginView
@@ -198,6 +200,7 @@ const mapStateToProps = (state) => ({ movies: state.movies });
 MainView.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   user: PropTypes.shape({}).isRequired,
+  setMovies: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { setMovies })(MainView);
