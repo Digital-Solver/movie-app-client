@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable object-curly-newline */
@@ -12,8 +13,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // Redux Actions
-import { setMovies } from '../../actions/actions';
-import { setUser } from '../../actions/actions';
+import { setUser, setMovies } from '../../actions/actions';
 
 // React Components
 import MoviesList from '../movies-list/movies-list';
@@ -26,31 +26,19 @@ import GenreView from '../genre-view/genre-view';
 import ProfileView from '../profile-view/profile-view';
 
 class MainView extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      user: null,
-    };
-  }
-
   componentDidMount() {
     const accessToken = localStorage.getItem('token');
+    const { setUser } = this.props;
 
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user'),
-      });
+      setUser({ user: { Username: localStorage.getItem('user') } });
       this.getMovies(accessToken);
     }
   }
 
   onLoginRequest(authData) {
-    this.setState({
-      user: authData.user.Username,
-    });
     const { setUser } = this.props;
     setUser(authData);
-    console.log(authData);
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
@@ -60,9 +48,7 @@ class MainView extends React.Component {
   onLogoutRequest() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    this.setState({
-      user: null,
-    });
+    setUser(null);
     window.open('/', '_self');
   }
 
@@ -77,8 +63,8 @@ class MainView extends React.Component {
   }
 
   render() {
-    const { movies } = this.props; // New Version
-    const { user } = this.state; // New Version
+    const { movies } = this.props;
+    const { userdata } = this.props;
 
     return (
       <Router>
@@ -98,7 +84,7 @@ class MainView extends React.Component {
             exact
             path="/"
             render={() => {
-              if (!user) { // Show login view if there is no user logged in
+              if (!localStorage.getItem('user')) { // Show login view if there is no user logged in
                 return (
                   <Col>
                     <LoginView onLoginRequest={(username) => this.onLoginRequest(username)} />
@@ -115,7 +101,7 @@ class MainView extends React.Component {
             exact
             path="/register"
             render={() => {
-              if (user) {
+              if (localStorage.getItem('user')) {
                 return <Redirect to="/" />;
               }
               return (
@@ -175,10 +161,12 @@ class MainView extends React.Component {
             path="/users/:username"
             exact
             render={() => {
-              if (!user) {
+              const { userdata } = this.props;
+
+              if (!localStorage.getItem('user')) {
                 return (
                   <LoginView
-                    onLoginRequest={() => this.onLoggedIn(user)}
+                    onLoginRequest={(username) => this.onLoggedIn(username)}
                   />
                 );
               }
@@ -186,7 +174,7 @@ class MainView extends React.Component {
               return (
                 <Col md="auto">
                   <ProfileView
-                    user={user}
+                    user={localStorage.getItem('user')}
                     movies={movies}
                   />
                 </Col>
@@ -199,12 +187,23 @@ class MainView extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ movies: state.movies });
+const mapStateToProps = (state) => ({ movies: state.movies, userdata: state.userdata });
 
 MainView.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  user: PropTypes.shape({}).isRequired,
+
+  userdata: PropTypes.shape({
+    user: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      Username: PropTypes.string.isRequired,
+      Password: PropTypes.string.isRequired,
+      Email: PropTypes.string.isRequired,
+      FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
+    }).isRequired,
+    token: PropTypes.string.isRequired,
+  }).isRequired,
   setMovies: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, { setMovies, setUser })(MainView);
