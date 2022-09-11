@@ -29,7 +29,7 @@ export default function PrimaryNav(props) {
 
             <Nav className="me-auto">
               {isAuth() && (
-              <Link href="/">
+              <Link to="/">
                 <Button variant="link" style={{ color: 'white' }} onClick={() => { onLogoutRequest(); }}>Logout</Button>
               </Link>
               )}

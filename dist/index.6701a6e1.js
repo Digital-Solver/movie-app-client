@@ -40593,8 +40593,7 @@ class MainView extends _reactDefault.default.Component {
                                 }));
                                  // Show empty div until data is loaded
                                 return(/*#__PURE__*/ _jsxRuntime.jsx(_moviesListDefault.default, {
-                                    movies: movies,
-                                    user: localStorage.getItem('user')
+                                    movies: movies
                                 }));
                             },
                             __source: {
@@ -40691,6 +40690,7 @@ class MainView extends _reactDefault.default.Component {
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
                             path: "/users/:username",
+                            exact: true,
                             render: (history, match)=>{
                                 if (!user) return(/*#__PURE__*/ _jsxRuntime.jsx(_loginViewDefault.default, {
                                     onLoginRequest: ()=>this.onLoggedIn(user)
@@ -40726,8 +40726,6 @@ const mapStateToProps = (state)=>({
 MainView.propTypes = {
     movies: _propTypesDefault.default.arrayOf(_propTypesDefault.default.shape({
     })).isRequired,
-    selectedMovie: _propTypesDefault.default.shape({
-    }).isRequired,
     user: _propTypesDefault.default.shape({
     }).isRequired
 };
@@ -46477,7 +46475,7 @@ class MovieCard extends _reactDefault.default.Component {
                     variant: "top",
                     src: movieData.ImageURL,
                     thumbnail: "true",
-                    crossorigin: "anonymous",
+                    crossOrigin: "anonymous",
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
                         lineNumber: 61
@@ -46830,7 +46828,7 @@ function PrimaryNav(props) {
                                 },
                                 __self: this,
                                 children: isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
-                                    href: "/",
+                                    to: "/",
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
                                         lineNumber: 32

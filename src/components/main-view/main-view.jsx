@@ -101,7 +101,7 @@ class MainView extends React.Component {
               }
 
               if (movies.length === 0) { return <div className="main-view" />; } // Show empty div until data is loaded
-              return <MoviesList movies={movies} user={localStorage.getItem('user')} />;
+              return <MoviesList movies={movies} />;
             }}
           />
 
@@ -167,6 +167,7 @@ class MainView extends React.Component {
 
           <Route
             path="/users/:username"
+            exact
             render={(history, match) => {
               if (!user) {
                 return (
@@ -196,7 +197,6 @@ const mapStateToProps = (state) => ({ movies: state.movies });
 
 MainView.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  selectedMovie: PropTypes.shape({}).isRequired,
   user: PropTypes.shape({}).isRequired,
 };
 
