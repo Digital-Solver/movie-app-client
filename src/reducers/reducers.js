@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { combineReducers } from 'redux';
 
 import { SET_FILTER, SET_MOVIES, SET_USER } from '../actions/actions';
