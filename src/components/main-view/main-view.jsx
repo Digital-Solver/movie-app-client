@@ -196,7 +196,6 @@ const mapStateToProps = (state) => ({ movies: state.movies });
 
 MainView.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  selectedMovie: PropTypes.shape({}).isRequired,
   user: PropTypes.shape({}).isRequired,
 };
 

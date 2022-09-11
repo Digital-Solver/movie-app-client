@@ -40705,8 +40705,6 @@ const mapStateToProps = (state)=>({
 MainView.propTypes = {
     movies: _propTypesDefault.default.arrayOf(_propTypesDefault.default.shape({
     })).isRequired,
-    selectedMovie: _propTypesDefault.default.shape({
-    }).isRequired,
     user: _propTypesDefault.default.shape({
     }).isRequired
 };
@@ -46456,7 +46454,7 @@ class MovieCard extends _reactDefault.default.Component {
                     variant: "top",
                     src: movieData.ImageURL,
                     thumbnail: "true",
-                    crossorigin: "anonymous",
+                    crossOrigin: "anonymous",
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
                         lineNumber: 61
