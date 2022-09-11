@@ -64,7 +64,7 @@ class MainView extends React.Component {
 
   getMovies(token) {
     // eslint-disable-next-line no-shadow
-    const { setMovies } = this.props;
+    const { setMovies } = this.props; // Extracts the action dispatcher
     axios
       .get('https://kds-movie-api.herokuapp.com/movies', {
         headers: { Authorization: `Bearer ${token}` } })
