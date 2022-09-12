@@ -8,14 +8,16 @@ import PropTypes from 'prop-types';
 import UserInfo from './user-info';
 import UpdateUser from './update-user';
 import FavoriteMovies from './favorite-movies';
+import { setUser } from '../../actions/actions';
 
 function ProfileView(props) {
-  const { movies } = props;
-  const { user } = props;
+  // Read State
+  const { movies, user, token } = props;
+
+  // Write State // TODO: Transition this to Redux
   const [userData, setUserData] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const { Username, Email, Birthday, Password } = userData;
-  const token = localStorage.getItem('token');
 
   const deleteUser = () => {
     axios

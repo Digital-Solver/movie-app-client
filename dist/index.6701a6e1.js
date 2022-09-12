@@ -40507,9 +40507,9 @@ class MainView extends _reactDefault.default.Component {
         const { setUser  } = this.props;
         if (localStorage.getItem('user') !== null) setUser({
             user: {
-                Username: localStorage.getItem('user'),
-                token: localStorage.getItem('token')
-            }
+                Username: localStorage.getItem('user')
+            },
+            token: localStorage.getItem('token')
         });
     }
     componentDidMount() {
@@ -40701,7 +40701,8 @@ class MainView extends _reactDefault.default.Component {
                                     md: "auto",
                                     children: /*#__PURE__*/ _jsxRuntime.jsx(_profileViewDefault.default, {
                                         user: userdata1.user.Username,
-                                        movies: movies
+                                        movies: movies,
+                                        token: userdata1.token
                                     })
                                 }));
                             },
@@ -47777,16 +47778,17 @@ var _updateUser = require("./update-user");
 var _updateUserDefault = parcelHelpers.interopDefault(_updateUser);
 var _favoriteMovies = require("./favorite-movies");
 var _favoriteMoviesDefault = parcelHelpers.interopDefault(_favoriteMovies);
+var _actions = require("../../actions/actions");
 var _s = $RefreshSig$();
 function ProfileView(props) {
     _s();
-    const { movies  } = props;
-    const { user  } = props;
+    // Read State
+    const { movies , user , token  } = props;
+    // Write State // TODO: Transition this to Redux
     const [userData, setUserData] = _react.useState({
     });
     const [favoriteMovies, setFavoriteMovies] = _react.useState([]);
     const { Username , Email , Birthday , Password  } = userData;
-    const token = localStorage.getItem('token');
     const deleteUser = ()=>{
         _axiosDefault.default.delete(`https://kds-movie-api.herokuapp.com/users/${user}`, {
             headers: {
@@ -47818,7 +47820,7 @@ function ProfileView(props) {
     return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 50
+            lineNumber: 52
         },
         __self: this,
         children: [
@@ -47828,7 +47830,7 @@ function ProfileView(props) {
                 birth: Birthday,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 52
+                    lineNumber: 54
                 },
                 __self: this
             }),
@@ -47839,7 +47841,7 @@ function ProfileView(props) {
                 user: user,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 58
+                    lineNumber: 60
                 },
                 __self: this
             }),
@@ -47851,7 +47853,7 @@ function ProfileView(props) {
                 password: Password,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 65
+                    lineNumber: 67
                 },
                 __self: this
             }),
@@ -47860,7 +47862,7 @@ function ProfileView(props) {
                 onClick: deleteUser,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 72
+                    lineNumber: 74
                 },
                 __self: this,
                 children: "Delete Profile"
@@ -47883,7 +47885,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-bootstrap":"h2YVd","prop-types":"1tgq3","./user-info":"cK8m8","./update-user":"hBcEf","./favorite-movies":"gKhXS","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"cK8m8":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-bootstrap":"h2YVd","prop-types":"1tgq3","./user-info":"cK8m8","./update-user":"hBcEf","./favorite-movies":"gKhXS","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","../../actions/actions":"1Ttfj"}],"cK8m8":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$94e5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

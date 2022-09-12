@@ -33,8 +33,8 @@ class MainView extends React.Component {
 
     if (localStorage.getItem('user') !== null) {
       setUser({
-        user: { Username: localStorage.getItem('user'),
-          token: localStorage.getItem('token') } });
+        user: { Username: localStorage.getItem('user') },
+        token: localStorage.getItem('token') });
     }
   }
 
@@ -184,6 +184,7 @@ class MainView extends React.Component {
                   <ProfileView
                     user={userdata.user.Username}
                     movies={movies}
+                    token={userdata.token}
                   />
                 </Col>
               );
