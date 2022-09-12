@@ -48,13 +48,17 @@ function FavoriteMovies(props) {
 
 // PropTypes
 FavoriteMovies.propTypes = {
-  favoriteMovies: PropTypes.shape({}).isRequired,
-  movies: PropTypes.shape({
+  favoriteMovies: PropTypes.arrayOf(PropTypes.shape({})),
+  movies: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
     ImageURL: PropTypes.string.isRequired,
-  }).isRequired,
+  })).isRequired,
   user: PropTypes.string.isRequired,
+};
+
+FavoriteMovies.defaultProps = {
+  favoriteMovies: [{ key: '' }],
 };
 
 // Export

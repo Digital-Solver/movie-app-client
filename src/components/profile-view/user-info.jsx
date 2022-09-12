@@ -14,22 +14,29 @@ function UserInfo(props) {
     birth,
   } = props;
 
+  const birthday = birth.slice(0, 10);
+
   // JSX
   return (
     <div>
       <h2>Your Info:</h2>
       <p>{`Username: ${username}`}</p>
       <p>{`Email: ${email}`}</p>
-      <p>{`Birthday: ${birth}`}</p>
+      <p>{`Birthday: ${birthday}`}</p>
     </div>
   );
 }
 
 // PropTypes
 UserInfo.propTypes = {
-  username: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  birth: PropTypes.string.isRequired,
+  username: PropTypes.string,
+  email: PropTypes.string,
+  birth: PropTypes.string,
+};
+UserInfo.defaultProps = {
+  username: '',
+  email: '',
+  birth: '',
 };
 
 // Export
