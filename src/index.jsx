@@ -1,21 +1,22 @@
 /* eslint-disable react/prefer-stateless-function */
+
+// External Dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Container } from 'react-bootstrap';
 import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
+
+// Internal Dependencies
 import moviesApp from './reducers/reducers';
-
 import MainView from './components/main-view/main-view';
-
-// Import to bundle './index.scss
 import './index.scss';
 
-// Initialise Redux Store
+// Redux
 const store = createStore(moviesApp, devToolsEnhancer());
 
-// Main component
+// Component
 class MovieApp extends React.Component {
   render() {
     return (
@@ -28,6 +29,6 @@ class MovieApp extends React.Component {
   }
 }
 
-// App root & render
-const container = document.getElementsByClassName('app-container')[0]; // Find root element
-ReactDOM.render(React.createElement(MovieApp), container); // Render app in root element
+// DOM Render
+const container = document.getElementsByClassName('app-container')[0];
+ReactDOM.render(React.createElement(MovieApp), container);
