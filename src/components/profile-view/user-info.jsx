@@ -14,15 +14,13 @@ function UserInfo(props) {
     birth,
   } = props;
 
-  const birthday = birth.slice(0, 10);
-
   // JSX
   return (
     <div>
       <h2>Your Info:</h2>
       <p>{`Username: ${username}`}</p>
       <p>{`Email: ${email}`}</p>
-      <p>{`Birthday: ${birthday}`}</p>
+      <p>{`Birthday: ${birth.slice(0, 10)}`}</p>
     </div>
   );
 }
