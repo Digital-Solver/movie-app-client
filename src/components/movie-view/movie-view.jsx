@@ -1,15 +1,22 @@
 /* eslint-disable react/prefer-stateless-function */
+
+// External Dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Button, Card } from 'react-bootstrap';
+
+// Internal Dependencies
 import './movie-view.scss';
 
+// Component
 class MovieView extends React.Component {
+  // Class Methods
   render() {
     const { movieData, onBackClick } = this.props;
     const posterAlt = `${movieData.Title} Poster`;
 
+    // JSX
     return (
       <Card className="movie-view justify-content-md-center" style={{ backgroundColor: '#77685D', borderRadius: '5px', maxWidth: '500px' }}>
         <Card.Img variation="top" className="movie-poster" src={movieData.ImageURL} alt={posterAlt} style={{ width: '15rem', marginInline: 'auto' }} />
@@ -19,7 +26,12 @@ class MovieView extends React.Component {
         <div
           className="detail-navigation"
           style={{
-            marginBottom: '40px', marginInline: '10px', width: '50%', display: 'inline-flex', alignSelf: 'center', justifyContent: 'space-around',
+            marginBottom: '40px',
+            marginInline: '10px',
+            width: '50%',
+            display: 'inline-flex',
+            alignSelf: 'center',
+            justifyContent: 'space-around',
           }}
         >
           <Link to={`/directors/${movieData.Director.Name}`}>
@@ -38,6 +50,7 @@ class MovieView extends React.Component {
   }
 }
 
+// PropTypes
 MovieView.propTypes = {
   movieData: PropTypes.shape({
     Title: PropTypes.string.isRequired,
@@ -58,4 +71,5 @@ MovieView.propTypes = {
   onBackClick: PropTypes.func.isRequired,
 };
 
+// Export
 export default MovieView;
