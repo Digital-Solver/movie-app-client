@@ -21,7 +21,7 @@ class MovieApp extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Container fluid className="main-view-container" style={{ margin: 0, padding: 0 }}>
+        <Container fluid className="main-view-container" style={{ margin: 0, padding: 0, minHeight: '100vh' }}>
           <MainView />
         </Container>
       </Provider>
