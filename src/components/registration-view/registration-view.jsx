@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import {
@@ -25,44 +25,44 @@ function registrationView(props) {
   const email = userdata.user.Email;
   const birthday = userdata.user.Birthday;
 
-  let usernameErr;
-  let passwordErr;
-  let emailErr;
-  let birthdayErr;
+  const [usernameErr, setUsernameErr] = useState('');
+  const [passwordErr, setPasswordErr] = useState('');
+  const [emailErr, setEmailErr] = useState('');
+  const [birthdayErr, setBirthdayErr] = useState('');
 
   const validate = () => {
     let isReq = true;
 
     if (!username) {
       isReq = false;
-      usernameErr = 'You must enter a username.';
+      setUsernameErr('You must enter a username.');
     } else if (username.length < 2) {
       isReq = false;
-      usernameErr = 'Your username must be at least 2 characters.';
+      setUsernameErr('Your username must be at least 2 characters.');
     }
 
     if (!password) {
       isReq = false;
-      passwordErr = 'You must enter a password.';
+      setPasswordErr('You must enter a password.');
     } else if (password.length < 8) {
       isReq = false;
-      passwordErr = 'Your password must be at least 8 characters.';
+      setPasswordErr('Your password must be at least 8 characters.');
     }
 
     if (!email) {
       isReq = false;
-      emailErr = 'You must enter an email.';
-    } else if (!email.includes('@')) {
+      setEmailErr('You must enter an email.');
+    } else if (password.includes('@')) {
       isReq = false;
-      emailErr = 'Your email must be valid.';
+      setEmailErr('Your password must be valid.');
     }
 
     if (!birthday) {
       isReq = false;
-      birthdayErr = 'You must enter a birthday.';
+      setBirthdayErr('You must enter a birthday.');
     }
-    console.log([isReq, usernameErr, passwordErr, emailErr, birthdayErr]);
-    return [isReq, usernameErr, passwordErr, emailErr, birthdayErr];
+
+    return isReq;
   };
 
   const handleRegister = (e) => {
@@ -92,7 +92,6 @@ function registrationView(props) {
               <Card.Body>
                 <Card.Title>Register a New Account</Card.Title>
                 <Form action="submit" onSubmit={handleRegister}>
-                  <p style={{ display: 'none' }}>{validate()}</p> {/*HACK: Can't get it to validate form on submit or button click */}
                   <Form.Group>
                     <Form.Label>
                       Register a Username:
