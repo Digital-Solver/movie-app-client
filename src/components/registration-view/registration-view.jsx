@@ -1,63 +1,65 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable no-shadow */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+
+// External Dependencies
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import {
-  Form, Button, Container, Card, CardGroup, Row, Col,
-} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {
-  setUsername, setPassword, setEmail, setBirthday,
-} from '../../actions/actions';
+import { Link } from 'react-router-dom';
+import { Form, Button, Container, Card, CardGroup, Row, Col } from 'react-bootstrap';
 
+// Internal Dependencies
+import { setUsername, setPassword, setEmail, setBirthday } from '../../actions/actions';
 import './registration-view.scss';
 
+// Component
 function registrationView(props) {
+  // Props
   const {
-    setUsername, setPassword, setEmail, setBirthday, userdata,
-  } = props;
+    setUsername,
+    setPassword,
+    setEmail,
+    setBirthday,
+    userdata } = props;
 
-  const password = userdata.user.Password;
-  const username = userdata.user.Username;
-  const email = userdata.user.Email;
-  const birthday = userdata.user.Birthday;
-
+  // Local state
   const [usernameErr, setUsernameErr] = useState('');
   const [passwordErr, setPasswordErr] = useState('');
   const [emailErr, setEmailErr] = useState('');
   const [birthdayErr, setBirthdayErr] = useState('');
 
+  // Methods
   const validate = () => {
     let isReq = true;
 
-    if (!username) {
+    if (!userdata.user.Username) {
       isReq = false;
       setUsernameErr('You must enter a username.');
-    } else if (username.length < 2) {
+    } else if (userdata.user.Username.length < 2) {
       isReq = false;
       setUsernameErr('Your username must be at least 2 characters.');
     }
 
-    if (!password) {
+    if (!userdata.user.Password) {
       isReq = false;
       setPasswordErr('You must enter a password.');
-    } else if (password.length < 8) {
+    } else if (userdata.user.Password.length < 8) {
       isReq = false;
       setPasswordErr('Your password must be at least 8 characters.');
     }
 
-    if (!email) {
+    if (!userdata.user.Email) {
       isReq = false;
       setEmailErr('You must enter an email.');
-    } else if (password.includes('@')) {
+    } else if (!userdata.user.Email.includes('@')) {
       isReq = false;
       setEmailErr('Your password must be valid.');
     }
 
-    if (!birthday) {
+    if (!userdata.user.Birthday) {
       isReq = false;
       setBirthdayErr('You must enter a birthday.');
     }
@@ -71,19 +73,19 @@ function registrationView(props) {
     if (isReq) {
       axios
         .post('https://kds-movie-api.herokuapp.com/users', {
-          Username: username,
-          Password: password,
-          Email: email,
-          Birthday: birthday,
+          Username: userdata.user.Username,
+          Password: userdata.user.Password,
+          Email: userdata.user.Email,
+          Birthday: userdata.user.Birthday,
         })
-        .then((res) => {
-          const { data } = res;
+        .then(() => {
           window.open('/', '_self'); //
         })
         .catch((err) => { console.log(err); });
     }
   };
 
+  // JSX
   return (
     <Container>
       <Row>
@@ -98,7 +100,7 @@ function registrationView(props) {
                       Register a Username:
                       <Form.Control
                         type="text"
-                        value={username}
+                        value={userdata.user.Username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                         placeholder="Username"
@@ -112,7 +114,7 @@ function registrationView(props) {
                       Register a Password:
                       <Form.Control
                         type="password"
-                        value={password}
+                        value={userdata.user.Password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         min={8}
@@ -127,7 +129,7 @@ function registrationView(props) {
                       Register an Email:
                       <Form.Control
                         type="email"
-                        value={email}
+                        value={userdata.user.Email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
                         min={8}
@@ -142,7 +144,7 @@ function registrationView(props) {
                       Register a Birthday:
                       <Form.Control
                         type="date"
-                        value={birthday}
+                        value={userdata.user.Birthday}
                         onChange={(e) => setBirthday(e.target.value)}
                         required
                         min={8}
@@ -166,6 +168,7 @@ function registrationView(props) {
   );
 }
 
+// PropTypesz
 registrationView.propTypes = {
   username: PropTypes.string,
   password: PropTypes.string,
@@ -173,6 +176,7 @@ registrationView.propTypes = {
   birthday: PropTypes.instanceOf(Date),
 };
 
+// Redux & Export
 function mapStateToProps(state) {
   const { userdata } = state;
   return { userdata };
