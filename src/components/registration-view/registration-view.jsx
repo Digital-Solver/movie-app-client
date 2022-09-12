@@ -67,7 +67,8 @@ function registrationView(props) {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (validate()[0]) {
+    const isReq = validate();
+    if (isReq) {
       axios
         .post('https://kds-movie-api.herokuapp.com/users', {
           Username: username,
