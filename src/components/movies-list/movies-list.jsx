@@ -8,12 +8,12 @@ import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-
 import MovieCard from '../movie-card/movie-card';
 
 const mapStateToProps = (state) => {
-  const { visibilityFilter } = state;
-  return { visibilityFilter };
+  const { visibilityFilter, userdata } = state;
+  return { visibilityFilter, userdata };
 };
 
 function MoviesList(props) {
-  const { movies, visibilityFilter, user } = props;
+  const { movies, visibilityFilter, userdata } = props;
   let filteredMovies = movies;
 
   if (visibilityFilter !== '') {
@@ -32,7 +32,7 @@ function MoviesList(props) {
       </Col>
       {filteredMovies.map((m) => (
         <Col md={3} sm="auto" key={m._id} style={{ marginInline: 'auto' }}>
-          <MovieCard movieData={m} user={user} />
+          <MovieCard movieData={m} user={userdata.user.Username} />
         </Col>
       ))}
     </>
