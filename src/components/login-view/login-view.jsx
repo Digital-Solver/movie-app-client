@@ -1,23 +1,31 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-console */
+
+// External Dependencies
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import {
-  Form, Button, Container, Card, CardGroup, Row, Col,
-} from 'react-bootstrap';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Form, Button, Container, Card, CardGroup, Row, Col } from 'react-bootstrap';
+
+// Internal Dependencies
 import { setUsername, setPassword } from '../../actions/actions';
 
+// Component
 function loginView(props) {
+  // Props
   const { setUsername, setPassword, userdata } = props;
   const password = userdata.user.Password;
   const username = userdata.user.Username;
+
+  // Local State
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (e) => { // Requests login via a POST request
+  // Methods
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const form = e.currentTarget;
@@ -40,6 +48,7 @@ function loginView(props) {
       .catch((err) => { console.log(err); });
   };
 
+  // JSX
   return (
     <Container>
       <Row>
@@ -101,10 +110,12 @@ function loginView(props) {
   );
 }
 
+// PropTypes
 loginView.propTypes = {
   onLoginRequest: PropTypes.func.isRequired,
 };
 
+// Redux & Export
 function mapStateToProps(state) {
   const { userdata } = state;
   return { userdata };
