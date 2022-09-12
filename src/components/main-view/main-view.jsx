@@ -5,7 +5,7 @@
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable no-shadow */
 
-// External
+// External Dependencies
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -13,10 +13,11 @@ import { Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// Redux Actions
+// Internal Dependencies
+// - Redux Actions
 import { setUserdata, setMovies } from '../../actions/actions';
 
-// React Components
+// - React Components
 import MoviesList from '../movies-list/movies-list';
 import MovieView from '../movie-view/movie-view';
 import PrimaryNav from '../primary-nav/primary-nav';
@@ -26,7 +27,9 @@ import DirectorView from '../director-view/director-view';
 import GenreView from '../genre-view/genre-view';
 import ProfileView from '../profile-view/profile-view';
 
+// Component
 class MainView extends React.Component {
+  // Lifecycle Methods
   constructor(props) {
     super(props);
     const { setUserdata } = this.props;
@@ -45,6 +48,7 @@ class MainView extends React.Component {
     }
   }
 
+  // Class Methods
   onLoginRequest(authData) {
     const { setUserdata } = this.props;
     setUserdata(authData);
@@ -72,11 +76,11 @@ class MainView extends React.Component {
 
   render() {
     const { movies } = this.props;
-    const { userdata } = this.props;
 
     return (
       <Router>
-        <Route
+
+        <Route // Navigation
           path="/"
           render={() => (
             <PrimaryNav
@@ -88,7 +92,7 @@ class MainView extends React.Component {
 
         <Row className="main-view justify-content-md-center" style={{ maxWidth: '1200px', marginInline: 'auto' }}>
 
-          <Route
+          <Route // Login
             exact
             path="/"
             render={() => {
@@ -105,7 +109,7 @@ class MainView extends React.Component {
             }}
           />
 
-          <Route // Registration view as alternative to login view
+          <Route // Registration
             exact
             path="/register"
             render={() => {
@@ -120,7 +124,7 @@ class MainView extends React.Component {
             }}
           />
 
-          <Route // View of an individual movie (detail)
+          <Route // Movie Details
             path="/movies/:movieId"
             render={({ match, history }) => {
               if (movies.length === 0) { return <div className="main-view" />; } // Show empty div until data is loaded
@@ -135,7 +139,7 @@ class MainView extends React.Component {
             }}
           />
 
-          <Route
+          <Route // Director Details
             path="/directors/:directorName"
             render={({ match, history }) => {
               if (movies.length === 0) { return <div className="director-view" />; } // Show empty div until data is loaded
@@ -150,7 +154,7 @@ class MainView extends React.Component {
             }}
           />
 
-          <Route
+          <Route // Genre Details
             path="/genres/:genreName"
             render={({ match, history }) => {
               if (movies.length === 0) { return <div className="genre-view" />; } // Show empty div until data is loaded
@@ -165,12 +169,13 @@ class MainView extends React.Component {
             }}
           />
 
-          <Route
+          <Route // Profile
             path="/users/:username"
             exact
             render={() => {
               const { userdata } = this.props;
 
+              // Redirect to Login Page if not signed in
               if (!localStorage.getItem('user')) {
                 return (
                   <LoginView
@@ -178,7 +183,9 @@ class MainView extends React.Component {
                   />
                 );
               }
-              if (movies.length === 0) { return <div className="profile-view" />; } // Show empty div until data is loaded
+
+              // Show empty div until data is loaded
+              if (movies.length === 0) { return <div className="profile-view" />; }
               return (
                 <Col md="auto">
                   <ProfileView
@@ -196,8 +203,7 @@ class MainView extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ movies: state.movies, userdata: state.userdata });
-
+//  PropTypes
 MainView.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 
@@ -215,4 +221,6 @@ MainView.propTypes = {
   setUserdata: PropTypes.func.isRequired,
 };
 
+// Redux & Export
+const mapStateToProps = (state) => ({ movies: state.movies, userdata: state.userdata });
 export default connect(mapStateToProps, { setMovies, setUserdata })(MainView);
