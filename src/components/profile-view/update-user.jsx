@@ -88,12 +88,12 @@ function UpdateUser(props) {
 UpdateUser.propTypes = {
   userdata: PropTypes.shape({
     user: PropTypes.shape({
-      Username: PropTypes.string.isRequired,
+      Username: PropTypes.string,
       Password: PropTypes.string,
-      Email: PropTypes.string.isRequired,
-      Birthday: PropTypes.string.isRequired,
+      Email: PropTypes.string,
+      Birthday: PropTypes.string,
     }),
-    token: PropTypes.string.isRequired,
+    token: PropTypes.string,
   }).isRequired,
   setUsername: PropTypes.func.isRequired,
   setPassword: PropTypes.func.isRequired,
@@ -101,7 +101,7 @@ UpdateUser.propTypes = {
   setBirthday: PropTypes.func.isRequired,
 };
 
-// Redux
+// Redux & Export
 function mapStateToProps(state) {
   const { userdata } = state;
   return { userdata };
