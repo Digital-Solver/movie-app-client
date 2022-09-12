@@ -40438,7 +40438,7 @@ parcelHelpers.export(exports, "setMovies", ()=>setMovies
 );
 parcelHelpers.export(exports, "setFilter", ()=>setFilter
 );
-parcelHelpers.export(exports, "setUser", ()=>setUser
+parcelHelpers.export(exports, "setUserdata", ()=>setUserdata
 );
 const SET_MOVIES = 'SET_MOVIES';
 const SET_FILTER = 'SET_FILTER';
@@ -40455,7 +40455,7 @@ function setFilter(payload) {
         payload
     };
 }
-function setUser(payload) {
+function setUserdata(payload) {
     return {
         type: SET_USER,
         payload
@@ -40504,8 +40504,8 @@ var _profileViewDefault = parcelHelpers.interopDefault(_profileView);
 class MainView extends _reactDefault.default.Component {
     constructor(props){
         super(props);
-        const { setUser  } = this.props;
-        if (localStorage.getItem('user') !== null) setUser({
+        const { setUserdata  } = this.props;
+        if (localStorage.getItem('user') !== null) setUserdata({
             user: {
                 Username: localStorage.getItem('user')
             },
@@ -40517,8 +40517,8 @@ class MainView extends _reactDefault.default.Component {
         if (accessToken !== null) this.getMovies(accessToken);
     }
     onLoginRequest(authData) {
-        const { setUser: setUser1  } = this.props;
-        setUser1(authData);
+        const { setUserdata: setUserdata1  } = this.props;
+        setUserdata1(authData);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
@@ -40526,7 +40526,7 @@ class MainView extends _reactDefault.default.Component {
     onLogoutRequest() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        _actions.setUser(null);
+        _actions.setUserdata(null);
         window.open('/', '_self');
     }
     getMovies(token) {
@@ -40737,11 +40737,11 @@ MainView.propTypes = {
         token: _propTypesDefault.default.string.isRequired
     }).isRequired,
     setMovies: _propTypesDefault.default.func.isRequired,
-    setUser: _propTypesDefault.default.func.isRequired
+    setUserdata: _propTypesDefault.default.func.isRequired
 };
 exports.default = _reactRedux.connect(mapStateToProps, {
     setMovies: _actions.setMovies,
-    setUser: _actions.setUser
+    setUserdata: _actions.setUserdata
 })(MainView);
 
   $parcel$ReactRefreshHelpers$35bf.postlude(module);
@@ -46163,13 +46163,14 @@ var _visibilityFilterInputDefault = parcelHelpers.interopDefault(_visibilityFilt
 var _movieCard = require("../movie-card/movie-card");
 var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
 const mapStateToProps = (state)=>{
-    const { visibilityFilter  } = state;
+    const { visibilityFilter , userdata  } = state;
     return {
-        visibilityFilter
+        visibilityFilter,
+        userdata
     };
 };
 function MoviesList(props) {
-    const { movies , visibilityFilter , user  } = props;
+    const { movies , visibilityFilter , userdata  } = props;
     let filteredMovies = movies;
     if (visibilityFilter !== '') filteredMovies = movies.filter((m)=>m.Title.toLowerCase().includes(visibilityFilter.toLowerCase())
     );
@@ -46215,7 +46216,7 @@ function MoviesList(props) {
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
                         movieData: m,
-                        user: user,
+                        user: userdata.user.Username,
                         __source: {
                             fileName: "src/components/movies-list/movies-list.jsx",
                             lineNumber: 35
@@ -46986,9 +46987,12 @@ var _reactBootstrap = require("react-bootstrap");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
+var _reactRedux = require("react-redux");
+var _actions = require("../../actions/actions");
 var _s = $RefreshSig$();
 function loginView(props) {
     _s();
+    const { setUserdata  } = props;
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
     const [validated, setValidated] = _react.useState(false);
@@ -47015,44 +47019,44 @@ function loginView(props) {
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 41
+            lineNumber: 44
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 42
+                lineNumber: 45
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 43
+                    lineNumber: 46
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.CardGroup, {
                     __source: {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 44
+                        lineNumber: 47
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card, {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 45
+                            lineNumber: 48
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card.Body, {
                             __source: {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 46
+                                lineNumber: 49
                             },
                             __self: this,
                             children: [
                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Title, {
                                     __source: {
                                         fileName: "src/components/login-view/login-view.jsx",
-                                        lineNumber: 47
+                                        lineNumber: 50
                                     },
                                     __self: this,
                                     children: "Login with Existing Account"
@@ -47064,20 +47068,20 @@ function loginView(props) {
                                     onSubmit: handleSubmit,
                                     __source: {
                                         fileName: "src/components/login-view/login-view.jsx",
-                                        lineNumber: 48
+                                        lineNumber: 51
                                     },
                                     __self: this,
                                     children: [
                                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/login-view/login-view.jsx",
-                                                lineNumber: 49
+                                                lineNumber: 52
                                             },
                                             __self: this,
                                             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Label, {
                                                 __source: {
                                                     fileName: "src/components/login-view/login-view.jsx",
-                                                    lineNumber: 52
+                                                    lineNumber: 55
                                                 },
                                                 __self: this,
                                                 children: [
@@ -47091,7 +47095,7 @@ function loginView(props) {
                                                         placeholder: "Username",
                                                         __source: {
                                                             fileName: "src/components/login-view/login-view.jsx",
-                                                            lineNumber: 54
+                                                            lineNumber: 57
                                                         },
                                                         __self: this
                                                     }),
@@ -47099,7 +47103,7 @@ function loginView(props) {
                                                         type: "invalid",
                                                         __source: {
                                                             fileName: "src/components/login-view/login-view.jsx",
-                                                            lineNumber: 61
+                                                            lineNumber: 64
                                                         },
                                                         __self: this,
                                                         children: "Please provide a valid username."
@@ -47110,13 +47114,13 @@ function loginView(props) {
                                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/login-view/login-view.jsx",
-                                                lineNumber: 68
+                                                lineNumber: 71
                                             },
                                             __self: this,
                                             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Label, {
                                                 __source: {
                                                     fileName: "src/components/login-view/login-view.jsx",
-                                                    lineNumber: 69
+                                                    lineNumber: 72
                                                 },
                                                 __self: this,
                                                 children: [
@@ -47131,7 +47135,7 @@ function loginView(props) {
                                                         placeholder: "Password (min. 8 chars)",
                                                         __source: {
                                                             fileName: "src/components/login-view/login-view.jsx",
-                                                            lineNumber: 71
+                                                            lineNumber: 74
                                                         },
                                                         __self: this
                                                     }),
@@ -47139,7 +47143,7 @@ function loginView(props) {
                                                         type: "invalid",
                                                         __source: {
                                                             fileName: "src/components/login-view/login-view.jsx",
-                                                            lineNumber: 79
+                                                            lineNumber: 82
                                                         },
                                                         __self: this,
                                                         children: "Please provide a valid password."
@@ -47150,14 +47154,14 @@ function loginView(props) {
                                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/login-view/login-view.jsx",
-                                                lineNumber: 86
+                                                lineNumber: 89
                                             },
                                             __self: this,
                                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                                 type: "submit",
                                                 __source: {
                                                     fileName: "src/components/login-view/login-view.jsx",
-                                                    lineNumber: 87
+                                                    lineNumber: 90
                                                 },
                                                 __self: this,
                                                 children: "Login"
@@ -47169,7 +47173,7 @@ function loginView(props) {
                                     to: "/register",
                                     __source: {
                                         fileName: "src/components/login-view/login-view.jsx",
-                                        lineNumber: 91
+                                        lineNumber: 94
                                     },
                                     __self: this,
                                     children: "Register"
@@ -47182,18 +47186,20 @@ function loginView(props) {
         })
     }));
 }
-exports.default = loginView;
 _s(loginView, "SA/z51gtsh1VmRJTBtoE1mObG10=");
 loginView.propTypes = {
     onLoginRequest: _propTypesDefault.default.func.isRequired
 };
+exports.default = _reactRedux.connect(null, {
+    setUserdata: _actions.setUserdata
+})(loginView);
 
   $parcel$ReactRefreshHelpers$02dd.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","react-bootstrap":"h2YVd","axios":"iYoWk","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"aP2YV":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","react-bootstrap":"h2YVd","axios":"iYoWk","react-router-dom":"cpyQW","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","../../actions/actions":"1Ttfj","react-redux":"2L0if"}],"aP2YV":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8dd4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47772,6 +47778,7 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactRedux = require("react-redux");
 var _userInfo = require("./user-info");
 var _userInfoDefault = parcelHelpers.interopDefault(_userInfo);
 var _updateUser = require("./update-user");
@@ -47783,12 +47790,27 @@ var _s = $RefreshSig$();
 function ProfileView(props) {
     _s();
     // Read State
-    const { movies , user , token  } = props;
-    // Write State // TODO: Transition this to Redux
-    const [userData, setUserData] = _react.useState({
-    });
-    const [favoriteMovies, setFavoriteMovies] = _react.useState([]);
-    const { Username , Email , Birthday , Password  } = userData;
+    const { movies , user , token , userdata  } = props;
+    const { setUserdata  } = props;
+    const { Username , Email , Birthday , Password  } = userdata.user;
+    const favoriteMovies = userdata.user.FavoriteMovies;
+    const getUser = ()=>{
+        _axiosDefault.default.get(`https://kds-movie-api.herokuapp.com/users/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res)=>{
+            setUserdata({
+                user: res.data,
+                token: localStorage.getItem('token')
+            });
+        }).catch((err)=>{
+            console.log(err);
+        });
+    };
+    _react.useEffect(()=>{
+        getUser(user);
+    }, []);
     const deleteUser = ()=>{
         _axiosDefault.default.delete(`https://kds-movie-api.herokuapp.com/users/${user}`, {
             headers: {
@@ -47802,25 +47824,10 @@ function ProfileView(props) {
         }).catch((err)=>console.log(err)
         );
     };
-    const getUser = ()=>{
-        _axiosDefault.default.get(`https://kds-movie-api.herokuapp.com/users/${user}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((res)=>{
-            setUserData(res.data);
-            setFavoriteMovies(res.data.FavoriteMovies);
-        }).catch((err)=>{
-            console.log(err);
-        });
-    };
-    _react.useEffect(()=>{
-        getUser(user);
-    }, []);
     return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 52
+            lineNumber: 51
         },
         __self: this,
         children: [
@@ -47830,7 +47837,7 @@ function ProfileView(props) {
                 birth: Birthday,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 54
+                    lineNumber: 53
                 },
                 __self: this
             }),
@@ -47841,7 +47848,7 @@ function ProfileView(props) {
                 user: user,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 60
+                    lineNumber: 59
                 },
                 __self: this
             }),
@@ -47853,7 +47860,7 @@ function ProfileView(props) {
                 password: Password,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 67
+                    lineNumber: 66
                 },
                 __self: this
             }),
@@ -47862,7 +47869,7 @@ function ProfileView(props) {
                 onClick: deleteUser,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 74
+                    lineNumber: 73
                 },
                 __self: this,
                 children: "Delete Profile"
@@ -47870,13 +47877,19 @@ function ProfileView(props) {
         ]
     }));
 }
-_s(ProfileView, "OUiab/+KYAmi5l4mBRwDY93cF8o=");
+_s(ProfileView, "OD7bBpZva5O2jO+Puf00hKivP7c=");
 _c = ProfileView;
 ProfileView.propTypes = {
     movies: _propTypesDefault.default.arrayOf(_propTypesDefault.default.shape({
     })).isRequired
 };
-exports.default = ProfileView;
+const mapStateToProps = (state)=>({
+        userdata: state.userdata
+    })
+;
+exports.default = _reactRedux.connect(mapStateToProps, {
+    setUserdata: _actions.setUserdata
+})(ProfileView);
 var _c;
 $RefreshReg$(_c, "ProfileView");
 
@@ -47885,7 +47898,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-bootstrap":"h2YVd","prop-types":"1tgq3","./user-info":"cK8m8","./update-user":"hBcEf","./favorite-movies":"gKhXS","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","../../actions/actions":"1Ttfj"}],"cK8m8":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-bootstrap":"h2YVd","prop-types":"1tgq3","./user-info":"cK8m8","./update-user":"hBcEf","./favorite-movies":"gKhXS","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","../../actions/actions":"1Ttfj","react-redux":"2L0if"}],"cK8m8":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$94e5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

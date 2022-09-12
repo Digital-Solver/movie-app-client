@@ -7,8 +7,11 @@ import {
 } from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setUserdata } from '../../actions/actions';
 
-export default function loginView(props) {
+function loginView(props) {
+  const { setUserdata } = props;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [validated, setValidated] = useState(false);
@@ -101,3 +104,5 @@ export default function loginView(props) {
 loginView.propTypes = {
   onLoginRequest: PropTypes.func.isRequired,
 };
+
+export default connect(null, { setUserdata })(loginView);

@@ -12,6 +12,6 @@ export function setFilter(payload) {
   return { type: SET_FILTER, payload };
 }
 
-export function setUser(payload) {
+export function setUserdata(payload) {
   return { type: SET_USER, payload };
 }
