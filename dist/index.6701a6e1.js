@@ -40409,10 +40409,30 @@ function movies(state = [], action) {
     }
 }
 function userdata(state = {
+    user: {
+        Username: '',
+        Password: ''
+    }
 }, action) {
     switch(action.type){
-        case _actions.SET_USER:
+        case _actions.SET_USERDATA:
             return action.payload;
+        case _actions.SET_USERNAME:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    Username: action.payload
+                }
+            };
+        case _actions.SET_PASSWORD:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    Password: action.payload
+                }
+            };
         default:
             return state;
     }
@@ -40431,7 +40451,11 @@ parcelHelpers.export(exports, "SET_MOVIES", ()=>SET_MOVIES
 );
 parcelHelpers.export(exports, "SET_FILTER", ()=>SET_FILTER
 );
-parcelHelpers.export(exports, "SET_USER", ()=>SET_USER
+parcelHelpers.export(exports, "SET_USERDATA", ()=>SET_USERDATA
+);
+parcelHelpers.export(exports, "SET_USERNAME", ()=>SET_USERNAME
+);
+parcelHelpers.export(exports, "SET_PASSWORD", ()=>SET_PASSWORD
 );
 // Action Creators
 parcelHelpers.export(exports, "setMovies", ()=>setMovies
@@ -40440,9 +40464,15 @@ parcelHelpers.export(exports, "setFilter", ()=>setFilter
 );
 parcelHelpers.export(exports, "setUserdata", ()=>setUserdata
 );
+parcelHelpers.export(exports, "setUsername", ()=>setUsername
+);
+parcelHelpers.export(exports, "setPassword", ()=>setPassword
+);
 const SET_MOVIES = 'SET_MOVIES';
 const SET_FILTER = 'SET_FILTER';
-const SET_USER = 'SET_USER';
+const SET_USERDATA = 'SET_USERDATA';
+const SET_USERNAME = 'SET_USERNAME';
+const SET_PASSWORD = 'SET_PASSWORD';
 function setMovies(payload) {
     return {
         type: SET_MOVIES,
@@ -40457,7 +40487,19 @@ function setFilter(payload) {
 }
 function setUserdata(payload) {
     return {
-        type: SET_USER,
+        type: SET_USERDATA,
+        payload
+    };
+}
+function setUsername(payload) {
+    return {
+        type: SET_USERNAME,
+        payload
+    };
+}
+function setPassword(payload) {
+    return {
+        type: SET_PASSWORD,
         payload
     };
 }
@@ -46979,7 +47021,7 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
-/* eslint-disable jsx-a11y/label-has-associated-control */ /* eslint-disable no-console */ var _react = require("react");
+/* eslint-disable no-shadow */ /* eslint-disable jsx-a11y/label-has-associated-control */ /* eslint-disable no-console */ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
@@ -46992,9 +47034,9 @@ var _actions = require("../../actions/actions");
 var _s = $RefreshSig$();
 function loginView(props) {
     _s();
-    const { setUserdata  } = props;
-    const [username, setUsername] = _react.useState('');
-    const [password, setPassword] = _react.useState('');
+    const { setUsername , setPassword , userdata  } = props;
+    const password = userdata.user.Password;
+    const username = userdata.user.Username;
     const [validated, setValidated] = _react.useState(false);
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -47004,7 +47046,6 @@ function loginView(props) {
             e.stopPropagation();
         }
         setValidated(true);
-        console.log(username, password);
         _axiosDefault.default.post('https://kds-movie-api.herokuapp.com/login', {
             Username: username,
             Password: password
@@ -47088,7 +47129,7 @@ function loginView(props) {
                                                     "Username:",
                                                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Control, {
                                                         type: "text",
-                                                        value: username,
+                                                        value: userdata.user.Username,
                                                         onChange: (e)=>setUsername(e.target.value)
                                                         ,
                                                         required: true,
@@ -47128,8 +47169,9 @@ function loginView(props) {
                                                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Control, {
                                                         type: "password",
                                                         value: password,
-                                                        onChange: (e)=>setPassword(e.target.value)
-                                                        ,
+                                                        onChange: (e)=>{
+                                                            setPassword(e.target.value);
+                                                        },
                                                         required: true,
                                                         min: 8,
                                                         placeholder: "Password (min. 8 chars)",
@@ -47186,12 +47228,19 @@ function loginView(props) {
         })
     }));
 }
-_s(loginView, "SA/z51gtsh1VmRJTBtoE1mObG10=");
+_s(loginView, "otD17mARj5mKZHrEMvBAd47slX0=");
 loginView.propTypes = {
     onLoginRequest: _propTypesDefault.default.func.isRequired
 };
-exports.default = _reactRedux.connect(null, {
-    setUserdata: _actions.setUserdata
+function mapStateToProps(state) {
+    const { userdata  } = state;
+    return {
+        userdata
+    };
+}
+exports.default = _reactRedux.connect(mapStateToProps, {
+    setUsername: _actions.setUsername,
+    setPassword: _actions.setPassword
 })(loginView);
 
   $parcel$ReactRefreshHelpers$02dd.postlude(module);

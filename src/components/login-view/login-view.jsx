@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-console */
 import React, { useState } from 'react';
@@ -8,12 +9,12 @@ import {
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUserdata } from '../../actions/actions';
+import { setUsername, setPassword } from '../../actions/actions';
 
 function loginView(props) {
-  const { setUserdata } = props;
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const { setUsername, setPassword, userdata } = props;
+  const password = userdata.user.Password;
+  const username = userdata.user.Username;
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (e) => { // Requests login via a POST request
@@ -26,7 +27,6 @@ function loginView(props) {
     }
 
     setValidated(true);
-    console.log(username, password);
     axios
       .post('https://kds-movie-api.herokuapp.com/login', {
         Username: username,
@@ -56,7 +56,7 @@ function loginView(props) {
                       Username:
                       <Form.Control
                         type="text"
-                        value={username}
+                        value={userdata.user.Username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                         placeholder="Username"
@@ -74,7 +74,7 @@ function loginView(props) {
                       <Form.Control
                         type="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => { setPassword(e.target.value); }}
                         required
                         min={8}
                         placeholder="Password (min. 8 chars)"
@@ -105,4 +105,9 @@ loginView.propTypes = {
   onLoginRequest: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setUserdata })(loginView);
+function mapStateToProps(state) {
+  const { userdata } = state;
+  return { userdata };
+}
+
+export default connect(mapStateToProps, { setUsername, setPassword })(loginView);
