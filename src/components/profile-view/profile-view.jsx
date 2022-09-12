@@ -9,12 +9,12 @@ import { connect } from 'react-redux';
 import UserInfo from './user-info';
 import UpdateUser from './update-user';
 import FavoriteMovies from './favorite-movies';
-import { setUser } from '../../actions/actions';
+import { setUserdata } from '../../actions/actions';
 
 function ProfileView(props) {
   // Read State
   const { movies, user, token, userdata } = props;
-  const { setUser } = props;
+  const { setUserdata } = props;
   const { Username, Email, Birthday, Password } = userdata.user;
   const favoriteMovies = userdata.user.FavoriteMovies;
 
@@ -24,7 +24,7 @@ function ProfileView(props) {
         `https://kds-movie-api.herokuapp.com/users/${user}`,
         { headers: { Authorization: `Bearer ${token}` } },
       )
-      .then((res) => { setUser({ user: res.data, token: localStorage.getItem('token') }); })
+      .then((res) => { setUserdata({ user: res.data, token: localStorage.getItem('token') }); })
       .catch((err) => { console.log(err); });
   };
 
@@ -81,4 +81,4 @@ ProfileView.propTypes = {
 
 const mapStateToProps = (state) => ({ userdata: state.userdata });
 
-export default connect(mapStateToProps, { setUser })(ProfileView);
+export default connect(mapStateToProps, { setUserdata })(ProfileView);

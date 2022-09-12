@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // Redux Actions
-import { setUser, setMovies } from '../../actions/actions';
+import { setUserdata, setMovies } from '../../actions/actions';
 
 // React Components
 import MoviesList from '../movies-list/movies-list';
@@ -29,10 +29,10 @@ import ProfileView from '../profile-view/profile-view';
 class MainView extends React.Component {
   constructor(props) {
     super(props);
-    const { setUser } = this.props;
+    const { setUserdata } = this.props;
 
     if (localStorage.getItem('user') !== null) {
-      setUser({
+      setUserdata({
         user: { Username: localStorage.getItem('user') },
         token: localStorage.getItem('token') });
     }
@@ -46,8 +46,8 @@ class MainView extends React.Component {
   }
 
   onLoginRequest(authData) {
-    const { setUser } = this.props;
-    setUser(authData);
+    const { setUserdata } = this.props;
+    setUserdata(authData);
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
@@ -57,7 +57,7 @@ class MainView extends React.Component {
   onLogoutRequest() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    setUser(null);
+    setUserdata(null);
     window.open('/', '_self');
   }
 
@@ -212,7 +212,7 @@ MainView.propTypes = {
     token: PropTypes.string.isRequired,
   }).isRequired,
   setMovies: PropTypes.func.isRequired,
-  setUser: PropTypes.func.isRequired,
+  setUserdata: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, { setMovies, setUser })(MainView);
+export default connect(mapStateToProps, { setMovies, setUserdata })(MainView);
