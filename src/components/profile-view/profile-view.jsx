@@ -64,11 +64,7 @@ function ProfileView(props) {
       />
 
       <UpdateUser
-        token={token}
-        username={Username}
-        email={Email}
-        birth={Birthday}
-        password={Password}
+        userdata={userdata}
       />
       <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
     </div>
