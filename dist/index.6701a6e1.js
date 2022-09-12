@@ -40472,7 +40472,7 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
-/* eslint-disable class-methods-use-this */ /* eslint-disable no-console */ /* eslint-disable no-underscore-dangle */ /* eslint-disable object-curly-newline */ /* eslint-disable react/prefer-stateless-function */ // External
+/* eslint-disable class-methods-use-this */ /* eslint-disable no-console */ /* eslint-disable no-underscore-dangle */ /* eslint-disable object-curly-newline */ /* eslint-disable react/prefer-stateless-function */ /* eslint-disable no-shadow */ // External
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
@@ -40502,21 +40502,23 @@ var _genreViewDefault = parcelHelpers.interopDefault(_genreView);
 var _profileView = require("../profile-view/profile-view");
 var _profileViewDefault = parcelHelpers.interopDefault(_profileView);
 class MainView extends _reactDefault.default.Component {
+    constructor(props){
+        super(props);
+        const { setUser  } = this.props;
+        if (localStorage.getItem('user') !== null) setUser({
+            user: {
+                Username: localStorage.getItem('user'),
+                token: localStorage.getItem('token')
+            }
+        });
+    }
     componentDidMount() {
         const accessToken = localStorage.getItem('token');
-        const { setUser  } = this.props;
-        if (accessToken !== null) {
-            setUser({
-                user: {
-                    Username: localStorage.getItem('user')
-                }
-            });
-            this.getMovies(accessToken);
-        }
+        if (accessToken !== null) this.getMovies(accessToken);
     }
     onLoginRequest(authData) {
-        const { setUser  } = this.props;
-        setUser(authData);
+        const { setUser: setUser1  } = this.props;
+        setUser1(authData);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
@@ -40528,7 +40530,6 @@ class MainView extends _reactDefault.default.Component {
         window.open('/', '_self');
     }
     getMovies(token) {
-        // eslint-disable-next-line no-shadow
         const { setMovies  } = this.props; // Extracts the action dispatcher
         _axiosDefault.default.get('https://kds-movie-api.herokuapp.com/movies', {
             headers: {
@@ -40545,7 +40546,7 @@ class MainView extends _reactDefault.default.Component {
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 70
+                lineNumber: 78
             },
             __self: this,
             children: [
@@ -40559,7 +40560,7 @@ class MainView extends _reactDefault.default.Component {
                     ,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 71
+                        lineNumber: 79
                     },
                     __self: this
                 }),
@@ -40571,7 +40572,7 @@ class MainView extends _reactDefault.default.Component {
                     },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 81
+                        lineNumber: 89
                     },
                     __self: this,
                     children: [
@@ -40594,7 +40595,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 83
+                                lineNumber: 91
                             },
                             __self: this
                         }),
@@ -40613,7 +40614,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 100
+                                lineNumber: 108
                             },
                             __self: this
                         }),
@@ -40636,7 +40637,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 115
+                                lineNumber: 123
                             },
                             __self: this
                         }),
@@ -40658,7 +40659,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 130
+                                lineNumber: 138
                             },
                             __self: this
                         }),
@@ -40680,7 +40681,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 145
+                                lineNumber: 153
                             },
                             __self: this
                         }),
@@ -40699,14 +40700,14 @@ class MainView extends _reactDefault.default.Component {
                                 return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                                     md: "auto",
                                     children: /*#__PURE__*/ _jsxRuntime.jsx(_profileViewDefault.default, {
-                                        user: localStorage.getItem('user'),
+                                        user: userdata1.user.Username,
                                         movies: movies
                                     })
                                 }));
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 160
+                                lineNumber: 168
                             },
                             __self: this
                         })
@@ -46417,9 +46418,8 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movieData , favorite  } = this.props;
+        const { movieData , favorite , user  } = this.props;
         function addFavorite() {
-            const user = localStorage.getItem('user');
             const token = localStorage.getItem('token');
             console.log(`REQUEST:\nUser: ${user}\nMovieID: ${movieData._id}\nToken: ${token}`); // These are the relevant variables as available in this scope
             _axiosDefault.default.post(`https://kds-movie-api.herokuapp.com/users/${user}/favorites/${movieData._id}`, {
@@ -46434,7 +46434,6 @@ class MovieCard extends _reactDefault.default.Component {
             );
         }
         function deleteFavorite() {
-            const user = localStorage.getItem('user');
             _axiosDefault.default.delete(`https://kds-movie-api.herokuapp.com/users/${user}/favorites/${movieData._id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -46452,7 +46451,7 @@ class MovieCard extends _reactDefault.default.Component {
                 ,
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 54
+                    lineNumber: 51
                 },
                 __self: this,
                 children: "Favorite"
@@ -46463,7 +46462,7 @@ class MovieCard extends _reactDefault.default.Component {
                 ,
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 55
+                    lineNumber: 52
                 },
                 __self: this,
                 children: "Unfavorite"
@@ -46476,7 +46475,7 @@ class MovieCard extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 59
+                lineNumber: 56
             },
             __self: this,
             children: [
@@ -46487,7 +46486,7 @@ class MovieCard extends _reactDefault.default.Component {
                     crossOrigin: "anonymous",
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 60
+                        lineNumber: 57
                     },
                     __self: this
                 }),
@@ -46498,7 +46497,7 @@ class MovieCard extends _reactDefault.default.Component {
                     },
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 61
+                        lineNumber: 58
                     },
                     __self: this,
                     children: [
@@ -46508,7 +46507,7 @@ class MovieCard extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 62
+                                lineNumber: 59
                             },
                             __self: this,
                             children: movieData.Title
@@ -46517,7 +46516,7 @@ class MovieCard extends _reactDefault.default.Component {
                             to: `/movies/${movieData._id}`,
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 64
+                                lineNumber: 61
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -46526,7 +46525,7 @@ class MovieCard extends _reactDefault.default.Component {
                                 },
                                 __source: {
                                     fileName: "src/components/movie-card/movie-card.jsx",
-                                    lineNumber: 65
+                                    lineNumber: 62
                                 },
                                 __self: this,
                                 children: "See More"
@@ -47782,12 +47781,12 @@ var _s = $RefreshSig$();
 function ProfileView(props) {
     _s();
     const { movies  } = props;
+    const { user  } = props;
     const [userData, setUserData] = _react.useState({
     });
     const [favoriteMovies, setFavoriteMovies] = _react.useState([]);
     const { Username , Email , Birthday , Password  } = userData;
     const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
     const deleteUser = ()=>{
         _axiosDefault.default.delete(`https://kds-movie-api.herokuapp.com/users/${user}`, {
             headers: {
