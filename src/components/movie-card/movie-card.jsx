@@ -15,11 +15,9 @@ import axios from 'axios';
 
 class MovieCard extends React.Component {
   render() {
-    const {
-      movieData, favorite } = this.props;
+    const { movieData, favorite, user } = this.props;
 
     function addFavorite() {
-      const user = localStorage.getItem('user');
       const token = localStorage.getItem('token');
       console.log(`REQUEST:\nUser: ${user}\nMovieID: ${movieData._id}\nToken: ${token}`); // These are the relevant variables as available in this scope
       axios
@@ -36,7 +34,6 @@ class MovieCard extends React.Component {
     }
 
     function deleteFavorite() {
-      const user = localStorage.getItem('user');
       axios
         .delete(
           `https://kds-movie-api.herokuapp.com/users/${user}/favorites/${movieData._id}`,

@@ -3,6 +3,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/prefer-stateless-function */
+/* eslint-disable no-shadow */
 
 // External
 import React from 'react';
@@ -26,12 +27,20 @@ import GenreView from '../genre-view/genre-view';
 import ProfileView from '../profile-view/profile-view';
 
 class MainView extends React.Component {
-  componentDidMount() {
-    const accessToken = localStorage.getItem('token');
+  constructor(props) {
+    super(props);
     const { setUser } = this.props;
 
+    if (localStorage.getItem('user') !== null) {
+      setUser({
+        user: { Username: localStorage.getItem('user'),
+          token: localStorage.getItem('token') } });
+    }
+  }
+
+  componentDidMount() {
+    const accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      setUser({ user: { Username: localStorage.getItem('user') } });
       this.getMovies(accessToken);
     }
   }
@@ -53,7 +62,6 @@ class MainView extends React.Component {
   }
 
   getMovies(token) {
-    // eslint-disable-next-line no-shadow
     const { setMovies } = this.props; // Extracts the action dispatcher
     axios
       .get('https://kds-movie-api.herokuapp.com/movies', {
@@ -174,7 +182,7 @@ class MainView extends React.Component {
               return (
                 <Col md="auto">
                   <ProfileView
-                    user={localStorage.getItem('user')}
+                    user={userdata.user.Username}
                     movies={movies}
                   />
                 </Col>

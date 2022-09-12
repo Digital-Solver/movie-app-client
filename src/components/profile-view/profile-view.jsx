@@ -11,11 +11,11 @@ import FavoriteMovies from './favorite-movies';
 
 function ProfileView(props) {
   const { movies } = props;
+  const { user } = props;
   const [userData, setUserData] = useState({});
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const { Username, Email, Birthday, Password } = userData;
   const token = localStorage.getItem('token');
-  const user = localStorage.getItem('user');
 
   const deleteUser = () => {
     axios
