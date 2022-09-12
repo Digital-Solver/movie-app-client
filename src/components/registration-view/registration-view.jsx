@@ -168,7 +168,7 @@ function registrationView(props) {
   );
 }
 
-// PropTypesz
+// PropTypes
 registrationView.propTypes = {
   username: PropTypes.string,
   password: PropTypes.string,
