@@ -1,17 +1,23 @@
 /* eslint-disable react/prefer-stateless-function */
+
+// External Dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
+
+// Internal Dependencies
 import './genre-view.scss';
 
-// TODO: Make this component render - maybe because no directors collection in databse
+// Component
 class GenreView extends React.Component {
+  // Lifecycle methods
   render() {
+    // Props
     const { movieData, onBackClick } = this.props;
 
+    // JSX
     return (
       <Card className="genre-view justify-content-md-center" style={{ backgroundColor: '#77685D', borderRadius: '5px' }}>
-
         <Card.Title style={{ color: 'white' }} className="genre-name">{movieData.Genre.Name}</Card.Title>
         <Card.Body style={{ color: 'white' }} className="genre-description">{movieData.Genre.Description}</Card.Body>
         <Button style={{ backgroundColor: '#058ED9' }} type="button" onClick={() => { onBackClick(); }}>Back</Button>
@@ -20,6 +26,7 @@ class GenreView extends React.Component {
   }
 }
 
+// PropTypes
 GenreView.propTypes = {
   movieData: PropTypes.shape({
     Title: PropTypes.string.isRequired,
@@ -40,4 +47,5 @@ GenreView.propTypes = {
   onBackClick: PropTypes.func.isRequired,
 };
 
+// Export
 export default GenreView;
