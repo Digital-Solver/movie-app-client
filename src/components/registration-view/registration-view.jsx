@@ -1,6 +1,7 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import {
@@ -18,6 +19,7 @@ function registrationView(props) {
   const {
     setUsername, setPassword, setEmail, setBirthday, userdata,
   } = props;
+
   const password = userdata.user.Password;
   const username = userdata.user.Username;
   const email = userdata.user.Email;
@@ -33,47 +35,39 @@ function registrationView(props) {
 
     if (!username) {
       isReq = false;
-      const usernameErr = 'You must enter a username.';
-      // setUsernameErr('You must enter a username.');
+      usernameErr = 'You must enter a username.';
     } else if (username.length < 2) {
       isReq = false;
-      const usernameErr = 'Your username must be at least 2 characters.';
-      // setUsernameErr('Your username must be at least 2 characters.');
+      usernameErr = 'Your username must be at least 2 characters.';
     }
 
     if (!password) {
       isReq = false;
-      const passwordErr = 'You must enter a password.';
-      // setPasswordErr('You must enter a password.');
+      passwordErr = 'You must enter a password.';
     } else if (password.length < 8) {
       isReq = false;
-      const passwordErr = 'YYour password must be at least 8 characters.';
-      // setPasswordErr('Your password must be at least 8 characters.');
+      passwordErr = 'Your password must be at least 8 characters.';
     }
 
     if (!email) {
       isReq = false;
-      const emailErr = 'You must enter an email.';
-      // setEmailErr('You must enter an email.');
-    } else if (password.includes('@')) {
+      emailErr = 'You must enter an email.';
+    } else if (!email.includes('@')) {
       isReq = false;
-      const emailErr = 'Your password must be valid';
-      // setEmailErr('Your password must be valid.');
+      emailErr = 'Your email must be valid.';
     }
 
     if (!birthday) {
       isReq = false;
-      const birthdayErr = 'You must enter a birthday.';
-      // setBirthdayErr('You must enter a birthday.');
+      birthdayErr = 'You must enter a birthday.';
     }
-
-    return isReq;
+    console.log([isReq, usernameErr, passwordErr, emailErr, birthdayErr]);
+    return [isReq, usernameErr, passwordErr, emailErr, birthdayErr];
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    const isReq = validate();
-    if (isReq) {
+    if (validate()[0]) {
       axios
         .post('https://kds-movie-api.herokuapp.com/users', {
           Username: username,
@@ -97,7 +91,8 @@ function registrationView(props) {
             <Card>
               <Card.Body>
                 <Card.Title>Register a New Account</Card.Title>
-                <Form action="submit">
+                <Form action="submit" onSubmit={handleRegister}>
+                  <p style={{ display: 'none' }}>{validate()}</p> {/*HACK: Can't get it to validate form on submit or button click */}
                   <Form.Group>
                     <Form.Label>
                       Register a Username:
@@ -108,7 +103,7 @@ function registrationView(props) {
                         required
                         placeholder="Username"
                       />
-                      {usernameErr && <p style={{ color: 'red' }}>{usernameErr}</p>}
+                      <p style={{ color: 'red' }}>{usernameErr}</p>
                     </Form.Label>
                   </Form.Group>
 
@@ -123,7 +118,7 @@ function registrationView(props) {
                         min={8}
                         placeholder="Password (min. 8 chars)"
                       />
-                      {passwordErr && <p style={{ color: 'red' }}>{passwordErr}</p>}
+                      <p style={{ color: 'red' }}>{passwordErr}</p>
                     </Form.Label>
                   </Form.Group>
 
@@ -138,7 +133,7 @@ function registrationView(props) {
                         min={8}
                         placeholder="john.doe@example.com"
                       />
-                      {emailErr && <p style={{ color: 'red' }}>{emailErr}</p>}
+                      <p style={{ color: 'red' }}>{emailErr}</p>
                     </Form.Label>
                   </Form.Group>
 
@@ -153,15 +148,13 @@ function registrationView(props) {
                         min={8}
                         placeholder="Password (min. 8 chars)"
                       />
-                      {birthdayErr && <p style={{ color: 'red' }}>{birthdayErr}</p>}
+                      <p style={{ color: 'red' }}>{birthdayErr}</p>
                     </Form.Label>
                   </Form.Group>
-
                   <Form.Group>
-                    <Button type="submit" onClick={handleRegister}>Register</Button>
+                    <Button type="submit" onClick={validate}>Register</Button>
                   </Form.Group>
                   <Link to="/">Already have an account? Click here to log in.</Link>
-
                 </Form>
               </Card.Body>
             </Card>
