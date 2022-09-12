@@ -75,7 +75,7 @@ function UpdateUser(props) {
 
       <label>
         Date of Birth:
-        <input type="date" name="DoB" defaultValue={userdata.user.Birthday.slice(0, 10)} onChange={(e) => setBirthday(e.target.value)} />
+        <input type="date" name="DoB" defaultValue={userdata.user.Birthday ? userdata.user.Birthday.slice(0, 10) : userdata.user.Birthday} onChange={(e) => setBirthday(e.target.value)} />
       </label>
 
       <button type="submit">Submit</button>
