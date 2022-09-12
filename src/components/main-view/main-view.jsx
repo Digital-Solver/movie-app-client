@@ -206,16 +206,11 @@ class MainView extends React.Component {
 //  PropTypes
 MainView.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-
   userdata: PropTypes.shape({
     user: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      Username: PropTypes.string.isRequired,
-      Password: PropTypes.string.isRequired,
-      Email: PropTypes.string.isRequired,
-      FavoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired,
+      Username: PropTypes.string,
     }).isRequired,
-    token: PropTypes.string.isRequired,
+    token: PropTypes.string,
   }).isRequired,
   setMovies: PropTypes.func.isRequired,
   setUserdata: PropTypes.func.isRequired,
