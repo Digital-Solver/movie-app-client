@@ -47875,7 +47875,8 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
-/* eslint-disable object-curly-newline */ /* eslint-disable no-console */ /* eslint-disable no-alert */ var _react = require("react");
+/* eslint-disable no-shadow */ /* eslint-disable object-curly-newline */ /* eslint-disable no-console */ /* eslint-disable no-alert */ // External Dependencies
+var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
@@ -47883,6 +47884,7 @@ var _reactBootstrap = require("react-bootstrap");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactRedux = require("react-redux");
+// Internal Dependencies
 var _userInfo = require("./user-info");
 var _userInfoDefault = parcelHelpers.interopDefault(_userInfo);
 var _updateUser = require("./update-user");
@@ -47891,17 +47893,16 @@ var _favoriteMovies = require("./favorite-movies");
 var _favoriteMoviesDefault = parcelHelpers.interopDefault(_favoriteMovies);
 var _actions = require("../../actions/actions");
 var _s = $RefreshSig$();
+// Component
 function ProfileView(props) {
     _s();
-    // Read State
-    const { movies , user , token , userdata  } = props;
-    const { setUserdata  } = props;
-    const { Username , Email , Birthday , Password  } = userdata.user;
-    const favoriteMovies = userdata.user.FavoriteMovies;
+    // Props
+    const { movies , userdata , setUserdata  } = props;
+    // Methods
     const getUser = ()=>{
-        _axiosDefault.default.get(`https://kds-movie-api.herokuapp.com/users/${user}`, {
+        _axiosDefault.default.get(`https://kds-movie-api.herokuapp.com/users/${userdata.user.Username}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${userdata.token}`
             }
         }).then((res)=>{
             setUserdata({
@@ -47912,47 +47913,49 @@ function ProfileView(props) {
             console.log(err);
         });
     };
-    _react.useEffect(()=>{
-        getUser(user);
-    }, []);
     const deleteUser = ()=>{
-        _axiosDefault.default.delete(`https://kds-movie-api.herokuapp.com/users/${user}`, {
+        _axiosDefault.default.delete(`https://kds-movie-api.herokuapp.com/users/${userdata.user.Username}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${userdata.token}`
             }
         }).then(()=>{
-            alert(`${user}'s account was deleted.`);
+            alert(`${userdata.user.Username}'s account was deleted.`);
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             window.open('/', '_self');
         }).catch((err)=>console.log(err)
         );
     };
-    return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
+    _react.useEffect(()=>{
+        getUser(userdata.user.Username);
+    }, []);
+    // JSX
+    return(/*#__PURE__*/ _jsxRuntime.jsxs("main", {
+        className: "profile",
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 51
+            lineNumber: 57
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx(_userInfoDefault.default, {
-                username: Username,
-                email: Email,
-                birth: Birthday,
+                username: userdata.user.Username,
+                email: userdata.user.Email,
+                birth: userdata.user.Birthday,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 53
+                    lineNumber: 58
                 },
                 __self: this
             }),
             /*#__PURE__*/ _jsxRuntime.jsx(_favoriteMoviesDefault.default, {
-                favoriteMovies: favoriteMovies,
+                favoriteMovies: userdata.user.FavoriteMovies,
                 movies: movies,
-                username: Username,
-                user: user,
+                username: userdata.user.Username,
+                user: userdata.user.Username,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 59
+                    lineNumber: 64
                 },
                 __self: this
             }),
@@ -47960,7 +47963,7 @@ function ProfileView(props) {
                 userdata: userdata,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 66
+                    lineNumber: 71
                 },
                 __self: this
             }),
@@ -47969,7 +47972,7 @@ function ProfileView(props) {
                 onClick: deleteUser,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 69
+                    lineNumber: 74
                 },
                 __self: this,
                 children: "Delete Profile"
@@ -47979,10 +47982,23 @@ function ProfileView(props) {
 }
 _s(ProfileView, "OD7bBpZva5O2jO+Puf00hKivP7c=");
 _c = ProfileView;
+// PropTypes
 ProfileView.propTypes = {
     movies: _propTypesDefault.default.arrayOf(_propTypesDefault.default.shape({
-    })).isRequired
+    })).isRequired,
+    userdata: _propTypesDefault.default.shape({
+        user: _propTypesDefault.default.shape({
+            Username: _propTypesDefault.default.string,
+            Password: _propTypesDefault.default.string,
+            Email: _propTypesDefault.default.string,
+            Birthday: _propTypesDefault.default.string,
+            FavoriteMovies: _propTypesDefault.default.arrayOf(_propTypesDefault.default.string)
+        }),
+        token: _propTypesDefault.default.string
+    }).isRequired,
+    setUserdata: _propTypesDefault.default.func.isRequired
 };
+// Redux & Export
 const mapStateToProps = (state)=>({
         userdata: state.userdata
     })
@@ -48008,23 +48024,29 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
+// External Dependencies
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+// Styles
+var _profileViewScss = require("./profile-view.scss");
+// Component
 function UserInfo(props) {
-    const { username , email , birth  } = props;
+    // Props
+    const { username , email , birth ,  } = props;
+    // JSX
     return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
         __source: {
             fileName: "src/components/profile-view/user-info.jsx",
-            lineNumber: 7
+            lineNumber: 19
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx("h2", {
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 8
+                    lineNumber: 20
                 },
                 __self: this,
                 children: "Your Info:"
@@ -48032,7 +48054,7 @@ function UserInfo(props) {
             /*#__PURE__*/ _jsxRuntime.jsx("p", {
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 9
+                    lineNumber: 21
                 },
                 __self: this,
                 children: `Username: ${username}`
@@ -48040,7 +48062,7 @@ function UserInfo(props) {
             /*#__PURE__*/ _jsxRuntime.jsx("p", {
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 10
+                    lineNumber: 22
                 },
                 __self: this,
                 children: `Email: ${email}`
@@ -48048,7 +48070,7 @@ function UserInfo(props) {
             /*#__PURE__*/ _jsxRuntime.jsx("p", {
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 11
+                    lineNumber: 23
                 },
                 __self: this,
                 children: `Birthday: ${birth}`
@@ -48057,6 +48079,7 @@ function UserInfo(props) {
     }));
 }
 _c = UserInfo;
+// PropTypes
 UserInfo.propTypes = {
     username: _propTypesDefault.default.string.isRequired,
     email: _propTypesDefault.default.string.isRequired,
@@ -48071,7 +48094,7 @@ $RefreshReg$(_c, "UserInfo");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"hBcEf":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","./profile-view.scss":"gb0ga"}],"gb0ga":[function() {},{}],"hBcEf":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$f560 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48081,16 +48104,23 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
-/* eslint-disable no-shadow */ /* eslint-disable no-console */ /* eslint-disable jsx-a11y/label-has-associated-control */ /* eslint-disable no-alert */ var _react = require("react");
+/* eslint-disable object-curly-newline */ /* eslint-disable no-shadow */ /* eslint-disable no-console */ /* eslint-disable jsx-a11y/label-has-associated-control */ /* eslint-disable no-alert */ //  External Dependencies
+var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactRedux = require("react-redux");
+// Styles
+var _profileViewScss = require("./profile-view.scss");
+// Action Creators
 var _actions = require("../../actions/actions");
+// Component
 function UpdateUser(props) {
-    const { userdata , setUsername , setPassword , setEmail , setBirthday ,  } = props;
+    // Props
+    const { userdata , setUsername , setPassword , setEmail , setBirthday  } = props;
+    // Methods
     const handleSubmit = (e)=>{
         e.preventDefault();
         _axiosDefault.default.put(`https://kds-movie-api.herokuapp.com/users/${localStorage.getItem('user')}`, {
@@ -48103,26 +48133,27 @@ function UpdateUser(props) {
                 Authorization: `Bearer ${userdata.token}`,
                 'Content-Type': 'application/json'
             }
-        }).then((res)=>{
+        }).then(()=>{
             alert(`${userdata.user.Username}'s profile has been updated.`);
             localStorage.setItem('user', userdata.user.Username);
             window.open(`/users/${userdata.user.Username}}`, '_self');
-        }).catch((err)=>console.log(err)
+        }).catch((err)=>console.error(err)
         );
     };
+    // JSX
     return(/*#__PURE__*/ _jsxRuntime.jsxs("form", {
         className: "profile-form",
         onSubmit: handleSubmit,
         __source: {
             fileName: "src/components/profile-view/update-user.jsx",
-            lineNumber: 37
+            lineNumber: 58
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx("h2", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 38
+                    lineNumber: 59
                 },
                 __self: this,
                 children: "Edit Profile: "
@@ -48130,7 +48161,7 @@ function UpdateUser(props) {
             /*#__PURE__*/ _jsxRuntime.jsxs("label", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 40
+                    lineNumber: 61
                 },
                 __self: this,
                 children: [
@@ -48143,7 +48174,7 @@ function UpdateUser(props) {
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 42
+                            lineNumber: 63
                         },
                         __self: this
                     })
@@ -48152,7 +48183,7 @@ function UpdateUser(props) {
             /*#__PURE__*/ _jsxRuntime.jsxs("label", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 45
+                    lineNumber: 66
                 },
                 __self: this,
                 children: [
@@ -48165,7 +48196,7 @@ function UpdateUser(props) {
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 47
+                            lineNumber: 68
                         },
                         __self: this
                     })
@@ -48174,7 +48205,7 @@ function UpdateUser(props) {
             /*#__PURE__*/ _jsxRuntime.jsxs("label", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 50
+                    lineNumber: 71
                 },
                 __self: this,
                 children: [
@@ -48188,7 +48219,7 @@ function UpdateUser(props) {
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 52
+                            lineNumber: 73
                         },
                         __self: this
                     })
@@ -48197,7 +48228,7 @@ function UpdateUser(props) {
             /*#__PURE__*/ _jsxRuntime.jsxs("label", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 55
+                    lineNumber: 76
                 },
                 __self: this,
                 children: [
@@ -48210,7 +48241,7 @@ function UpdateUser(props) {
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 57
+                            lineNumber: 78
                         },
                         __self: this
                     })
@@ -48220,7 +48251,7 @@ function UpdateUser(props) {
                 type: "submit",
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 60
+                    lineNumber: 81
                 },
                 __self: this,
                 children: "Submit"
@@ -48229,21 +48260,23 @@ function UpdateUser(props) {
     }));
 }
 _c = UpdateUser;
+// PropTypes
 UpdateUser.propTypes = {
     userdata: _propTypesDefault.default.shape({
         user: _propTypesDefault.default.shape({
-            Username: _propTypesDefault.default.string.isRequired,
+            Username: _propTypesDefault.default.string,
             Password: _propTypesDefault.default.string,
-            Email: _propTypesDefault.default.string.isRequired,
-            Birthday: _propTypesDefault.default.string.isRequired
+            Email: _propTypesDefault.default.string,
+            Birthday: _propTypesDefault.default.string
         }),
-        token: _propTypesDefault.default.string.isRequired
+        token: _propTypesDefault.default.string
     }).isRequired,
     setUsername: _propTypesDefault.default.func.isRequired,
     setPassword: _propTypesDefault.default.func.isRequired,
     setEmail: _propTypesDefault.default.func.isRequired,
     setBirthday: _propTypesDefault.default.func.isRequired
 };
+// Redux & Export
 function mapStateToProps(state) {
     const { userdata  } = state;
     return {
@@ -48264,7 +48297,7 @@ $RefreshReg$(_c, "UpdateUser");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","react-redux":"2L0if","../../actions/actions":"1Ttfj"}],"gKhXS":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","react-redux":"2L0if","../../actions/actions":"1Ttfj","./profile-view.scss":"gb0ga"}],"gb0ga":[function() {},{}],"gKhXS":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7994 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48274,20 +48307,24 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
-/* eslint-disable no-underscore-dangle */ var _react = require("react");
+/* eslint-disable react/prop-types */ /* eslint-disable no-underscore-dangle */ // External Dependencies
+var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
-var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
+// Internal Dependencies
 var _movieCard = require("../movie-card/movie-card");
 var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
+// Component
 function FavoriteMovies(props) {
-    const { favoriteMovies , movies , removeFavorite , user  } = props;
+    // Props
+    const { favoriteMovies , movies , user ,  } = props;
+    // Methods
     const getFavoriteMovies = ()=>{
         if (!favoriteMovies) return(/*#__PURE__*/ _jsxRuntime.jsx("p", {
             __source: {
                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                lineNumber: 13
+                lineNumber: 24
             },
             __self: this,
             children: "Favorite Some Movies To See Your List"
@@ -48297,7 +48334,7 @@ function FavoriteMovies(props) {
                 md: 4,
                 __source: {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                    lineNumber: 18
+                    lineNumber: 30
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
@@ -48306,24 +48343,32 @@ function FavoriteMovies(props) {
                     user: user,
                     __source: {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 19
+                        lineNumber: 31
                     },
                     __self: this
                 }, mov._id)
             }));
+            return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+                __source: {
+                    fileName: "src/components/profile-view/favorite-movies.jsx",
+                    lineNumber: 36
+                },
+                __self: this
+            }));
         });
     };
+    // JSX
     return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
         __source: {
             fileName: "src/components/profile-view/favorite-movies.jsx",
-            lineNumber: 27
+            lineNumber: 42
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx("h2", {
                 __source: {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                    lineNumber: 28
+                    lineNumber: 43
                 },
                 __self: this,
                 children: "Favorite Movies:"
@@ -48333,7 +48378,7 @@ function FavoriteMovies(props) {
     }));
 }
 _c = FavoriteMovies;
-exports.default = FavoriteMovies;
+// PropTypes
 FavoriteMovies.propTypes = {
     favoriteMovies: _propTypes.PropTypes.shape({
     }).isRequired,
@@ -48342,8 +48387,9 @@ FavoriteMovies.propTypes = {
         Title: _propTypes.PropTypes.string.isRequired,
         ImageURL: _propTypes.PropTypes.string.isRequired
     }).isRequired,
-    removeFavorite: _propTypes.PropTypes.func.isRequired
+    user: _propTypes.PropTypes.string.isRequired
 };
+exports.default = FavoriteMovies;
 var _c;
 $RefreshReg$(_c, "FavoriteMovies");
 
@@ -48352,6 +48398,6 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","react-router-dom":"cpyQW","react-bootstrap":"h2YVd","../movie-card/movie-card":"6EiBJ","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"jUTZ8":[function() {},{}]},["2rAXy","6a0zu","dLPEP"], "dLPEP", "parcelRequire6ce0")
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","react-bootstrap":"h2YVd","../movie-card/movie-card":"6EiBJ","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"jUTZ8":[function() {},{}]},["2rAXy","6a0zu","dLPEP"], "dLPEP", "parcelRequire6ce0")
 
 //# sourceMappingURL=index.6701a6e1.js.map
