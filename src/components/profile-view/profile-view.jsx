@@ -1,10 +1,11 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import UserInfo from './user-info';
 import UpdateUser from './update-user';
 import FavoriteMovies from './favorite-movies';
@@ -12,12 +13,24 @@ import { setUser } from '../../actions/actions';
 
 function ProfileView(props) {
   // Read State
-  const { movies, user, token } = props;
+  const { movies, user, token, userdata } = props;
+  const { setUser } = props;
+  const { Username, Email, Birthday, Password } = userdata.user;
+  const favoriteMovies = userdata.user.FavoriteMovies;
 
-  // Write State // TODO: Transition this to Redux
-  const [userData, setUserData] = useState({});
-  const [favoriteMovies, setFavoriteMovies] = useState([]);
-  const { Username, Email, Birthday, Password } = userData;
+  const getUser = () => {
+    axios
+      .get(
+        `https://kds-movie-api.herokuapp.com/users/${user}`,
+        { headers: { Authorization: `Bearer ${token}` } },
+      )
+      .then((res) => { setUser({ user: res.data, token: localStorage.getItem('token') }); })
+      .catch((err) => { console.log(err); });
+  };
+
+  useEffect(() => {
+    getUser(user);
+  }, []);
 
   const deleteUser = () => {
     axios
@@ -33,20 +46,6 @@ function ProfileView(props) {
       })
       .catch((err) => console.log(err));
   };
-
-  const getUser = () => {
-    axios
-      .get(
-        `https://kds-movie-api.herokuapp.com/users/${user}`,
-        { headers: { Authorization: `Bearer ${token}` } },
-      )
-      .then((res) => { setUserData(res.data); setFavoriteMovies(res.data.FavoriteMovies); })
-      .catch((err) => { console.log(err); });
-  };
-
-  useEffect(() => {
-    getUser(user);
-  }, []);
 
   return (
     <div>
@@ -80,4 +79,6 @@ ProfileView.propTypes = {
   movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-export default ProfileView;
+const mapStateToProps = (state) => ({ userdata: state.userdata });
+
+export default connect(mapStateToProps, { setUser })(ProfileView);
