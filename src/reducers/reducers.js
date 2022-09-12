@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux';
 
 import {
-  SET_FILTER, SET_MOVIES, SET_USERDATA, SET_USERNAME, SET_PASSWORD, setUsername,
+  SET_FILTER, SET_MOVIES, SET_USERDATA, SET_USERNAME, SET_PASSWORD, SET_EMAIL, SET_BIRTHDAY,
 } from '../actions/actions';
 
 function visibilityFilter(state = '', action) {
@@ -23,7 +23,11 @@ function movies(state = [], action) {
   }
 }
 
-function userdata(state = { user: { Username: '', Password: '' } }, action) {
+function userdata(state = {
+  user: {
+    Username: '', Password: '', Email: '', Birthday: '',
+  },
+}, action) {
   switch (action.type) {
     case SET_USERDATA:
       return action.payload;
@@ -34,6 +38,14 @@ function userdata(state = { user: { Username: '', Password: '' } }, action) {
     case SET_PASSWORD:
       return {
         ...state, user: { ...state.user, Password: action.payload },
+      };
+    case SET_EMAIL:
+      return {
+        ...state, user: { ...state.user, Email: action.payload },
+      };
+    case SET_BIRTHDAY:
+      return {
+        ...state, user: { ...state.user, Birthday: action.payload },
       };
     default:
       return state;

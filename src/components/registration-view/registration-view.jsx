@@ -8,55 +8,63 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUsername, setPassword } from '../../actions/actions';
+import {
+  setUsername, setPassword, setEmail, setBirthday,
+} from '../../actions/actions';
 
 import './registration-view.scss';
 
 function registrationView(props) {
-  const { setUsername, setPassword, userdata } = props;
+  const {
+    setUsername, setPassword, setEmail, setBirthday, userdata,
+  } = props;
   const password = userdata.user.Password;
   const username = userdata.user.Username;
+  const email = userdata.user.Email;
+  const birthday = userdata.user.Birthday;
 
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
-
-  const [usernameErr, setUsernameErr] = useState('');
-  const [passwordErr, setPasswordErr] = useState('');
-  const [emailErr, setEmailErr] = useState('');
-  const [birthdayErr, setBirthdayErr] = useState('');
+  let usernameErr;
+  let passwordErr;
+  let emailErr;
+  let birthdayErr;
 
   const validate = () => {
     let isReq = true;
 
     if (!username) {
       isReq = false;
-      setUsernameErr('You must enter a username.');
+      const usernameErr = 'You must enter a username.';
+      // setUsernameErr('You must enter a username.');
     } else if (username.length < 2) {
       isReq = false;
-      setUsernameErr('Your username must be at least 2 characters.');
+      const usernameErr = 'Your username must be at least 2 characters.';
+      // setUsernameErr('Your username must be at least 2 characters.');
     }
 
     if (!password) {
       isReq = false;
-      setPasswordErr('You must enter a password.');
+      const passwordErr = 'You must enter a password.';
+      // setPasswordErr('You must enter a password.');
     } else if (password.length < 8) {
       isReq = false;
-      setPasswordErr('Your password must be at least 8 characters.');
+      const passwordErr = 'YYour password must be at least 8 characters.';
+      // setPasswordErr('Your password must be at least 8 characters.');
     }
 
     if (!email) {
       isReq = false;
-      setEmailErr('You must enter an email.');
+      const emailErr = 'You must enter an email.';
+      // setEmailErr('You must enter an email.');
     } else if (password.includes('@')) {
       isReq = false;
-      setEmailErr('Your password must be valid.');
+      const emailErr = 'Your password must be valid';
+      // setEmailErr('Your password must be valid.');
     }
 
     if (!birthday) {
       isReq = false;
-      setBirthdayErr('You must enter a birthday.');
+      const birthdayErr = 'You must enter a birthday.';
+      // setBirthdayErr('You must enter a birthday.');
     }
 
     return isReq;
@@ -177,4 +185,6 @@ function mapStateToProps(state) {
   return { userdata };
 }
 
-export default connect(mapStateToProps, { setUsername, setPassword })(registrationView);
+export default connect(mapStateToProps, {
+  setUsername, setPassword, setEmail, setBirthday,
+})(registrationView);
