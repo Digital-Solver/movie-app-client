@@ -19,7 +19,7 @@ class MovieView extends React.Component {
     // JSX
     return (
       <Card className="movie-view justify-content-md-center" style={{ backgroundColor: '#77685D', borderRadius: '5px', maxWidth: '500px' }}>
-        <Card.Img variation="top" className="movie-poster" src={movieData.ImageURL} alt={posterAlt} style={{ width: '15rem', marginInline: 'auto' }} />
+        <Card.Img variation="top" className="movie-poster" src={movieData.ImageURL} crossOrigin="anonymous" alt={posterAlt} style={{ width: '15rem', marginInline: 'auto' }} />
         <Card.Title style={{ color: 'white' }} className="movie-title">{movieData.Title}</Card.Title>
         <Card.Body style={{ color: 'white' }} className="movie-description">{movieData.Description}</Card.Body>
 
