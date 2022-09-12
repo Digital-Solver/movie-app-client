@@ -5,26 +5,31 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/prefer-stateless-function */
+
+// External Dependencies
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
+// Internal Dependencies
 import './movie-card.scss';
 
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-
+// Component
 class MovieCard extends React.Component {
+  // Lifecycle Methods
   render() {
+    // Props
     const { movieData, favorite, user } = this.props;
 
+    // Class Methods
     function addFavorite() {
-      const token = localStorage.getItem('token');
-      console.log(`REQUEST:\nUser: ${user}\nMovieID: ${movieData._id}\nToken: ${token}`); // These are the relevant variables as available in this scope
       axios
         .post(
           `https://kds-movie-api.herokuapp.com/users/${user}/favorites/${movieData._id}`,
           {},
-          { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }, // Auth not working even though endpoint works in postman and I've checked the backend code too
+          { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } },
         )
         .then(() => {
           alert(`${movieData.Title} was added to ${user}'s favourites.`);
@@ -49,15 +54,15 @@ class MovieCard extends React.Component {
     function favoriteVariant() {
       if (!favorite) {
         return <Button variant="secondary" onClick={() => addFavorite(movieData._id, movieData.Title)}>Favorite</Button>;
-      } return <Button variant="secondary" onClick={() => deleteFavorite(movieData._id, movieData.Title)}>Unfavorite</Button>;
+      } return <Button variant="secondary" onClick={() => deleteFavorite(movieData._id, movieData.Title)}>Remove</Button>;
     }
 
+    // JSX
     return (
       <Card className="movie-card" style={{ borderRadius: '5px' }}>
         <Card.Img variant="top" src={movieData.ImageURL} thumbnail="true" crossOrigin="anonymous" />
         <Card.Body style={{ backgroundColor: '#77685D', borderRadius: '0px 0px 5px 5px' }}>
           <Card.Title style={{ color: 'white' }}>{movieData.Title}</Card.Title>
-
           <Link to={`/movies/${movieData._id}`}>
             <Button style={{ backgroundColor: '#058ED9' }}>See More</Button>
           </Link>
@@ -68,6 +73,7 @@ class MovieCard extends React.Component {
   }
 }
 
+// PropTypes
 MovieCard.propTypes = {
   movieData: PropTypes.shape({
     Title: PropTypes.string.isRequired,
@@ -86,4 +92,6 @@ MovieCard.propTypes = {
     ImageURL: PropTypes.string.isRequired,
   }).isRequired,
 };
+
+// Export
 export default MovieCard;
