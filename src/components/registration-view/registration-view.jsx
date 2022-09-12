@@ -7,12 +7,18 @@ import {
   Form, Button, Container, Card, CardGroup, Row, Col,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setUsername, setPassword } from '../../actions/actions';
 
 import './registration-view.scss';
 
-export default function registrationView(props) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+function registrationView(props) {
+  const { setUsername, setPassword, userdata } = props;
+  const password = userdata.user.Password;
+  const username = userdata.user.Username;
+
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
 
@@ -165,3 +171,10 @@ registrationView.propTypes = {
   email: PropTypes.string,
   birthday: PropTypes.instanceOf(Date),
 };
+
+function mapStateToProps(state) {
+  const { userdata } = state;
+  return { userdata };
+}
+
+export default connect(mapStateToProps, { setUsername, setPassword })(registrationView);
