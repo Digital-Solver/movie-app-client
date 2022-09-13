@@ -31,12 +31,12 @@ function MoviesList(props) {
   // JSX
   return (
     <>
-      <Col md={12} style={{ margin: '1rem' }}>
+      <Col className="search-input-container" md={12}>
         <VisibilityFilterInput visibilityFilter={visibilityFilter} />
       </Col>
       {filteredMovies.map((m) => (
-        <Col md={3} sm="auto" key={m._id} style={{ marginInline: 'auto' }}>
-          <MovieCard movieData={m} user={userdata.user.Username} />
+        <Col className="movie-card-container" sm key={m._id}>
+          <MovieCard className="movie-card" movieData={m} user={userdata.user.Username} />
         </Col>
       ))}
     </>
