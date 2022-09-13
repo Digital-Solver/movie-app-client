@@ -53,18 +53,18 @@ class MovieCard extends React.Component {
 
     function favoriteVariant() {
       if (!favorite) {
-        return <Button variant="secondary" onClick={() => addFavorite(movieData._id, movieData.Title)}>Favorite</Button>;
+        return <Button variant="favorite" onClick={() => addFavorite(movieData._id, movieData.Title)}>Favorite</Button>;
       } return <Button variant="secondary" onClick={() => deleteFavorite(movieData._id, movieData.Title)}>Remove</Button>;
     }
 
     // JSX
     return (
-      <Card key={movieData._id} className="movie-card" style={{ borderRadius: '5px' }}>
+      <Card key={movieData._id} className="movie-card">
         <Card.Img variant="top" src={movieData.ImageURL} thumbnail="true" crossOrigin="anonymous" />
-        <Card.Body style={{ backgroundColor: '#77685D', borderRadius: '0px 0px 5px 5px' }}>
-          <Card.Title style={{ color: 'white' }}>{movieData.Title}</Card.Title>
+        <Card.Body className="movie-card-body">
+          <Card.Title className="movie-card-title">{movieData.Title}</Card.Title>
           <Link to={`/movies/${movieData._id}`}>
-            <Button style={{ backgroundColor: '#058ED9' }}>See More</Button>
+            <Button variant="movie-detail">See More</Button>
           </Link>
           {favoriteVariant()}
         </Card.Body>

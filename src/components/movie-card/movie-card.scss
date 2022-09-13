@@ -1,6 +1,15 @@
-.movie-card,
-.card {
+.movie-card {
   width: 200px;
   margin-top: 20px;
   margin-inline: auto;
+  border-radius: 5px;
+}
+
+.movie-card-body {
+  background-color: #77685D;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.movie-card-title {
+  color: white !important;
 }
