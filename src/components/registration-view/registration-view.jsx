@@ -91,19 +91,20 @@ function registrationView(props) {
       <Row>
         <Col>
           <CardGroup>
-            <Card>
-              <Card.Body>
-                <Card.Title>Register a New Account</Card.Title>
+            <Card className="credential-card">
+              <Card.Body className="credential-card-body">
+                {/* <Card.Title>Register a New Account</Card.Title> */}
                 <Form action="submit" onSubmit={handleRegister}>
                   <Form.Group>
                     <Form.Label>
-                      Register a Username:
+                      username
                       <Form.Control
+                        className="credential-input"
                         type="text"
                         value={userdata.user.Username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
-                        placeholder="Username"
+                        placeholder="DavyJones98"
                       />
                       <p className="error-text">{usernameErr}</p>
                     </Form.Label>
@@ -111,14 +112,15 @@ function registrationView(props) {
 
                   <Form.Group>
                     <Form.Label>
-                      Register a Password:
+                      password
                       <Form.Control
+                        className="credential-input"
                         type="password"
                         value={userdata.user.Password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         min={8}
-                        placeholder="Password (min. 8 chars)"
+                        placeholder="min. 8 chars"
                       />
                       <p className="error-text">{passwordErr}</p>
                     </Form.Label>
@@ -126,8 +128,9 @@ function registrationView(props) {
 
                   <Form.Group>
                     <Form.Label>
-                      Register an Email:
+                      email
                       <Form.Control
+                        className="credential-input"
                         type="email"
                         value={userdata.user.Email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -141,23 +144,28 @@ function registrationView(props) {
 
                   <Form.Group>
                     <Form.Label>
-                      Register a Birthday:
+                      birthday
                       <Form.Control
+                        className="credential-input"
                         type="date"
                         value={userdata.user.Birthday}
                         onChange={(e) => setBirthday(e.target.value)}
                         required
                         min={8}
-                        placeholder="Password (min. 8 chars)"
+                        placeholder="01-01-2000"
                       />
                       <p className="error-text">{birthdayErr}</p>
                     </Form.Label>
                   </Form.Group>
-                  <Form.Group>
-                    <Button type="submit" onClick={validate}>Register</Button>
+
+                  <Form.Group className="login-button-container">
+                    <Button variant="credential" type="submit" onClick={validate}>Register</Button>
                   </Form.Group>
-                  <Link to="/">Already have an account? Click here to log in.</Link>
+
                 </Form>
+                <div className="toggle-credential-view-container">
+                  <Link to="/" className="toggle-credential-view">login</Link>
+                </div>
               </Card.Body>
             </Card>
           </CardGroup>
