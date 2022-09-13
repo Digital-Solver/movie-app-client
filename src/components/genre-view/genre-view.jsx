@@ -17,10 +17,10 @@ class GenreView extends React.Component {
 
     // JSX
     return (
-      <Card className="genre-view justify-content-md-center" style={{ backgroundColor: '#77685D', borderRadius: '5px' }}>
-        <Card.Title style={{ color: 'white' }} className="genre-name">{movieData.Genre.Name}</Card.Title>
-        <Card.Body style={{ color: 'white' }} className="genre-description">{movieData.Genre.Description}</Card.Body>
-        <Button style={{ backgroundColor: '#058ED9' }} type="button" onClick={() => { onBackClick(); }}>Back</Button>
+      <Card className="genre-view justify-content-md-center">
+        <Card.Title className="genre-name">{movieData.Genre.Name}</Card.Title>
+        <Card.Body className="genre-description">{movieData.Genre.Description}</Card.Body>
+        <Button type="button" onClick={() => { onBackClick(); }}>Back</Button>
       </Card>
     );
   }
