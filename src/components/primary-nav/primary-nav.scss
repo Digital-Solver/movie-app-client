@@ -1,14 +1,19 @@
 .primary-navigation {
   min-width: 100%;
   margin-inline: 'auto';
-  background: linear-gradient(180deg, rgba(23, 6, 70, 0.47) 0%, rgba(121, 113, 144, 0) 38.02%, rgba(217, 217, 217, 0) 100%);
-  border-bottom: 0.5px solid rgba(147, 147, 147, 0.25);
+  border-bottom: 0.5px solid rgba(147, 147, 147, 0.25) !important;
+  margin-bottom: 8rem !important;
 }
 
 .scynapse-logo,
 .hamburger-icon,
 .navigation-link {
   color: #212121 !important;
+}
+
+.navbar-nav a {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav-spacer {
@@ -31,4 +36,8 @@
 .logo-underline {
   margin-top: -18.5px;
   margin-bottom: 18.5px;
+}
+
+.username-span {
+  color: #8866E9;
 }

@@ -31,6 +31,7 @@ function MoviesList(props) {
   // JSX
   return (
     <>
+      <p className="movies-list-subtitle h5">Search Sci-Fi Films</p>
       <Col className="search-input-container" md={12}>
         <VisibilityFilterInput visibilityFilter={visibilityFilter} />
       </Col>
@@ -39,7 +40,7 @@ function MoviesList(props) {
           <MovieCard className="movie-card" movieData={m} user={userdata.user.Username} />
         </Col>
       ))}
-    </>
+    </ >
   );
 }
 

@@ -29,7 +29,7 @@ export default function PrimaryNav(props) {
 
   // JSX
   return (
-    <Navbar className="primary-navigation navbar-light" expand="xs">
+    <Navbar className="primary-navigation navbar-light justify-content-end" expand="xs">
       <Container className="nav-container" fluid>
         <div className="nav-spacer" />
         <div className="logo-container">
@@ -46,18 +46,23 @@ export default function PrimaryNav(props) {
 
           <Nav className="me-auto">
             {isAuth() && (
-              <Link to="/">
-                <Button className="navigation-link" variant="link" onClick={() => { onLogoutRequest(); }}>Logout</Button>
-              </Link>
-            )}
+            <Link to={`/users/${user}`}>
+              <Button className="navigation-link" variant="link">
+                <svg height="7.5" width="7.5">
+                  <circle cx="3.25" cy="3.25" r="3.25" stroke="black" strokeWidth="0" fill="green" />
+                </svg>
+                <span className="username-span">{` ${user}`}</span>
+              </Button>
+            </Link>
+            ) }
           </Nav>
 
           <Nav className="me-auto">
             {isAuth() && (
-              <Link to={`/users/${user}`}>
-                <Button className="navigation-link" variant="link">{`${user}'s Profile`}</Button>
+              <Link to="/">
+                <Button className="navigation-link" variant="link" onClick={() => { onLogoutRequest(); }}>Logout</Button>
               </Link>
-            ) }
+            )}
           </Nav>
 
           <Nav className="me-auto">
