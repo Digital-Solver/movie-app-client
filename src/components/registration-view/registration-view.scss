@@ -1,6 +1,7 @@
 label {
   width: 100%;
 }
+
 .error-text {
   color: red;
 }
@@ -38,4 +39,9 @@ label {
 .toggle-credential-view {
   color: #8866E9;
   font-size: 15px;
+}
+
+.edit-user-button-container {
+  display: flex;
+  flex-direction: column;
 }

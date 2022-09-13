@@ -9,6 +9,14 @@
 .hamburger-icon,
 .navigation-link {
   color: #212121 !important;
+  border: none !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url('/src/media/custom-menu-icon.svg') !important;
+  width: 28px;
+  height: 27px;
+  border-radius: 0;
 }
 
 .navbar-nav a {
