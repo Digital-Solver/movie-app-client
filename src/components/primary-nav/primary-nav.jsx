@@ -29,18 +29,18 @@ export default function PrimaryNav(props) {
 
   // JSX
   return (
-    <Navbar style={{ backgroundColor: '#483D3F' }}>
-      <Container fluid style={{ maxWidth: '1200px', marginInline: 'auto' }}>
+    <Navbar className="primary-navigation">
+      <Container className="nav-container" fluid>
         <Link to="/">
-          <Navbar.Brand style={{ color: 'white' }}>Cynapse</Navbar.Brand>
+          <Navbar.Brand className="scynapse-logo">Scynapse</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" style={{ color: 'white' }}>
+        <Navbar.Collapse className="hamburger-icon" id="basic-navbar-nav">
 
           <Nav className="me-auto">
             {isAuth() && (
               <Link to="/">
-                <Button variant="link" style={{ color: 'white' }} onClick={() => { onLogoutRequest(); }}>Logout</Button>
+                <Button className="navigation-link" variant="link" onClick={() => { onLogoutRequest(); }}>Logout</Button>
               </Link>
             )}
           </Nav>
@@ -48,7 +48,7 @@ export default function PrimaryNav(props) {
           <Nav className="me-auto">
             {isAuth() && (
               <Link to={`/users/${user}`}>
-                <Button variant="link" style={{ color: 'white' }}>{`${user}'s Profile`}</Button>
+                <Button className="navigation-link" variant="link">{`${user}'s Profile`}</Button>
               </Link>
             ) }
           </Nav>
@@ -56,15 +56,15 @@ export default function PrimaryNav(props) {
           <Nav className="me-auto">
             {!isAuth() && (
               <Link to="/">
-                <Button variant="link" style={{ color: 'white' }}>Login</Button>
+                <Button className="navigation-link" variant="link">Login</Button>
               </Link>
             )}
           </Nav>
 
           <Nav className="me-auto">
             {!isAuth() && (
-              <Link to="/register" style={{ color: 'white' }}>
-                <Button variant="link" style={{ color: 'white' }}>Register</Button>
+              <Link to="/register">
+                <Button className="navigation-link" variant="link">Register</Button>
               </Link>
             )}
           </Nav>
