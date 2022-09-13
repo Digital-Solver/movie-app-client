@@ -29,13 +29,13 @@ export default function PrimaryNav(props) {
 
   // JSX
   return (
-    <Navbar className="primary-navigation">
+    <Navbar className="primary-navigation navbar-dark" expand="xs">
       <Container className="nav-container" fluid>
         <Link to="/">
-          <Navbar.Brand className="scynapse-logo">Scynapse</Navbar.Brand>
+          <Navbar.Brand className="scynapse-logo">SCYNAPSE</Navbar.Brand>
         </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse className="hamburger-icon" id="basic-navbar-nav">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className="hamburger-icon" />
+        <Navbar.Collapse id="responsive-navbar-nav">
 
           <Nav className="me-auto">
             {isAuth() && (
