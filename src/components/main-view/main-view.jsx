@@ -90,7 +90,7 @@ class MainView extends React.Component {
           )}
         />
 
-        <Row className="main-view justify-content-md-center" style={{ maxWidth: '1200px', marginInline: 'auto' }}>
+        <Row className="main-view justify-content-md-center">
 
           <Route // Login
             exact
@@ -133,6 +133,7 @@ class MainView extends React.Component {
                   <MovieView
                     movieData={movies.find((m) => m._id === match.params.movieId)}
                     onBackClick={() => history.goBack()}
+
                   />
                 </Col>
               );
