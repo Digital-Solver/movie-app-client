@@ -93,12 +93,79 @@
 .username-span {
   color: #8866E9;
 }
+.credential-card {
+  border: none !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  align-items: center !important;
+}
+
+.credential-input {
+  width: 675px !important;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #4A2E9B, #CE2476) border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 2px !important;
+  margin-bottom: 15px;
+}
+
+.credential-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.toggle-credential-view {
+  color: #8866E9;
+  font-size: 15px;
+}
 label {
   width: 100%;
 }
 
 .error-text {
   color: red;
+}
+
+.credential-card {
+  border: none !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  align-items: center !important;
+}
+
+.credential-input {
+  width: 675px !important;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #4A2E9B, #CE2476) border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 2px !important;
+  margin-bottom: 15px;
+}
+
+.credential-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.toggle-credential-view {
+  color: #8866E9;
+  font-size: 15px;
 }
 .director-view {
   background-color: #77685D !important;
@@ -159,5 +226,14 @@ body {
   border-color: #ebb505 !important;
   color: #ebb505 !important;
   margin: 5px;
+}
+
+.btn-credential {
+  background-color: #380EAE !important;
+  border-color: rgba(0, 0, 0, 0);
+  color: white !important;
+  margin: 5px;
+  height: 40px;
+  width: 10rem;
 }
 /*# sourceMappingURL=index.751fa92b.css.map */

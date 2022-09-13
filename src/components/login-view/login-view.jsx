@@ -13,6 +13,7 @@ import { Form, Button, Container, Card, CardGroup, Row, Col } from 'react-bootst
 
 // Internal Dependencies
 import { setUsername, setPassword } from '../../actions/actions';
+import './login-view.scss';
 
 // Component
 function loginView(props) {
@@ -54,21 +55,21 @@ function loginView(props) {
       <Row>
         <Col>
           <CardGroup>
-            <Card>
-              <Card.Body>
-                <Card.Title>Login with Existing Account</Card.Title>
+            <Card className="credential-card">
+              <Card.Body className="credential-card-body">
+                {/* <Card.Title>Login with Existing Account</Card.Title> */}
                 <Form action="submit" noValidate validated={validated} onSubmit={handleSubmit}>
                   <Form.Group>
 
                     {/* Username input */}
                     <Form.Label>
-                      Username:
+                      username
                       <Form.Control
+                        className="credential-input"
                         type="text"
                         value={userdata.user.Username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
-                        placeholder="Username"
                       />
                       <Form.Control.Feedback type="invalid">
                         Please provide a valid username.
@@ -79,14 +80,14 @@ function loginView(props) {
                   {/* Password Input */}
                   <Form.Group>
                     <Form.Label>
-                      Password:
+                      password
                       <Form.Control
+                        className="credential-input"
                         type="password"
                         value={password}
                         onChange={(e) => { setPassword(e.target.value); }}
                         required
                         min={8}
-                        placeholder="Password (min. 8 chars)"
                       />
                       <Form.Control.Feedback type="invalid">
                         Please provide a valid password.
@@ -95,12 +96,15 @@ function loginView(props) {
                   </Form.Group>
 
                   {/* Submit button */}
-                  <Form.Group>
-                    <Button type="submit">Login</Button>
+                  <Form.Group className="login-button-container">
+                    <Button type="submit" variant="credential">Login</Button>
                   </Form.Group>
 
                 </Form>
-                <Link to="/register">Register</Link>
+
+                <div className="toggle-credential-view-container">
+                  <Link to="/register" className="toggle-credential-view">register</Link>
+                </div>
               </Card.Body>
             </Card>
           </CardGroup>
