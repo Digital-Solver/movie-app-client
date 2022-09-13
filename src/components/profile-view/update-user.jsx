@@ -9,6 +9,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 // Styles
 import './profile-view.scss';
@@ -53,34 +54,53 @@ function UpdateUser(props) {
       .catch((err) => console.error(err));
   };
 
+  const deleteUser = () => {
+    axios
+      .delete(
+        `https://kds-movie-api.herokuapp.com/users/${userdata.user.Username}`,
+        { headers: { Authorization: `Bearer ${userdata.token}` } },
+      )
+      .then(() => {
+        alert(`${userdata.user.Username}'s account was deleted.`);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.open('/', '_self');
+      })
+      .catch((err) => console.log(err));
+  };
+
   // JSX
   return (
-    <form className="profile-form" onSubmit={handleSubmit}>
-      <h2>Edit Profile: </h2>
+    <div className="user-info-container">
+      <form className="profile-form user-info-container" onSubmit={handleSubmit}>
 
-      <label>
-        Username:
-        <input type="text" name="Username" defaultValue={userdata.user.Username} onChange={(e) => setUsername(e.target.value)} />
-      </label>
+        <label>
+          username
+          <input type="text" name="Username" defaultValue={userdata.user.Username} onChange={(e) => setUsername(e.target.value)} />
+        </label>
 
-      <label>
-        Email:
-        <input type="email" name="Email" defaultValue={userdata.user.Email} onChange={(e) => setEmail(e.target.value)} />
-      </label>
+        <label>
+          email
+          <input type="email" name="Email" defaultValue={userdata.user.Email} onChange={(e) => setEmail(e.target.value)} />
+        </label>
 
-      <label>
-        Password:
-        <input type="password" name="Password" required defaultValue="" onChange={(e) => setPassword(e.target.value)} />
-      </label>
+        <label>
+          password
+          <input type="password" name="Password" required defaultValue="" onChange={(e) => setPassword(e.target.value)} />
+        </label>
 
-      <label>
-        Date of Birth:
-        <input type="date" name="DoB" defaultValue={userdata.user.Birthday ? userdata.user.Birthday.slice(0, 10) : userdata.user.Birthday} onChange={(e) => setBirthday(e.target.value)} />
-      </label>
+        <label>
+          birthday
+          <input type="date" name="DoB" defaultValue={userdata.user.Birthday ? userdata.user.Birthday.slice(0, 10) : userdata.user.Birthday} onChange={(e) => setBirthday(e.target.value)} />
+        </label>
 
-      <button type="submit">Submit</button>
+        <div className="edit-user-button-container">
+          <Button type="submit" variant="credential">Submit</Button>
+          <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
+        </div>
+      </form>
+    </div>
 
-    </form>
   );
 }
 

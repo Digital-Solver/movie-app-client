@@ -9,7 +9,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -26,6 +26,8 @@ import RegistrationView from '../registration-view/registration-view';
 import DirectorView from '../director-view/director-view';
 import GenreView from '../genre-view/genre-view';
 import ProfileView from '../profile-view/profile-view';
+import UpdateUser from '../profile-view/update-user';
+import FavoriteMovies from '../profile-view/favorite-movies';
 
 // Component
 class MainView extends React.Component {
@@ -198,6 +200,16 @@ class MainView extends React.Component {
               );
             }}
           />
+          <Route // Edit Profile
+            path="/users/:username/edit"
+            exact
+            render={() => {
+              const { userdata } = this.props;
+              return (
+                <UpdateUser userdata={userdata} />
+              );
+            }}
+          />
         </Row>
       </Router>
     );
@@ -210,6 +222,7 @@ MainView.propTypes = {
   userdata: PropTypes.shape({
     user: PropTypes.shape({
       Username: PropTypes.string,
+      FavoriteMovies: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
     token: PropTypes.string,
   }).isRequired,
