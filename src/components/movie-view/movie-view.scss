@@ -1,0 +1,31 @@
+.movie-view.card {
+  max-width: 60%;
+  background-color: #77685D;
+  border-radius: 5px;
+  max-width: 500px;
+}
+
+.movie-view.movie-poster {
+  width: 15rem;
+  margin-inline: auto;
+}
+
+.movie-title,
+.movie-description {
+  color: white !important;
+}
+
+.btn-movie-detail {
+  background-color: rgb(72, 61, 63) !important;
+  border-color: #00000000;
+  color: white !important;
+  margin: 5px;
+}
+
+.detail-navigation {
+  margin-bottom: 40px;
+  width: 100%;
+  display: inline-flex;
+  align-self: center;
+  justify-content: space-around;
+}

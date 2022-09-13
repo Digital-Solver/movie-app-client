@@ -18,32 +18,22 @@ class MovieView extends React.Component {
 
     // JSX
     return (
-      <Card className="movie-view justify-content-md-center" style={{ backgroundColor: '#77685D', borderRadius: '5px', maxWidth: '500px' }}>
-        <Card.Img variation="top" className="movie-poster" src={movieData.ImageURL} crossOrigin="anonymous" alt={posterAlt} style={{ width: '15rem', marginInline: 'auto' }} />
-        <Card.Title style={{ color: 'white' }} className="movie-title">{movieData.Title}</Card.Title>
-        <Card.Body style={{ color: 'white' }} className="movie-description">{movieData.Description}</Card.Body>
+      <Card className="movie-view justify-content-md-center">
+        <Card.Img variation="top" className="movie-poster" src={movieData.ImageURL} crossOrigin="anonymous" alt={posterAlt} />
+        <Card.Title className="movie-title">{movieData.Title}</Card.Title>
+        <Card.Body className="movie-description">{movieData.Description}</Card.Body>
 
-        <div
-          className="detail-navigation"
-          style={{
-            marginBottom: '40px',
-            marginInline: '10px',
-            width: '50%',
-            display: 'inline-flex',
-            alignSelf: 'center',
-            justifyContent: 'space-around',
-          }}
-        >
+        <div className="detail-navigation">
           <Link to={`/directors/${movieData.Director.Name}`}>
-            <Button style={{ backgroundColor: 'rgb(72, 61, 63)', borderColor: '#00000000' }} type="button">Director</Button>
+            <Button variant="movie-detail" className="movie-detail-button" type="button">Director</Button>
           </Link>
 
           <Link to={`/genres/${movieData.Genre.Name}`}>
-            <Button style={{ backgroundColor: 'rgb(72, 61, 63)', borderColor: '#00000000' }} type="button">Genre</Button>
+            <Button type="button" variant="movie-detail">Genre</Button>
           </Link>
         </div>
 
-        <Button style={{ backgroundColor: '#058ED9' }} type="button" onClick={() => { onBackClick(); }}>Back</Button>
+        <Button type="button" onClick={() => { onBackClick(); }}>Back</Button>
 
       </Card>
     );
