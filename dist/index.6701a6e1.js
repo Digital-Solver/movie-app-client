@@ -971,10 +971,6 @@ class MovieApp extends _reactDefault.default.Component {
             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
                 fluid: true,
                 className: "main-view-container",
-                style: {
-                    margin: 0,
-                    padding: 0
-                },
                 __source: {
                     fileName: "src/index.jsx",
                     lineNumber: 24
@@ -40653,10 +40649,6 @@ class MainView extends _reactDefault.default.Component {
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
                     className: "main-view justify-content-md-center",
-                    style: {
-                        maxWidth: '1200px',
-                        marginInline: 'auto'
-                    },
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 93
@@ -40748,7 +40740,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 142
+                                lineNumber: 143
                             },
                             __self: this
                         }),
@@ -40771,7 +40763,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 157
+                                lineNumber: 158
                             },
                             __self: this
                         }),
@@ -40800,7 +40792,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 172
+                                lineNumber: 173
                             },
                             __self: this
                         })
@@ -46274,10 +46266,8 @@ function MoviesList(props) {
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                className: "search-input-container",
                 md: 12,
-                style: {
-                    margin: '1rem'
-                },
                 __source: {
                     fileName: "src/components/movies-list/movies-list.jsx",
                     lineNumber: 34
@@ -46293,17 +46283,15 @@ function MoviesList(props) {
                 })
             }),
             filteredMovies.map((m)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
-                    md: 3,
-                    sm: "auto",
-                    style: {
-                        marginInline: 'auto'
-                    },
+                    className: "movie-card-container",
+                    sm: true,
                     __source: {
                         fileName: "src/components/movies-list/movies-list.jsx",
                         lineNumber: 38
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
+                        className: "movie-card",
                         movieData: m,
                         user: userdata.user.Username,
                         __source: {
@@ -46559,7 +46547,7 @@ class MovieCard extends _reactDefault.default.Component {
         }
         function favoriteVariant() {
             if (!favorite) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                variant: "secondary",
+                variant: "favorite",
                 onClick: ()=>addFavorite(movieData._id, movieData.Title)
                 ,
                 __source: {
@@ -46584,9 +46572,6 @@ class MovieCard extends _reactDefault.default.Component {
         // JSX
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
             className: "movie-card",
-            style: {
-                borderRadius: '5px'
-            },
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
                 lineNumber: 62
@@ -46605,10 +46590,7 @@ class MovieCard extends _reactDefault.default.Component {
                     __self: this
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card.Body, {
-                    style: {
-                        backgroundColor: '#77685D',
-                        borderRadius: '0px 0px 5px 5px'
-                    },
+                    className: "movie-card-body",
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
                         lineNumber: 64
@@ -46616,9 +46598,7 @@ class MovieCard extends _reactDefault.default.Component {
                     __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Title, {
-                            style: {
-                                color: 'white'
-                            },
+                            className: "movie-card-title",
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
                                 lineNumber: 65
@@ -46634,9 +46614,7 @@ class MovieCard extends _reactDefault.default.Component {
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                style: {
-                                    backgroundColor: '#058ED9'
-                                },
+                                variant: "movie-detail",
                                 __source: {
                                     fileName: "src/components/movie-card/movie-card.jsx",
                                     lineNumber: 67
@@ -46649,7 +46627,7 @@ class MovieCard extends _reactDefault.default.Component {
                     ]
                 })
             ]
-        }));
+        }, movieData._id));
     }
 }
 // PropTypes
@@ -46706,11 +46684,6 @@ class MovieView extends _reactDefault.default.Component {
         // JSX
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
             className: "movie-view justify-content-md-center",
-            style: {
-                backgroundColor: '#77685D',
-                borderRadius: '5px',
-                maxWidth: '500px'
-            },
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
                 lineNumber: 21
@@ -46723,10 +46696,6 @@ class MovieView extends _reactDefault.default.Component {
                     src: movieData.ImageURL,
                     crossOrigin: "anonymous",
                     alt: posterAlt,
-                    style: {
-                        width: '15rem',
-                        marginInline: 'auto'
-                    },
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 22
@@ -46734,9 +46703,6 @@ class MovieView extends _reactDefault.default.Component {
                     __self: this
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Title, {
-                    style: {
-                        color: 'white'
-                    },
                     className: "movie-title",
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
@@ -46746,9 +46712,6 @@ class MovieView extends _reactDefault.default.Component {
                     children: movieData.Title
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Body, {
-                    style: {
-                        color: 'white'
-                    },
                     className: "movie-description",
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
@@ -46759,14 +46722,6 @@ class MovieView extends _reactDefault.default.Component {
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs("div", {
                     className: "detail-navigation",
-                    style: {
-                        marginBottom: '40px',
-                        marginInline: '10px',
-                        width: '50%',
-                        display: 'inline-flex',
-                        alignSelf: 'center',
-                        justifyContent: 'space-around'
-                    },
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 26
@@ -46777,18 +46732,16 @@ class MovieView extends _reactDefault.default.Component {
                             to: `/directors/${movieData.Director.Name}`,
                             __source: {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 37
+                                lineNumber: 27
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                style: {
-                                    backgroundColor: 'rgb(72, 61, 63)',
-                                    borderColor: '#00000000'
-                                },
+                                variant: "movie-detail",
+                                className: "movie-detail-button",
                                 type: "button",
                                 __source: {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 38
+                                    lineNumber: 28
                                 },
                                 __self: this,
                                 children: "Director"
@@ -46798,18 +46751,15 @@ class MovieView extends _reactDefault.default.Component {
                             to: `/genres/${movieData.Genre.Name}`,
                             __source: {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 41
+                                lineNumber: 31
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                style: {
-                                    backgroundColor: 'rgb(72, 61, 63)',
-                                    borderColor: '#00000000'
-                                },
                                 type: "button",
+                                variant: "movie-detail",
                                 __source: {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 42
+                                    lineNumber: 32
                                 },
                                 __self: this,
                                 children: "Genre"
@@ -46818,16 +46768,13 @@ class MovieView extends _reactDefault.default.Component {
                     ]
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                    style: {
-                        backgroundColor: '#058ED9'
-                    },
                     type: "button",
                     onClick: ()=>{
                         onBackClick();
                     },
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 46
+                        lineNumber: 36
                     },
                     __self: this,
                     children: "Back"
@@ -46892,20 +46839,16 @@ function PrimaryNav(props) {
     };
     // JSX
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
-        style: {
-            backgroundColor: '#483D3F'
-        },
+        className: "primary-navigation navbar-dark",
+        expand: "xs",
         __source: {
             fileName: "src/components/primary-nav/primary-nav.jsx",
             lineNumber: 32
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
+            className: "nav-container",
             fluid: true,
-            style: {
-                maxWidth: '1200px',
-                marginInline: 'auto'
-            },
             __source: {
                 fileName: "src/components/primary-nav/primary-nav.jsx",
                 lineNumber: 33
@@ -46920,19 +46863,18 @@ function PrimaryNav(props) {
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Brand, {
-                        style: {
-                            color: 'white'
-                        },
+                        className: "scynapse-logo",
                         __source: {
                             fileName: "src/components/primary-nav/primary-nav.jsx",
                             lineNumber: 35
                         },
                         __self: this,
-                        children: "Cynapse"
+                        children: "SCYNAPSE"
                     })
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Toggle, {
-                    "aria-controls": "basic-navbar-nav",
+                    "aria-controls": "responsive-navbar-nav",
+                    className: "hamburger-icon",
                     __source: {
                         fileName: "src/components/primary-nav/primary-nav.jsx",
                         lineNumber: 37
@@ -46940,10 +46882,7 @@ function PrimaryNav(props) {
                     __self: this
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Navbar.Collapse, {
-                    id: "basic-navbar-nav",
-                    style: {
-                        color: 'white'
-                    },
+                    id: "responsive-navbar-nav",
                     __source: {
                         fileName: "src/components/primary-nav/primary-nav.jsx",
                         lineNumber: 38
@@ -46965,10 +46904,8 @@ function PrimaryNav(props) {
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                    className: "navigation-link",
                                     variant: "link",
-                                    style: {
-                                        color: 'white'
-                                    },
                                     onClick: ()=>{
                                         onLogoutRequest();
                                     },
@@ -46996,10 +46933,8 @@ function PrimaryNav(props) {
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                    className: "navigation-link",
                                     variant: "link",
-                                    style: {
-                                        color: 'white'
-                                    },
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
                                         lineNumber: 51
@@ -47024,10 +46959,8 @@ function PrimaryNav(props) {
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                    className: "navigation-link",
                                     variant: "link",
-                                    style: {
-                                        color: 'white'
-                                    },
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
                                         lineNumber: 59
@@ -47046,19 +46979,14 @@ function PrimaryNav(props) {
                             __self: this,
                             children: !isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                                 to: "/register",
-                                style: {
-                                    color: 'white'
-                                },
                                 __source: {
                                     fileName: "src/components/primary-nav/primary-nav.jsx",
                                     lineNumber: 66
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                    className: "navigation-link",
                                     variant: "link",
-                                    style: {
-                                        color: 'white'
-                                    },
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
                                         lineNumber: 67
@@ -47496,9 +47424,7 @@ function registrationView(props) {
                                                         __self: this
                                                     }),
                                                     /*#__PURE__*/ _jsxRuntime.jsx("p", {
-                                                        style: {
-                                                            color: 'red'
-                                                        },
+                                                        className: "error-text",
                                                         __source: {
                                                             fileName: "src/components/registration-view/registration-view.jsx",
                                                             lineNumber: 108
@@ -47538,9 +47464,7 @@ function registrationView(props) {
                                                         __self: this
                                                     }),
                                                     /*#__PURE__*/ _jsxRuntime.jsx("p", {
-                                                        style: {
-                                                            color: 'red'
-                                                        },
+                                                        className: "error-text",
                                                         __source: {
                                                             fileName: "src/components/registration-view/registration-view.jsx",
                                                             lineNumber: 123
@@ -47580,9 +47504,7 @@ function registrationView(props) {
                                                         __self: this
                                                     }),
                                                     /*#__PURE__*/ _jsxRuntime.jsx("p", {
-                                                        style: {
-                                                            color: 'red'
-                                                        },
+                                                        className: "error-text",
                                                         __source: {
                                                             fileName: "src/components/registration-view/registration-view.jsx",
                                                             lineNumber: 138
@@ -47622,9 +47544,7 @@ function registrationView(props) {
                                                         __self: this
                                                     }),
                                                     /*#__PURE__*/ _jsxRuntime.jsx("p", {
-                                                        style: {
-                                                            color: 'red'
-                                                        },
+                                                        className: "error-text",
                                                         __source: {
                                                             fileName: "src/components/registration-view/registration-view.jsx",
                                                             lineNumber: 153
@@ -47729,10 +47649,6 @@ class DirectorView extends _reactDefault.default.Component {
         // JSX
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
             className: "director-view justify-content-md-center",
-            style: {
-                backgroundColor: '#77685D',
-                borderRadius: '5px'
-            },
             __source: {
                 fileName: "src/components/director-view/director-view.jsx",
                 lineNumber: 26
@@ -47740,9 +47656,6 @@ class DirectorView extends _reactDefault.default.Component {
             __self: this,
             children: [
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Title, {
-                    style: {
-                        color: 'white'
-                    },
                     className: "director-name",
                     __source: {
                         fileName: "src/components/director-view/director-view.jsx",
@@ -47752,9 +47665,6 @@ class DirectorView extends _reactDefault.default.Component {
                     children: movieData.Director.Name
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Body, {
-                    style: {
-                        color: 'white'
-                    },
                     className: "director-bio",
                     __source: {
                         fileName: "src/components/director-view/director-view.jsx",
@@ -47764,9 +47674,6 @@ class DirectorView extends _reactDefault.default.Component {
                     children: movieData.Director.Bio
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Body, {
-                    style: {
-                        color: 'white'
-                    },
                     className: "director-life",
                     __source: {
                         fileName: "src/components/director-view/director-view.jsx",
@@ -47776,9 +47683,6 @@ class DirectorView extends _reactDefault.default.Component {
                     children: `${movieData.Director.Birth} - ${DirectorView.getDeath(movieData.Director.Death)}`
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                    style: {
-                        backgroundColor: '#058ED9'
-                    },
                     type: "button",
                     onClick: ()=>{
                         onBackClick();
@@ -47841,10 +47745,6 @@ class GenreView extends _reactDefault.default.Component {
         // JSX
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
             className: "genre-view justify-content-md-center",
-            style: {
-                backgroundColor: '#77685D',
-                borderRadius: '5px'
-            },
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
                 lineNumber: 20
@@ -47852,9 +47752,6 @@ class GenreView extends _reactDefault.default.Component {
             __self: this,
             children: [
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Title, {
-                    style: {
-                        color: 'white'
-                    },
                     className: "genre-name",
                     __source: {
                         fileName: "src/components/genre-view/genre-view.jsx",
@@ -47864,9 +47761,6 @@ class GenreView extends _reactDefault.default.Component {
                     children: movieData.Genre.Name
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card.Body, {
-                    style: {
-                        color: 'white'
-                    },
                     className: "genre-description",
                     __source: {
                         fileName: "src/components/genre-view/genre-view.jsx",
@@ -47876,9 +47770,6 @@ class GenreView extends _reactDefault.default.Component {
                     children: movieData.Genre.Description
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                    style: {
-                        backgroundColor: '#058ED9'
-                    },
                     type: "button",
                     onClick: ()=>{
                         onBackClick();
@@ -48082,19 +47973,18 @@ var _profileViewScss = require("./profile-view.scss");
 function UserInfo(props) {
     // Props
     const { username , email , birth ,  } = props;
-    const birthday = birth.slice(0, 10);
     // JSX
     return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
         __source: {
             fileName: "src/components/profile-view/user-info.jsx",
-            lineNumber: 21
+            lineNumber: 19
         },
         __self: this,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx("h2", {
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 22
+                    lineNumber: 20
                 },
                 __self: this,
                 children: "Your Info:"
@@ -48102,7 +47992,7 @@ function UserInfo(props) {
             /*#__PURE__*/ _jsxRuntime.jsx("p", {
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 23
+                    lineNumber: 21
                 },
                 __self: this,
                 children: `Username: ${username}`
@@ -48110,7 +48000,7 @@ function UserInfo(props) {
             /*#__PURE__*/ _jsxRuntime.jsx("p", {
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 24
+                    lineNumber: 22
                 },
                 __self: this,
                 children: `Email: ${email}`
@@ -48118,10 +48008,10 @@ function UserInfo(props) {
             /*#__PURE__*/ _jsxRuntime.jsx("p", {
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 25
+                    lineNumber: 23
                 },
                 __self: this,
-                children: `Birthday: ${birthday}`
+                children: `Birthday: ${birth.slice(0, 10)}`
             })
         ]
     }));
@@ -48289,7 +48179,7 @@ function UpdateUser(props) {
                     /*#__PURE__*/ _jsxRuntime.jsx("input", {
                         type: "date",
                         name: "DoB",
-                        defaultValue: userdata.user.Birthday.slice(0, 10),
+                        defaultValue: userdata.user.Birthday ? userdata.user.Birthday.slice(0, 10) : userdata.user.Birthday,
                         onChange: (e)=>setBirthday(e.target.value)
                         ,
                         __source: {
@@ -48433,8 +48323,7 @@ function FavoriteMovies(props) {
 _c = FavoriteMovies;
 // PropTypes
 FavoriteMovies.propTypes = {
-    favoriteMovies: _propTypes.PropTypes.arrayOf(_propTypes.PropTypes.shape({
-    })),
+    favoriteMovies: _propTypes.PropTypes.arrayOf(_propTypes.PropTypes.string),
     movies: _propTypes.PropTypes.arrayOf(_propTypes.PropTypes.shape({
         _id: _propTypes.PropTypes.string.isRequired,
         Title: _propTypes.PropTypes.string.isRequired,
@@ -48444,9 +48333,7 @@ FavoriteMovies.propTypes = {
 };
 FavoriteMovies.defaultProps = {
     favoriteMovies: [
-        {
-            key: ''
-        }
+        ''
     ]
 };
 exports.default = FavoriteMovies;

@@ -1,18 +1,79 @@
 .movie-card {
   width: 200px;
-  margin: 15px;
+  margin-top: 20px;
+  margin-inline: auto;
+  border-radius: 5px;
 }
 
+.movie-card-body {
+  background-color: #77685D;
+  border-radius: 0px 0px 5px 5px;
+}
 
+.movie-card-title {
+  color: white !important;
+}
+.movie-view.card {
+  max-width: 60%;
+  background-color: #77685D;
+  border-radius: 5px;
+  max-width: 500px;
+}
+
+.movie-view.movie-poster {
+  width: 15rem;
+  margin-inline: auto;
+}
+
+.movie-title,
+.movie-description {
+  color: white !important;
+}
+
+.detail-navigation {
+  margin-bottom: 40px;
+  width: 100%;
+  display: inline-flex;
+  align-self: center;
+  justify-content: space-around;
+}
+.primary-navigation {
+  background-color: #483D3F;
+  min-width: 100%;
+  margin-inline: "auto";
+}
+
+.scynapse-logo,
+.hamburger-icon,
+.navigation-link {
+  color: rgb(255, 255, 255) !important;
+}
 label {
   width: 100%;
 }
 
-.card {
-  margin: 20px;
+.error-text {
+  color: red;
+}
+.director-view {
+  background-color: #77685D !important;
+  border-radius: 5px;
 }
 
+.director-name,
+.director-bio,
+.director-life {
+  color: white !important;
+}
+.genre-view {
+  background-color: #77685D !important;
+  border-radius: 5px;
+}
 
+.genre-name,
+.genre-description {
+  color: white !important;
+}
 
 .movie-app {
   color: steelblue;
@@ -21,5 +82,32 @@ label {
 .app-container {
   background-color: rgb(244, 235, 217);
   height: 100%;
+}
+
+.main-view-container {
+  margin: 0;
+  padding: 0 !important;
+  min-height: 100vh;
+}
+
+.btn-movie-detail {
+  background-color: rgb(72, 61, 63) !important;
+  border-color: rgba(0, 0, 0, 0);
+  color: white !important;
+  margin: 5px;
+}
+
+.btn-favorite {
+  background-color: rgb(72, 61, 63) !important;
+  border-color: rgba(0, 0, 0, 0);
+  color: white !important;
+  margin: 5px;
+}
+
+.btn-favorite:hover {
+  background-color: rgb(72, 61, 63) !important;
+  border-color: #ebb505 !important;
+  color: #ebb505 !important;
+  margin: 5px;
 }
 /*# sourceMappingURL=index.3f764291.css.map */
