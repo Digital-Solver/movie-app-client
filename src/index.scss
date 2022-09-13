@@ -9,7 +9,7 @@ body {
 }
 
 .app-container {
-  background: linear-gradient(180deg, rgba(56, 14, 174, 0.24) 0%, rgba(0, 0, 0, 0) 5.24%), #F7F4F3;
+  background: linear-gradient(180deg, rgba(56, 14, 174, 0.24) 0%, rgba(0, 0, 0, 0) 5.24%) fixed, #F7F4F3;
   height: 100%;
 }
 
@@ -23,14 +23,7 @@ body {
 
 // Custom Bootstrap Components
 
-.btn-movie-detail {
-  background-color: rgb(72, 61, 63) !important;
-  border-color: #00000000;
-  color: white !important;
-  margin: 5px;
-}
-
-.btn-favorite {
+.btn-movie-detail, .btn-favorite {
   background-color: rgb(72, 61, 63) !important;
   border-color: #00000000;
   color: white !important;
