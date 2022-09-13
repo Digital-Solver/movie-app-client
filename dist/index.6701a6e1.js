@@ -46839,7 +46839,7 @@ function PrimaryNav(props) {
     };
     // JSX
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
-        className: "primary-navigation navbar-dark",
+        className: "primary-navigation navbar-light",
         expand: "xs",
         __source: {
             fileName: "src/components/primary-nav/primary-nav.jsx",
@@ -46855,29 +46855,75 @@ function PrimaryNav(props) {
             },
             __self: this,
             children: [
-                /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
-                    to: "/",
+                /*#__PURE__*/ _jsxRuntime.jsx("div", {
+                    className: "nav-spacer",
                     __source: {
                         fileName: "src/components/primary-nav/primary-nav.jsx",
                         lineNumber: 34
                     },
+                    __self: this
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsxs("div", {
+                    className: "logo-container",
+                    __source: {
+                        fileName: "src/components/primary-nav/primary-nav.jsx",
+                        lineNumber: 35
+                    },
                     __self: this,
-                    children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Brand, {
-                        className: "scynapse-logo",
-                        __source: {
-                            fileName: "src/components/primary-nav/primary-nav.jsx",
-                            lineNumber: 35
-                        },
-                        __self: this,
-                        children: "SCYNAPSE"
-                    })
+                    children: [
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
+                            to: "/",
+                            __source: {
+                                fileName: "src/components/primary-nav/primary-nav.jsx",
+                                lineNumber: 36
+                            },
+                            __self: this,
+                            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Brand, {
+                                className: "scynapse-logo",
+                                __source: {
+                                    fileName: "src/components/primary-nav/primary-nav.jsx",
+                                    lineNumber: 37
+                                },
+                                __self: this,
+                                children: "SCYNAPSE"
+                            })
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx("svg", {
+                            className: "logo-underline",
+                            width: "155",
+                            height: "2",
+                            viewBox: "0 0 161 2",
+                            fill: "none",
+                            xmlns: "http://www.w3.org/2000/svg",
+                            __source: {
+                                fileName: "src/components/primary-nav/primary-nav.jsx",
+                                lineNumber: 39
+                            },
+                            __self: this,
+                            children: /*#__PURE__*/ _jsxRuntime.jsx("line", {
+                                x1: "1",
+                                y1: "1",
+                                x2: "161",
+                                y2: "0.999986",
+                                stroke: "#380EAE",
+                                strokeWidth: "2",
+                                strokeLinecap: "round",
+                                strokeDasharray: "1 5 3 7 9 3",
+                                __source: {
+                                    fileName: "src/components/primary-nav/primary-nav.jsx",
+                                    lineNumber: 40
+                                },
+                                __self: this
+                            })
+                        })
+                    ]
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar.Toggle, {
                     "aria-controls": "responsive-navbar-nav",
                     className: "hamburger-icon",
                     __source: {
                         fileName: "src/components/primary-nav/primary-nav.jsx",
-                        lineNumber: 37
+                        lineNumber: 44
                     },
                     __self: this
                 }),
@@ -46885,7 +46931,7 @@ function PrimaryNav(props) {
                     id: "responsive-navbar-nav",
                     __source: {
                         fileName: "src/components/primary-nav/primary-nav.jsx",
-                        lineNumber: 38
+                        lineNumber: 45
                     },
                     __self: this,
                     children: [
@@ -46893,14 +46939,14 @@ function PrimaryNav(props) {
                             className: "me-auto",
                             __source: {
                                 fileName: "src/components/primary-nav/primary-nav.jsx",
-                                lineNumber: 40
+                                lineNumber: 47
                             },
                             __self: this,
                             children: isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                                 to: "/",
                                 __source: {
                                     fileName: "src/components/primary-nav/primary-nav.jsx",
-                                    lineNumber: 42
+                                    lineNumber: 49
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -46911,7 +46957,7 @@ function PrimaryNav(props) {
                                     },
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
-                                        lineNumber: 43
+                                        lineNumber: 50
                                     },
                                     __self: this,
                                     children: "Logout"
@@ -46922,14 +46968,14 @@ function PrimaryNav(props) {
                             className: "me-auto",
                             __source: {
                                 fileName: "src/components/primary-nav/primary-nav.jsx",
-                                lineNumber: 48
+                                lineNumber: 55
                             },
                             __self: this,
                             children: isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                                 to: `/users/${user}`,
                                 __source: {
                                     fileName: "src/components/primary-nav/primary-nav.jsx",
-                                    lineNumber: 50
+                                    lineNumber: 57
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -46937,7 +46983,7 @@ function PrimaryNav(props) {
                                     variant: "link",
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
-                                        lineNumber: 51
+                                        lineNumber: 58
                                     },
                                     __self: this,
                                     children: `${user}'s Profile`
@@ -46948,14 +46994,14 @@ function PrimaryNav(props) {
                             className: "me-auto",
                             __source: {
                                 fileName: "src/components/primary-nav/primary-nav.jsx",
-                                lineNumber: 56
+                                lineNumber: 63
                             },
                             __self: this,
                             children: !isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                                 to: "/",
                                 __source: {
                                     fileName: "src/components/primary-nav/primary-nav.jsx",
-                                    lineNumber: 58
+                                    lineNumber: 65
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -46963,7 +47009,7 @@ function PrimaryNav(props) {
                                     variant: "link",
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
-                                        lineNumber: 59
+                                        lineNumber: 66
                                     },
                                     __self: this,
                                     children: "Login"
@@ -46974,14 +47020,14 @@ function PrimaryNav(props) {
                             className: "me-auto",
                             __source: {
                                 fileName: "src/components/primary-nav/primary-nav.jsx",
-                                lineNumber: 64
+                                lineNumber: 71
                             },
                             __self: this,
                             children: !isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                                 to: "/register",
                                 __source: {
                                     fileName: "src/components/primary-nav/primary-nav.jsx",
-                                    lineNumber: 66
+                                    lineNumber: 73
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -46989,7 +47035,7 @@ function PrimaryNav(props) {
                                     variant: "link",
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
-                                        lineNumber: 67
+                                        lineNumber: 74
                                     },
                                     __self: this,
                                     children: "Register"
@@ -47952,7 +47998,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-bootstrap":"h2YVd","prop-types":"1tgq3","./user-info":"cK8m8","./update-user":"hBcEf","./favorite-movies":"gKhXS","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","../../actions/actions":"1Ttfj","react-redux":"2L0if"}],"cK8m8":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","react-bootstrap":"h2YVd","prop-types":"1tgq3","./user-info":"cK8m8","./update-user":"hBcEf","./favorite-movies":"gKhXS","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","react-redux":"2L0if","../../actions/actions":"1Ttfj"}],"cK8m8":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$94e5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48240,7 +48286,7 @@ $RefreshReg$(_c, "UpdateUser");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","react-redux":"2L0if","../../actions/actions":"1Ttfj","./profile-view.scss":"gb0ga"}],"gb0ga":[function() {},{}],"gKhXS":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","axios":"iYoWk","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","react-redux":"2L0if","./profile-view.scss":"gb0ga","../../actions/actions":"1Ttfj"}],"gb0ga":[function() {},{}],"gKhXS":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7994 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

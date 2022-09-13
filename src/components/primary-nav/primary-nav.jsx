@@ -29,11 +29,18 @@ export default function PrimaryNav(props) {
 
   // JSX
   return (
-    <Navbar className="primary-navigation navbar-dark" expand="xs">
+    <Navbar className="primary-navigation navbar-light" expand="xs">
       <Container className="nav-container" fluid>
-        <Link to="/">
-          <Navbar.Brand className="scynapse-logo">SCYNAPSE</Navbar.Brand>
-        </Link>
+        <div className="nav-spacer" />
+        <div className="logo-container">
+          <Link to="/">
+            <Navbar.Brand className="scynapse-logo">SCYNAPSE</Navbar.Brand>
+          </Link>
+          <svg className="logo-underline" width="155" height="2" viewBox="0 0 161 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="1" y1="1" x2="161" y2="0.999986" stroke="#380EAE" strokeWidth="2" strokeLinecap="round" strokeDasharray="1 5 3 7 9 3" />
+          </svg>
+        </div>
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className="hamburger-icon" />
         <Navbar.Collapse id="responsive-navbar-nav">
 
