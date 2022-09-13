@@ -61,6 +61,14 @@
 .hamburger-icon,
 .navigation-link {
   color: #212121 !important;
+  border: none !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("custom-menu-icon.0efd66c2.svg") !important;
+  width: 28px;
+  height: 27px;
+  border-radius: 0;
 }
 
 .navbar-nav a {
@@ -167,6 +175,11 @@ label {
   color: #8866E9;
   font-size: 15px;
 }
+
+.edit-user-button-container {
+  display: flex;
+  flex-direction: column;
+}
 .director-view {
   background-color: #77685D !important;
   border-radius: 5px;
@@ -186,7 +199,42 @@ label {
 .genre-description {
   color: white !important;
 }
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.user-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info-username {
+  color: #4A2E9B !important;
+  font-family: "Iceberg", cursive !important;
+}
+
+.info-display-container {
+  display: inline-flex;
+}
+
+.profile-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form label input {
+  padding-block: 6px !important;
+  padding-inline: 12px !important;
+  width: 675px !important;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #4A2E9B, #CE2476) border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 2px !important;
+  margin-bottom: 15px;
+}
 body {
   font-family: "Istok Web" !important;
 }
@@ -196,7 +244,7 @@ body {
 }
 
 .app-container {
-  background: linear-gradient(180deg, rgba(56, 14, 174, 0.24) 0%, rgba(0, 0, 0, 0) 5.24%), #F7F4F3;
+  background: linear-gradient(180deg, rgba(56, 14, 174, 0.24) 0%, rgba(0, 0, 0, 0) 5.24%) fixed, #F7F4F3;
   height: 100%;
 }
 
@@ -207,14 +255,7 @@ body {
   max-width: 90vw;
 }
 
-.btn-movie-detail {
-  background-color: rgb(72, 61, 63) !important;
-  border-color: rgba(0, 0, 0, 0);
-  color: white !important;
-  margin: 5px;
-}
-
-.btn-favorite {
+.btn-movie-detail, .btn-favorite {
   background-color: rgb(72, 61, 63) !important;
   border-color: rgba(0, 0, 0, 0);
   color: white !important;
