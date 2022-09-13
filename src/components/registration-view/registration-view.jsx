@@ -105,7 +105,7 @@ function registrationView(props) {
                         required
                         placeholder="Username"
                       />
-                      <p style={{ color: 'red' }}>{usernameErr}</p>
+                      <p className="error-text">{usernameErr}</p>
                     </Form.Label>
                   </Form.Group>
 
@@ -120,7 +120,7 @@ function registrationView(props) {
                         min={8}
                         placeholder="Password (min. 8 chars)"
                       />
-                      <p style={{ color: 'red' }}>{passwordErr}</p>
+                      <p className="error-text">{passwordErr}</p>
                     </Form.Label>
                   </Form.Group>
 
@@ -135,7 +135,7 @@ function registrationView(props) {
                         min={8}
                         placeholder="john.doe@example.com"
                       />
-                      <p style={{ color: 'red' }}>{emailErr}</p>
+                      <p className="error-text">{emailErr}</p>
                     </Form.Label>
                   </Form.Group>
 
@@ -150,7 +150,7 @@ function registrationView(props) {
                         min={8}
                         placeholder="Password (min. 8 chars)"
                       />
-                      <p style={{ color: 'red' }}>{birthdayErr}</p>
+                      <p className="error-text">{birthdayErr}</p>
                     </Form.Label>
                   </Form.Group>
                   <Form.Group>
