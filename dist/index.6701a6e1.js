@@ -46265,19 +46265,28 @@ function MoviesList(props) {
     // JSX
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
         children: [
+            /*#__PURE__*/ _jsxRuntime.jsx("p", {
+                className: "movies-list-subtitle h5",
+                __source: {
+                    fileName: "src/components/movies-list/movies-list.jsx",
+                    lineNumber: 34
+                },
+                __self: this,
+                children: "Search Sci-Fi Films"
+            }),
             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                 className: "search-input-container",
                 md: 12,
                 __source: {
                     fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 34
+                    lineNumber: 35
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_visibilityFilterInputDefault.default, {
                     visibilityFilter: visibilityFilter,
                     __source: {
                         fileName: "src/components/movies-list/movies-list.jsx",
-                        lineNumber: 35
+                        lineNumber: 36
                     },
                     __self: this
                 })
@@ -46287,7 +46296,7 @@ function MoviesList(props) {
                     sm: true,
                     __source: {
                         fileName: "src/components/movies-list/movies-list.jsx",
-                        lineNumber: 38
+                        lineNumber: 39
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
@@ -46296,7 +46305,7 @@ function MoviesList(props) {
                         user: userdata.user.Username,
                         __source: {
                             fileName: "src/components/movies-list/movies-list.jsx",
-                            lineNumber: 39
+                            lineNumber: 40
                         },
                         __self: this
                     })
@@ -46342,6 +46351,7 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 // Internal Dependencies
 var _actions = require("../../actions/actions");
+var _visibilityFilterInputScss = require("./visibility-filter-input.scss");
 // Component
 function VisibilityFilterInput(props) {
     const { visibilityFilter , setFilter  } = props;
@@ -46349,10 +46359,10 @@ function VisibilityFilterInput(props) {
         onChange: (e)=>setFilter(e.target.value)
         ,
         value: visibilityFilter,
-        plcaeholder: "filter",
+        className: "filter-input",
         __source: {
             fileName: "src/components/visibility-filter-input/visibility-filter-input.jsx",
-            lineNumber: 16
+            lineNumber: 17
         },
         __self: this
     }));
@@ -46374,7 +46384,7 @@ $RefreshReg$(_c, "VisibilityFilterInput");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap":"h2YVd","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","prop-types":"1tgq3"}],"5V79J":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-redux":"2L0if","react-bootstrap":"h2YVd","../../actions/actions":"1Ttfj","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","prop-types":"1tgq3","./visibility-filter-input.scss":"3ZOIV"}],"5V79J":[function(require,module,exports) {
 "use strict";
 var Refresh = require('react-refresh/runtime');
 function debounce(func, delay) {
@@ -46494,7 +46504,7 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"fNmB3"}],"6EiBJ":[function(require,module,exports) {
+},{"react-refresh/runtime":"fNmB3"}],"3ZOIV":[function() {},{}],"6EiBJ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4249 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -46839,7 +46849,7 @@ function PrimaryNav(props) {
     };
     // JSX
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
-        className: "primary-navigation navbar-light",
+        className: "primary-navigation navbar-light justify-content-end",
         expand: "xs",
         __source: {
             fileName: "src/components/primary-nav/primary-nav.jsx",
@@ -46943,10 +46953,68 @@ function PrimaryNav(props) {
                             },
                             __self: this,
                             children: isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
-                                to: "/",
+                                to: `/users/${user}`,
                                 __source: {
                                     fileName: "src/components/primary-nav/primary-nav.jsx",
                                     lineNumber: 49
+                                },
+                                __self: this,
+                                children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Button, {
+                                    className: "navigation-link",
+                                    variant: "link",
+                                    __source: {
+                                        fileName: "src/components/primary-nav/primary-nav.jsx",
+                                        lineNumber: 50
+                                    },
+                                    __self: this,
+                                    children: [
+                                        /*#__PURE__*/ _jsxRuntime.jsx("svg", {
+                                            height: "7.5",
+                                            width: "7.5",
+                                            __source: {
+                                                fileName: "src/components/primary-nav/primary-nav.jsx",
+                                                lineNumber: 51
+                                            },
+                                            __self: this,
+                                            children: /*#__PURE__*/ _jsxRuntime.jsx("circle", {
+                                                cx: "3.25",
+                                                cy: "3.25",
+                                                r: "3.25",
+                                                stroke: "black",
+                                                strokeWidth: "0",
+                                                fill: "green",
+                                                __source: {
+                                                    fileName: "src/components/primary-nav/primary-nav.jsx",
+                                                    lineNumber: 52
+                                                },
+                                                __self: this
+                                            })
+                                        }),
+                                        /*#__PURE__*/ _jsxRuntime.jsx("span", {
+                                            className: "username-span",
+                                            __source: {
+                                                fileName: "src/components/primary-nav/primary-nav.jsx",
+                                                lineNumber: 54
+                                            },
+                                            __self: this,
+                                            children: ` ${user}`
+                                        })
+                                    ]
+                                })
+                            })
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav, {
+                            className: "me-auto",
+                            __source: {
+                                fileName: "src/components/primary-nav/primary-nav.jsx",
+                                lineNumber: 60
+                            },
+                            __self: this,
+                            children: isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
+                                to: "/",
+                                __source: {
+                                    fileName: "src/components/primary-nav/primary-nav.jsx",
+                                    lineNumber: 62
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -46957,7 +47025,7 @@ function PrimaryNav(props) {
                                     },
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
-                                        lineNumber: 50
+                                        lineNumber: 63
                                     },
                                     __self: this,
                                     children: "Logout"
@@ -46968,40 +47036,14 @@ function PrimaryNav(props) {
                             className: "me-auto",
                             __source: {
                                 fileName: "src/components/primary-nav/primary-nav.jsx",
-                                lineNumber: 55
-                            },
-                            __self: this,
-                            children: isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
-                                to: `/users/${user}`,
-                                __source: {
-                                    fileName: "src/components/primary-nav/primary-nav.jsx",
-                                    lineNumber: 57
-                                },
-                                __self: this,
-                                children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                    className: "navigation-link",
-                                    variant: "link",
-                                    __source: {
-                                        fileName: "src/components/primary-nav/primary-nav.jsx",
-                                        lineNumber: 58
-                                    },
-                                    __self: this,
-                                    children: `${user}'s Profile`
-                                })
-                            })
-                        }),
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Nav, {
-                            className: "me-auto",
-                            __source: {
-                                fileName: "src/components/primary-nav/primary-nav.jsx",
-                                lineNumber: 63
+                                lineNumber: 68
                             },
                             __self: this,
                             children: !isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                                 to: "/",
                                 __source: {
                                     fileName: "src/components/primary-nav/primary-nav.jsx",
-                                    lineNumber: 65
+                                    lineNumber: 70
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -47009,7 +47051,7 @@ function PrimaryNav(props) {
                                     variant: "link",
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
-                                        lineNumber: 66
+                                        lineNumber: 71
                                     },
                                     __self: this,
                                     children: "Login"
@@ -47020,14 +47062,14 @@ function PrimaryNav(props) {
                             className: "me-auto",
                             __source: {
                                 fileName: "src/components/primary-nav/primary-nav.jsx",
-                                lineNumber: 71
+                                lineNumber: 76
                             },
                             __self: this,
                             children: !isAuth() && /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
                                 to: "/register",
                                 __source: {
                                     fileName: "src/components/primary-nav/primary-nav.jsx",
-                                    lineNumber: 73
+                                    lineNumber: 78
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -47035,7 +47077,7 @@ function PrimaryNav(props) {
                                     variant: "link",
                                     __source: {
                                         fileName: "src/components/primary-nav/primary-nav.jsx",
-                                        lineNumber: 74
+                                        lineNumber: 79
                                     },
                                     __self: this,
                                     children: "Register"

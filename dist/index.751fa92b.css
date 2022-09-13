@@ -1,3 +1,16 @@
+.filter-input {
+  box-sizing: border-box;
+  width: 675px !important;
+  margin-inline: auto;
+  height: 50px !important;
+  background: #FFFFFF !important;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #4A2E9B, #CE2476) border-box !important;
+  border-bottom: 4px solid transparent !important;
+  border-radius: 5px !important;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
 .movie-card {
   width: 200px;
   margin-top: 20px;
@@ -50,6 +63,11 @@
   color: #212121 !important;
 }
 
+.navbar-nav a {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .nav-spacer {
   width: 56px;
 }
@@ -70,6 +88,10 @@
 .logo-underline {
   margin-top: -18.5px;
   margin-bottom: 18.5px;
+}
+
+.username-span {
+  color: #8866E9;
 }
 label {
   width: 100%;
@@ -138,4 +160,4 @@ body {
   color: #ebb505 !important;
   margin: 5px;
 }
-/*# sourceMappingURL=index.3f764291.css.map */
+/*# sourceMappingURL=index.751fa92b.css.map */

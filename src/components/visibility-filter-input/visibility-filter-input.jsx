@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 // Internal Dependencies
 import { setFilter } from '../../actions/actions';
+import './visibility-filter-input.scss';
 
 // Component
 function VisibilityFilterInput(props) {
@@ -16,7 +17,7 @@ function VisibilityFilterInput(props) {
     <Form.Control
       onChange={(e) => setFilter(e.target.value)}
       value={visibilityFilter}
-      plcaeholder="filter"
+      className="filter-input"
     />
   );
 }
