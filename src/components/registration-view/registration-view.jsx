@@ -40,7 +40,7 @@ function registrationView(props) {
       setUsernameErr('You must enter a username.');
     } else if (userdata.user.Username.length < 2) {
       isReq = false;
-      setUsernameErr('Your username must be at least 2 characters.');
+      setUsernameErr('Username must be 5 or more alphanumeric characters.');
     }
 
     if (!userdata.user.Password) {
