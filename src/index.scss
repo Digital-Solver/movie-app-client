@@ -15,3 +15,26 @@ $color: steelblue;
   padding: 0 !important;
   min-height: 100vh;
 }
+
+// Custom Bootstrap Components
+
+.btn-movie-detail {
+  background-color: rgb(72, 61, 63) !important;
+  border-color: #00000000;
+  color: white !important;
+  margin: 5px;
+}
+
+.btn-favorite {
+  background-color: rgb(72, 61, 63) !important;
+  border-color: #00000000;
+  color: white !important;
+  margin: 5px;
+}
+
+.btn-favorite:hover {
+  background-color: rgb(72, 61, 63) !important;
+  border-color: #ebb505 !important;
+  color: #ebb505 !important;
+  margin: 5px;
+}
