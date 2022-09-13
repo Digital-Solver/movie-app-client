@@ -23,11 +23,11 @@ class DirectorView extends React.Component {
 
     // JSX
     return (
-      <Card className="director-view justify-content-md-center" style={{ backgroundColor: '#77685D', borderRadius: '5px' }}>
-        <Card.Title style={{ color: 'white' }} className="director-name">{movieData.Director.Name}</Card.Title>
-        <Card.Body style={{ color: 'white' }} className="director-bio">{movieData.Director.Bio}</Card.Body>
-        <Card.Body style={{ color: 'white' }} className="director-life">{`${movieData.Director.Birth} - ${DirectorView.getDeath(movieData.Director.Death)}`}</Card.Body>
-        <Button style={{ backgroundColor: '#058ED9' }} type="button" onClick={() => { onBackClick(); }}>Back</Button>
+      <Card className="director-view justify-content-md-center">
+        <Card.Title className="director-name">{movieData.Director.Name}</Card.Title>
+        <Card.Body className="director-bio">{movieData.Director.Bio}</Card.Body>
+        <Card.Body className="director-life">{`${movieData.Director.Birth} - ${DirectorView.getDeath(movieData.Director.Death)}`}</Card.Body>
+        <Button type="button" onClick={() => { onBackClick(); }}>Back</Button>
       </Card>
     );
   }
