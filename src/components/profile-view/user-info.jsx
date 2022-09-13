@@ -16,11 +16,10 @@ function UserInfo(props) {
 
   // JSX
   return (
-    <div>
-      <h2>Your Info:</h2>
-      <p>{`Username: ${username}`}</p>
-      <p>{`Email: ${email}`}</p>
-      <p>{`Birthday: ${birth.slice(0, 10)}`}</p>
+    <div className="user-info-container">
+      <p className="user-info-username h2">{`${username}`}</p>
+      <p>{`${email}`}</p>
+      <p>{`${birth.slice(0, 10)}`}</p>
     </div>
   );
 }

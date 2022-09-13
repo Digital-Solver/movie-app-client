@@ -9,10 +9,10 @@ import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // Internal Dependencies
 import UserInfo from './user-info';
-import UpdateUser from './update-user';
 import FavoriteMovies from './favorite-movies';
 import { setUserdata } from '../../actions/actions';
 
@@ -35,31 +35,23 @@ function ProfileView(props) {
       .catch((err) => { console.log(err); });
   };
 
-  const deleteUser = () => {
-    axios
-      .delete(
-        `https://kds-movie-api.herokuapp.com/users/${userdata.user.Username}`,
-        { headers: { Authorization: `Bearer ${userdata.token}` } },
-      )
-      .then(() => {
-        alert(`${userdata.user.Username}'s account was deleted.`);
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        window.open('/', '_self');
-      })
-      .catch((err) => console.log(err));
-  };
-
   useEffect(() => { getUser(userdata.user.Username); }, []);
 
   // JSX
   return (
     <main className="profile">
-      <UserInfo
-        username={userdata.user.Username}
-        email={userdata.user.Email}
-        birth={userdata.user.Birthday}
-      />
+      <div className="info-display-container">
+        <UserInfo
+          username={userdata.user.Username}
+          email={userdata.user.Email}
+          birth={userdata.user.Birthday}
+        />
+        <div>
+          <Link to={`/users/${userdata.user.Username}/edit`}>
+            <Button variant="link">edit</Button>
+          </Link>
+        </div>
+      </div>
 
       <FavoriteMovies
         favoriteMovies={userdata.user.FavoriteMovies}
@@ -68,10 +60,6 @@ function ProfileView(props) {
         user={userdata.user.Username}
       />
 
-      <UpdateUser
-        userdata={userdata}
-      />
-      <Button variant="danger" onClick={deleteUser}>Delete Profile</Button>
     </main>
   );
 }
