@@ -1,11 +1,11 @@
 .primary-navigation {
   background-color: #483D3F;
-  max-width: 1200px;
+  min-width: 100%;
   margin-inline: 'auto';
 }
 
 .scynapse-logo,
 .hamburger-icon,
 .navigation-link {
-  color: white !important;
+  color: rgba(255, 255, 255) !important;
 }
