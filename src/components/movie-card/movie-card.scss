@@ -1,15 +1,64 @@
 .movie-card {
-  width: 200px;
+  max-height: 235px;
+  width: 335px;
   margin-top: 20px;
   margin-inline: auto;
-  border-radius: 5px;
+  border-radius: 1px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: col-reverse !important;
 }
 
-.movie-card-body {
-  background-color: #77685D;
-  border-radius: 0px 0px 5px 5px;
+.movie-card:hover>img {
+  filter: brightness(25%);
+}
+
+.movie-card-image {
+  max-height: 235px;
+  width: 335px;
+  object-fit: cover;
+  object-position: 0 0;
 }
 
 .movie-card-title {
   color: white !important;
+  transform: translate(0, -130px);
+  margin-inline: auto;
+  font-family: "Iceberg", cursive !important;
+  text-align: center;
+  width: fit-content;
+  max-width: 90%;
+  font-size: 22px !important;
+}
+
+.movie-card-title:hover {
+  text-decoration: underline;
+}
+
+.btn-favorite,
+.btn-not-favorite {
+  transform: translate(290px, -265px);
+  max-width: 32px;
+  max-height: 31px;
+  border-radius: 50% !important;
+  background-color: #00000000 !important;
+  color: #00000000 !important;
+}
+
+.btn-favorite {
+  background: url('/src/media/star-favorite.svg');
+}
+
+.btn-not-favorite {
+  background: url('/src/media/star-empty.svg');
+}
+
+.btn-not-favorite:hover,
+.btn-favorite:hover {
+  background: url('/src/media/star-hover.svg');
+}
+
+.movie-card-favorite-toggle {
+  width: 32px;
+  height: 31px;
 }

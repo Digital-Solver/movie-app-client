@@ -4,7 +4,7 @@
 // External Dependencies
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { Col } from 'react-bootstrap';
+import { Col, Row, Container } from 'react-bootstrap';
 
 // Internal Dependencies
 import MovieCard from '../movie-card/movie-card';
@@ -27,8 +27,14 @@ function FavoriteMovies(props) {
     return movies.map((mov) => {
       if (favoriteMovies.includes(mov._id)) {
         return (
-          <Col md={4}>
-            <MovieCard movieData={mov} key={mov._id} favorite user={user} />
+          <Col
+            xxl={3}
+            xl={4}
+            lg={6}
+            md={6}
+            sm={12}
+          >
+            <MovieCard movieData={mov} key={mov._id} favorite={mov._id} user={user} />
           </Col>
         );
       }
@@ -39,10 +45,12 @@ function FavoriteMovies(props) {
 
   // JSX
   return (
-    <div>
-      <h2>Favorite Movies:</h2>
-      {getFavoriteMovies()}
-    </div>
+    <Container fluid="xxl" className="favorite-movies-list-container">
+      <hr className="favorite-movies-divider" />
+      <Row>
+        {getFavoriteMovies()}
+      </Row>
+    </Container>
   );
 }
 

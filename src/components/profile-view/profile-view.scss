@@ -16,7 +16,9 @@
 }
 
 .info-display-container {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-form label {
@@ -34,4 +36,13 @@
   border: 1px solid transparent !important;
   border-radius: 2px !important;
   margin-bottom: 15px;
+}
+
+.favorite-movies-divider {
+  width: 90% !important;
+}
+
+.favorite-movies-list-container {
+  width: 90vw !important;
+  max-width: 1400px;
 }
