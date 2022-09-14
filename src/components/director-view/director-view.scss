@@ -1,10 +1,13 @@
-.director-view {
-  background-color: #77685D !important;
-  border-radius: 5px;
+.director-view.card {
+  max-width: 80% !important;
+  background-color: #00000000;
+  border: none;
+  margin-inline: auto;
+  margin-bottom: 75px;
 }
 
 .director-name,
 .director-bio,
 .director-life {
-  color: white !important;
+  color: #212121 !important
 }

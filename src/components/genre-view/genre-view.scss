@@ -1,9 +1,12 @@
-.genre-view {
-  background-color: #77685D !important;
-  border-radius: 5px;
+.genre-view.card {
+  max-width: 80% !important;
+  background-color: #00000000;
+  border: none;
+  margin-inline: auto;
+  margin-bottom: 75px;
 }
 
 .genre-name,
 .genre-description {
-  color: white !important;
+  color: #212121 !important
 }

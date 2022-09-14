@@ -76,20 +76,44 @@
   height: 31px;
 }
 .movie-view.card {
-  max-width: 60%;
-  background-color: #77685D;
-  border-radius: 5px;
-  max-width: 500px;
+  max-width: 80% !important;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin-inline: auto;
+  margin-bottom: 75px;
+}
+
+.movie-view-row {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .movie-view.movie-poster {
-  width: 15rem;
+  max-width: 500px !important;
   margin-inline: auto;
+}
+
+.movie-view-poster-container {
+  max-width: 500px !important;
+}
+
+.movie-view-content-outer-container {
+  display: flex;
+}
+
+.movie-view-content-inner-container {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .movie-title,
 .movie-description {
-  color: white !important;
+  color: #212121 !important;
+}
+
+.movie-title {
+  font-family: "Iceberg", cursive !important;
+  font-size: 2rem !important;
 }
 
 .detail-navigation {
@@ -229,24 +253,30 @@ label {
   display: flex;
   flex-direction: column;
 }
-.director-view {
-  background-color: #77685D !important;
-  border-radius: 5px;
+.director-view.card {
+  max-width: 80% !important;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin-inline: auto;
+  margin-bottom: 75px;
 }
 
 .director-name,
 .director-bio,
 .director-life {
-  color: white !important;
+  color: #212121 !important;
 }
-.genre-view {
-  background-color: #77685D !important;
-  border-radius: 5px;
+.genre-view.card {
+  max-width: 80% !important;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin-inline: auto;
+  margin-bottom: 75px;
 }
 
 .genre-name,
 .genre-description {
-  color: white !important;
+  color: #212121 !important;
 }
 .profile {
   display: flex;
@@ -330,11 +360,16 @@ body {
   max-width: 90vw;
 }
 
-.btn-movie-detail {
+.btn-movie-detail, .btn-movie-active-detail {
   background-color: rgb(72, 61, 63) !important;
   border-color: rgba(0, 0, 0, 0);
   color: white !important;
   margin: 5px;
+  width: 100px;
+}
+
+.btn-movie-active-detail {
+  background-color: rgb(204, 29, 61) !important;
 }
 
 .btn-credential {
