@@ -19,12 +19,12 @@ import { setUserdata, setMovies } from '../../actions/actions';
 
 // - React Components
 import MoviesList from '../movies-list/movies-list';
-import MovieView from '../detail-view/movie-view/movie-view';
+import MovieView from '../detail-view/movie-view';
 import PrimaryNav from '../primary-nav/primary-nav';
 import LoginView from '../login-view/login-view';
 import RegistrationView from '../registration-view/registration-view';
-import DirectorView from '../detail-view/director-view/director-view';
-import GenreView from '../detail-view/genre-view/genre-view';
+import DirectorView from '../detail-view/director-view';
+import GenreView from '../detail-view/genre-view';
 import ProfileView from '../profile-view/profile-view';
 import UpdateUser from '../profile-view/update-user';
 

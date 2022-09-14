@@ -11,7 +11,7 @@
   justify-content: space-evenly;
 }
 
-.movie-view.movie-poster {
+.detail-view.movie-poster {
   max-width: 500px !important;
   margin-inline: auto;
 }
@@ -22,11 +22,13 @@
 
 .detail-view-content-outer-container {
   display: flex;
+  width: 1200px !important;
 }
 
 .detail-view-content-inner-container {
   text-align: center;
   margin-top: 20px;
+
 }
 
 .movie-title,
