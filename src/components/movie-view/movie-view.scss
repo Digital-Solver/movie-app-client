@@ -1,18 +1,42 @@
 .movie-view.card {
-  max-width: 60%;
-  background-color: #77685D;
-  border-radius: 5px;
-  max-width: 500px;
+  max-width: 80% !important;
+  background-color: #00000000;
+  border: none;
+  margin-inline: auto;
+  margin-bottom: 75px;
+}
+
+.movie-view-row {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .movie-view.movie-poster {
-  width: 15rem;
+  max-width: 500px !important;
   margin-inline: auto;
+}
+
+.movie-view-poster-container {
+  max-width: 500px !important;
+}
+
+.movie-view-content-outer-container {
+  display: flex;
+}
+
+.movie-view-content-inner-container {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .movie-title,
 .movie-description {
-  color: white !important;
+  color: #212121 !important;
+}
+
+.movie-title {
+  font-family: "Iceberg", cursive !important;
+  font-size: 2rem !important;
 }
 
 .detail-navigation {

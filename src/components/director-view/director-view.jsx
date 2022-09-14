@@ -3,7 +3,10 @@
 // External Dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import {
+  Button, Card, Row, Col,
+} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 // Internal Dependencies
 import './director-view.scss';
@@ -20,15 +23,39 @@ class DirectorView extends React.Component {
   render() {
     // Props
     const { movieData, onBackClick } = this.props;
+    const posterAlt = `${movieData.Title} Poster`;
 
     // JSX
     return (
       <Card className="director-view justify-content-md-center">
-        <Card.Title className="director-name">{movieData.Director.Name}</Card.Title>
-        <Card.Body className="director-bio">{movieData.Director.Bio}</Card.Body>
-        <Card.Body className="director-life">{`${movieData.Director.Birth} - ${DirectorView.getDeath(movieData.Director.Death)}`}</Card.Body>
-        <Button type="button" onClick={() => { onBackClick(); }}>Back</Button>
+        <Row className="movie-view-row">
+          <Col className="movie-view-poster-container" lg={12} xl={6}>
+            <Card.Img variation="top" className="movie-poster" src={movieData.ImageURL} crossOrigin="anonymous" alt={posterAlt} />
+          </Col>
+
+          <Col lg={12} xl={6} className="movie-view-content-outer-container">
+            <div className="movie-view-content-inner-container">
+              <Card.Title className="movie-title">{movieData.Title}</Card.Title>
+              <div className="detail-navigation">
+                <Link to={`/movies/${movieData._id}`}>
+                  <Button variant="movie-detail" className="movie-detail-button" type="button">Scynopsis</Button>
+                </Link>
+                <Link to={`/directors/${movieData.Director.Name}`}>
+                  <Button variant="movie-active-detail" className="movie-detail-button" type="button">Director</Button>
+                </Link>
+                <Link to={`/genres/${movieData.Genre.Name}`}>
+                  <Button type="button" variant="movie-detail">Genre</Button>
+                </Link>
+              </div>
+              <Card.Body className="director-name h5">{movieData.Director.Name}</Card.Body>
+              <Card.Body className="director-life">{`${movieData.Director.Birth} - ${DirectorView.getDeath(movieData.Director.Death)}`}</Card.Body>
+              <Card.Body className="director-bio">{movieData.Director.Bio}</Card.Body>
+              <Button type="button" onClick={() => { onBackClick(); }}>Back</Button>
+            </div>
+          </Col>
+        </Row>
       </Card>
+
     );
   }
 }
