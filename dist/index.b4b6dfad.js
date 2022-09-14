@@ -41972,7 +41972,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                 }
             }).then(()=>{
                 alert(`${movieData.Title} was added to ${user}'s favourites.`);
-                window.open(`/users/${user}`, "_self");
+                window.location.reload();
             }).catch((err)=>console.log(err));
         }
         function deleteFavorite() {
@@ -41982,7 +41982,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                 }
             }).then(()=>{
                 alert(`${movieData.Title} was removed from ${user}'s favourites.`);
-                window.open(`/users/${user}`, "_self");
+                window.location.reload();
             }).catch((err)=>console.log(err));
         }
         function favoriteVariant(id) {

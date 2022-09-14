@@ -35,7 +35,7 @@ class MovieCard extends React.Component {
         )
         .then(() => {
           alert(`${movieData.Title} was added to ${user}'s favourites.`);
-          window.open(`/users/${user}`, '_self');
+          window.location.reload();
         })
         .catch((err) => console.log(err));
     }
@@ -48,7 +48,7 @@ class MovieCard extends React.Component {
         )
         .then(() => {
           alert(`${movieData.Title} was removed from ${user}'s favourites.`);
-          window.open(`/users/${user}`, '_self');
+          window.location.reload();
         })
         .catch((err) => console.log(err));
     }
