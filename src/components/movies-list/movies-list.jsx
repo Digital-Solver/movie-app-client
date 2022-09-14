@@ -2,13 +2,15 @@
 /* eslint-disable react/prop-types */
 
 // External Dependencies
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import { Col, Row, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 // Internal Dependencies
 import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 import MovieCard from '../movie-card/movie-card';
+import { setUserdata } from '../../actions/actions';
 
 // Component
 function MoviesList(props) {
@@ -17,6 +19,7 @@ function MoviesList(props) {
     movies,
     visibilityFilter,
     userdata,
+    setUserdata,
   } = props;
 
   // Methods
@@ -28,6 +31,17 @@ function MoviesList(props) {
 
   if (!movies) { return <div className="main-view" />; }
 
+  const getUser = () => {
+    axios
+      .get(
+        `https://kds-movie-api.herokuapp.com/users/${userdata.user.Username}`,
+        { headers: { Authorization: `Bearer ${userdata.token}` } },
+      )
+      .then((res) => { setUserdata({ user: res.data, token: localStorage.getItem('token') }); })
+      .catch((err) => { console.log(err); });
+  };
+
+  useEffect(() => { getUser(userdata.user.Username); }, []);
   // JSX
   return (
     <>
@@ -40,7 +54,7 @@ function MoviesList(props) {
         <Row className="movie-list-container" fluid="xxl">
           {filteredMovies.map((m) => (
             <Col className="movie-card-container col-md-3" xxl={3} xl={4} lg={6} md={6} sm={12}>
-              <MovieCard key={m._id} className="movie-card" movieData={m} user={userdata.user.Username} favorite={[userdata.user.FavoriteMovies]} />
+              <MovieCard key={m._id} className="movie-card" movieData={m} user={userdata.user.Username} favorite={userdata.user.FavoriteMovies || []} />
             </Col>
           ))}
         </Row>
@@ -56,4 +70,4 @@ const mapStateToProps = (state) => {
   return { visibilityFilter, userdata };
 };
 
-export default connect(mapStateToProps)(MoviesList);
+export default connect(mapStateToProps, { setUserdata })(MoviesList);
