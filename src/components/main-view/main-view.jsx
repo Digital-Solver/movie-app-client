@@ -9,7 +9,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -27,7 +27,6 @@ import DirectorView from '../director-view/director-view';
 import GenreView from '../genre-view/genre-view';
 import ProfileView from '../profile-view/profile-view';
 import UpdateUser from '../profile-view/update-user';
-import FavoriteMovies from '../profile-view/favorite-movies';
 
 // Component
 class MainView extends React.Component {
