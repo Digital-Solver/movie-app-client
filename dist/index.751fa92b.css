@@ -75,54 +75,6 @@
   width: 32px;
   height: 31px;
 }
-.movie-view.card {
-  max-width: 80% !important;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  margin-inline: auto;
-  margin-bottom: 75px;
-}
-
-.movie-view-row {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.movie-view.movie-poster {
-  max-width: 500px !important;
-  margin-inline: auto;
-}
-
-.movie-view-poster-container {
-  max-width: 500px !important;
-}
-
-.movie-view-content-outer-container {
-  display: flex;
-}
-
-.movie-view-content-inner-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.movie-title,
-.movie-description {
-  color: #212121 !important;
-}
-
-.movie-title {
-  font-family: "Iceberg", cursive !important;
-  font-size: 2rem !important;
-}
-
-.detail-navigation {
-  margin-bottom: 40px;
-  width: 100%;
-  display: inline-flex;
-  align-self: center;
-  justify-content: space-around;
-}
 .primary-navigation {
   min-width: 100%;
   margin-inline: "auto";
@@ -253,31 +205,6 @@ label {
   display: flex;
   flex-direction: column;
 }
-.director-view.card {
-  max-width: 80% !important;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  margin-inline: auto;
-  margin-bottom: 75px;
-}
-
-.director-name,
-.director-bio,
-.director-life {
-  color: #212121 !important;
-}
-.genre-view.card {
-  max-width: 80% !important;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  margin-inline: auto;
-  margin-bottom: 75px;
-}
-
-.genre-name,
-.genre-description {
-  color: #212121 !important;
-}
 .profile {
   display: flex;
   flex-direction: column;
@@ -335,6 +262,54 @@ label {
 .favorite-movies-list-container {
   width: 90vw !important;
   max-width: 1400px;
+}
+.detail-view.card {
+  max-width: 80% !important;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin-inline: auto;
+  margin-bottom: 75px;
+}
+
+.detail-view-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.movie-view.movie-poster {
+  max-width: 500px !important;
+  margin-inline: auto;
+}
+
+.detail-view-poster-container {
+  max-width: 500px !important;
+}
+
+.detail-view-content-outer-container {
+  display: flex;
+}
+
+.detail-view-content-inner-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.movie-title,
+.movie-description {
+  color: #212121 !important;
+}
+
+.movie-title {
+  font-family: "Iceberg", cursive !important;
+  font-size: 2rem !important;
+}
+
+.detail-navigation {
+  margin-bottom: 40px;
+  width: 100%;
+  display: inline-flex;
+  align-self: center;
+  justify-content: space-around;
 }
 html {
   overflow-y: scroll;

@@ -1,4 +1,4 @@
-.movie-view.card {
+.detail-view.card {
   max-width: 80% !important;
   background-color: #00000000;
   border: none;
@@ -6,7 +6,7 @@
   margin-bottom: 75px;
 }
 
-.movie-view-row {
+.detail-view-row {
   display: flex;
   justify-content: space-evenly;
 }
@@ -16,15 +16,15 @@
   margin-inline: auto;
 }
 
-.movie-view-poster-container {
+.detail-view-poster-container {
   max-width: 500px !important;
 }
 
-.movie-view-content-outer-container {
+.detail-view-content-outer-container {
   display: flex;
 }
 
-.movie-view-content-inner-container {
+.detail-view-content-inner-container {
   text-align: center;
   margin-top: 20px;
 }
