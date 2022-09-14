@@ -100,7 +100,6 @@ function UpdateUser(props) {
         </div>
       </form>
     </div>
-
   );
 }
 

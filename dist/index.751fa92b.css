@@ -1,0 +1,359 @@
+.filter-input {
+  box-sizing: border-box;
+  width: 675px !important;
+  margin-inline: auto;
+  height: 50px !important;
+  background: #FFFFFF !important;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #4A2E9B, #CE2476) border-box !important;
+  border-bottom: 4px solid transparent !important;
+  border-radius: 5px !important;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+.movie-card {
+  max-height: 235px;
+  width: 335px;
+  margin-top: 20px;
+  margin-inline: auto;
+  border-radius: 1px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: col-reverse !important;
+}
+
+.movie-card:hover > img {
+  filter: brightness(25%);
+}
+
+.movie-card-image {
+  max-height: 235px;
+  width: 335px;
+  object-fit: cover;
+  object-position: 0 0;
+}
+
+.movie-card-title {
+  color: white !important;
+  transform: translate(0, -130px);
+  margin-inline: auto;
+  font-family: "Iceberg", cursive !important;
+  text-align: center;
+  width: fit-content;
+  max-width: 90%;
+  font-size: 22px !important;
+}
+
+.movie-card-title:hover {
+  text-decoration: underline;
+}
+
+.btn-favorite,
+.btn-not-favorite {
+  transform: translate(290px, -265px);
+  max-width: 32px;
+  max-height: 31px;
+  border-radius: 50% !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: rgba(0, 0, 0, 0) !important;
+}
+
+.btn-favorite {
+  background: url("star-favorite.7ecd942a.svg");
+}
+
+.btn-not-favorite {
+  background: url("star-empty.a64d9da0.svg");
+}
+
+.btn-not-favorite:hover,
+.btn-favorite:hover {
+  background: url("star-hover.fad8c633.svg");
+}
+
+.movie-card-favorite-toggle {
+  width: 32px;
+  height: 31px;
+}
+.primary-navigation {
+  min-width: 100%;
+  margin-inline: "auto";
+  border-bottom: 0.5px solid rgba(147, 147, 147, 0.25) !important;
+  margin-bottom: 8rem !important;
+}
+
+.scynapse-logo,
+.hamburger-icon,
+.navigation-link {
+  color: #212121 !important;
+  border: none !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("custom-menu-icon.0efd66c2.svg") !important;
+  width: 28px;
+  height: 27px;
+  border-radius: 0;
+}
+
+.navbar-nav a {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-spacer {
+  width: 56px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scynapse-logo {
+  font-family: "Iceberg", cursive;
+  font-size: 35px !important;
+  margin-inline: auto !important;
+  letter-spacing: -0.03em !important;
+}
+
+.logo-underline {
+  margin-top: -18.5px;
+  margin-bottom: 18.5px;
+}
+
+.username-span {
+  color: #8866E9;
+}
+.credential-card {
+  border: none !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  align-items: center !important;
+}
+
+.credential-input {
+  width: 675px !important;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #4A2E9B, #CE2476) border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 2px !important;
+  margin-bottom: 15px;
+}
+
+.credential-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.toggle-credential-view {
+  color: #8866E9;
+  font-size: 15px;
+}
+label {
+  width: 100%;
+}
+
+.error-text {
+  color: red;
+}
+
+.credential-card {
+  border: none !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  align-items: center !important;
+}
+
+.credential-input {
+  width: 675px !important;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #4A2E9B, #CE2476) border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 2px !important;
+  margin-bottom: 15px;
+}
+
+.credential-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.toggle-credential-view {
+  color: #8866E9;
+  font-size: 15px;
+}
+
+.edit-user-button-container {
+  display: flex;
+  flex-direction: column;
+}
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info-container > p {
+  margin-block: 5px;
+}
+
+.user-info-username {
+  color: #4A2E9B !important;
+  font-family: "Iceberg", cursive !important;
+}
+
+.info-display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form label input {
+  padding-block: 6px !important;
+  padding-inline: 12px !important;
+  width: 675px !important;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(#fff, #fff) padding-box, linear-gradient(45deg, #4A2E9B, #CE2476) border-box !important;
+  border: 1px solid transparent !important;
+  border-radius: 2px !important;
+  margin-bottom: 15px;
+}
+
+.favorite-movies-divider {
+  width: 90% !important;
+  height: 75px !important;
+}
+
+.movies-list-spacer {
+  display: block;
+  content: "";
+  margin-top: 75px;
+}
+
+.favorite-movies-list-container {
+  width: 90vw !important;
+  max-width: 1400px;
+}
+.detail-view.card {
+  max-width: 80% !important;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin-inline: auto;
+  margin-bottom: 75px;
+}
+
+.detail-view-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.detail-view.movie-poster {
+  max-width: 500px !important;
+  margin-inline: auto;
+}
+
+.detail-view-poster-container {
+  max-width: 500px !important;
+}
+
+.detail-view-content-outer-container {
+  display: flex;
+  width: 1200px !important;
+}
+
+.detail-view-content-inner-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.movie-title,
+.movie-description {
+  color: #212121 !important;
+}
+
+.movie-title {
+  font-family: "Iceberg", cursive !important;
+  font-size: 2rem !important;
+}
+
+.detail-navigation {
+  margin-bottom: 40px;
+  width: 100%;
+  display: inline-flex;
+  align-self: center;
+  justify-content: space-around;
+}
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: "Istok Web" !important;
+}
+
+.movie-app {
+  color: steelblue;
+}
+
+.app-container {
+  background: linear-gradient(180deg, rgba(56, 14, 174, 0.24) 0%, rgba(0, 0, 0, 0) 5.24%) fixed, #F7F4F3;
+  height: 100%;
+}
+
+.main-view-container {
+  margin: 0;
+  padding: 0 !important;
+  min-height: 100vh;
+  max-width: 90vw;
+}
+
+.btn-movie-detail, .btn-movie-active-detail {
+  background-color: rgb(72, 61, 63) !important;
+  border-color: rgba(0, 0, 0, 0);
+  color: white !important;
+  margin: 5px;
+  width: 100px;
+}
+
+.btn-movie-active-detail {
+  background-color: rgb(204, 29, 61) !important;
+}
+
+.btn-credential {
+  background-color: #380EAE !important;
+  border-color: rgba(0, 0, 0, 0);
+  color: white !important;
+  margin: 5px;
+  height: 40px;
+  width: 10rem;
+}
+/*# sourceMappingURL=index.751fa92b.css.map */
