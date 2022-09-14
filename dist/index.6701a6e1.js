@@ -46314,48 +46314,58 @@ function MoviesList(props) {
                     __self: this
                 })
             }),
-            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
+            /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
                 __source: {
                     fileName: "src/components/movies-list/movies-list.jsx",
                     lineNumber: 39
                 },
                 __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
-                    className: "movie-list-container",
-                    fluid: "xxl",
-                    __source: {
-                        fileName: "src/components/movies-list/movies-list.jsx",
-                        lineNumber: 40
-                    },
-                    __self: this,
-                    children: filteredMovies.map((m)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
-                            className: "movie-card-container col-md-3",
-                            xxl: 3,
-                            xl: 4,
-                            lg: 6,
-                            md: 6,
-                            sm: 12,
-                            __source: {
-                                fileName: "src/components/movies-list/movies-list.jsx",
-                                lineNumber: 42
-                            },
-                            __self: this,
-                            children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
-                                className: "movie-card",
-                                movieData: m,
-                                user: userdata.user.Username,
-                                favorite: [
-                                    userdata.user.FavoriteMovies
-                                ],
+                children: [
+                    /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
+                        className: "movie-list-container",
+                        fluid: "xxl",
+                        __source: {
+                            fileName: "src/components/movies-list/movies-list.jsx",
+                            lineNumber: 40
+                        },
+                        __self: this,
+                        children: filteredMovies.map((m)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                                className: "movie-card-container col-md-3",
+                                xxl: 3,
+                                xl: 4,
+                                lg: 6,
+                                md: 6,
+                                sm: 12,
                                 __source: {
                                     fileName: "src/components/movies-list/movies-list.jsx",
-                                    lineNumber: 43
+                                    lineNumber: 42
                                 },
-                                __self: this
-                            }, m._id)
-                        })
-                    )
-                })
+                                __self: this,
+                                children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
+                                    className: "movie-card",
+                                    movieData: m,
+                                    user: userdata.user.Username,
+                                    favorite: [
+                                        userdata.user.FavoriteMovies
+                                    ],
+                                    __source: {
+                                        fileName: "src/components/movies-list/movies-list.jsx",
+                                        lineNumber: 43
+                                    },
+                                    __self: this
+                                }, m._id)
+                            })
+                        )
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsx("br", {
+                        className: "movies-list-spacer",
+                        __source: {
+                            fileName: "src/components/movies-list/movies-list.jsx",
+                            lineNumber: 47
+                        },
+                        __self: this
+                    })
+                ]
             })
         ]
     }));
@@ -48251,12 +48261,21 @@ function FavoriteMovies(props) {
                 __self: this
             }),
             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
+                className: "movie-list-container",
                 __source: {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
                     lineNumber: 50
                 },
                 __self: this,
                 children: getFavoriteMovies()
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsx("br", {
+                className: "movies-list-spacer",
+                __source: {
+                    fileName: "src/components/profile-view/favorite-movies.jsx",
+                    lineNumber: 53
+                },
+                __self: this
             })
         ]
     }));
