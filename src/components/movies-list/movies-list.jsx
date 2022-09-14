@@ -40,7 +40,7 @@ function MoviesList(props) {
         <Row className="movie-list-container" fluid="xxl">
           {filteredMovies.map((m) => (
             <Col className="movie-card-container col-md-3" xxl={3} xl={4} lg={6} md={6} sm={12}>
-              <MovieCard key={m._id} className="movie-card" movieData={m} user={userdata.user.Username} favorite={userdata.user.FavoriteMovies} />
+              <MovieCard key={m._id} className="movie-card" movieData={m} user={userdata.user.Username} favorite={[userdata.user.FavoriteMovies]} />
             </Col>
           ))}
         </Row>
