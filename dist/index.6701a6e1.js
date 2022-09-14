@@ -46262,6 +46262,8 @@ var _jsxRuntime = require("react/jsx-runtime");
 /* eslint-disable no-underscore-dangle */ /* eslint-disable react/prop-types */ // External Dependencies
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRedux = require("react-redux");
 // Internal Dependencies
@@ -46269,10 +46271,13 @@ var _visibilityFilterInput = require("../visibility-filter-input/visibility-filt
 var _visibilityFilterInputDefault = parcelHelpers.interopDefault(_visibilityFilterInput);
 var _movieCard = require("../movie-card/movie-card");
 var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
+var _actions = require("../../actions/actions");
+var _s = $RefreshSig$();
 // Component
 function MoviesList(props) {
+    _s();
     // Props
-    const { movies , visibilityFilter , userdata ,  } = props;
+    const { movies , visibilityFilter , userdata , setUserdata ,  } = props;
     // Methods
     let filteredMovies = movies;
     if (visibilityFilter !== '') filteredMovies = movies.filter((m)=>m.Title.toLowerCase().includes(visibilityFilter.toLowerCase())
@@ -46281,10 +46286,27 @@ function MoviesList(props) {
         className: "main-view",
         __source: {
             fileName: "src/components/movies-list/movies-list.jsx",
-            lineNumber: 29
+            lineNumber: 32
         },
         __self: this
     }));
+    const getUser = ()=>{
+        _axiosDefault.default.get(`https://kds-movie-api.herokuapp.com/users/${userdata.user.Username}`, {
+            headers: {
+                Authorization: `Bearer ${userdata.token}`
+            }
+        }).then((res)=>{
+            setUserdata({
+                user: res.data,
+                token: localStorage.getItem('token')
+            });
+        }).catch((err)=>{
+            console.log(err);
+        });
+    };
+    _react.useEffect(()=>{
+        getUser(userdata.user.Username);
+    }, []);
     // JSX
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
         children: [
@@ -46292,7 +46314,7 @@ function MoviesList(props) {
                 className: "movies-list-subtitle h5",
                 __source: {
                     fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 34
+                    lineNumber: 48
                 },
                 __self: this,
                 children: "Search Sci-Fi Films"
@@ -46302,14 +46324,14 @@ function MoviesList(props) {
                 md: 12,
                 __source: {
                     fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 35
+                    lineNumber: 49
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_visibilityFilterInputDefault.default, {
                     visibilityFilter: visibilityFilter,
                     __source: {
                         fileName: "src/components/movies-list/movies-list.jsx",
-                        lineNumber: 36
+                        lineNumber: 50
                     },
                     __self: this
                 })
@@ -46317,7 +46339,7 @@ function MoviesList(props) {
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
                 __source: {
                     fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 39
+                    lineNumber: 53
                 },
                 __self: this,
                 children: [
@@ -46326,7 +46348,7 @@ function MoviesList(props) {
                         fluid: "xxl",
                         __source: {
                             fileName: "src/components/movies-list/movies-list.jsx",
-                            lineNumber: 40
+                            lineNumber: 54
                         },
                         __self: this,
                         children: filteredMovies.map((m)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
@@ -46338,19 +46360,17 @@ function MoviesList(props) {
                                 sm: 12,
                                 __source: {
                                     fileName: "src/components/movies-list/movies-list.jsx",
-                                    lineNumber: 42
+                                    lineNumber: 56
                                 },
                                 __self: this,
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
                                     className: "movie-card",
                                     movieData: m,
                                     user: userdata.user.Username,
-                                    favorite: [
-                                        userdata.user.FavoriteMovies
-                                    ],
+                                    favorite: userdata.user.FavoriteMovies || [],
                                     __source: {
                                         fileName: "src/components/movies-list/movies-list.jsx",
-                                        lineNumber: 43
+                                        lineNumber: 57
                                     },
                                     __self: this
                                 }, m._id)
@@ -46361,7 +46381,7 @@ function MoviesList(props) {
                         className: "movies-list-spacer",
                         __source: {
                             fileName: "src/components/movies-list/movies-list.jsx",
-                            lineNumber: 47
+                            lineNumber: 61
                         },
                         __self: this
                     })
@@ -46370,6 +46390,7 @@ function MoviesList(props) {
         ]
     }));
 }
+_s(MoviesList, "OD7bBpZva5O2jO+Puf00hKivP7c=");
 _c = MoviesList;
 // Redux & Export
 const mapStateToProps = (state)=>{
@@ -46379,7 +46400,9 @@ const mapStateToProps = (state)=>{
         userdata
     };
 };
-exports.default = _reactRedux.connect(mapStateToProps)(MoviesList);
+exports.default = _reactRedux.connect(mapStateToProps, {
+    setUserdata: _actions.setUserdata
+})(MoviesList);
 var _c;
 $RefreshReg$(_c, "MoviesList");
 
@@ -46388,7 +46411,7 @@ $RefreshReg$(_c, "MoviesList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","react-redux":"2L0if","../visibility-filter-input/visibility-filter-input":"7ZxGS","../movie-card/movie-card":"6EiBJ","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"7ZxGS":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","react-redux":"2L0if","../visibility-filter-input/visibility-filter-input":"7ZxGS","../movie-card/movie-card":"6EiBJ","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","axios":"iYoWk","../../actions/actions":"1Ttfj"}],"7ZxGS":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9bc3 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -46586,7 +46609,7 @@ class MovieCard extends _reactDefault.default.Component {
     // Lifecycle Methods
     render() {
         // Props
-        const { movieData , favorite , user  } = this.props;
+        const { movieData , favorite , user ,  } = this.props;
         // Class Methods
         function addFavorite() {
             _axiosDefault.default.post(`https://kds-movie-api.herokuapp.com/users/${user}/favorites/${movieData._id}`, {
@@ -46612,6 +46635,9 @@ class MovieCard extends _reactDefault.default.Component {
             );
         }
         function favoriteVariant(id) {
+            console.log('id: ', id);
+            console.log('favorites: ', favorite);
+            console.log(typeof favorite);
             if (!favorite.includes(id)) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                 className: "movie-card-favorite-toggle",
                 variant: "not-favorite",
@@ -46621,7 +46647,7 @@ class MovieCard extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 56
+                    lineNumber: 62
                 },
                 __self: this
             }));
@@ -46633,7 +46659,7 @@ class MovieCard extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 57
+                    lineNumber: 63
                 },
                 __self: this,
                 children: "-"
@@ -46644,14 +46670,14 @@ class MovieCard extends _reactDefault.default.Component {
             to: `/movies/${movieData._id}`,
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 62
+                lineNumber: 68
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
                 className: "movie-card",
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 63
+                    lineNumber: 69
                 },
                 __self: this,
                 children: [
@@ -46663,7 +46689,7 @@ class MovieCard extends _reactDefault.default.Component {
                         crossOrigin: "anonymous",
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 64
+                            lineNumber: 70
                         },
                         __self: this
                     }),
@@ -46671,7 +46697,7 @@ class MovieCard extends _reactDefault.default.Component {
                         className: "movie-card-title",
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 65
+                            lineNumber: 71
                         },
                         __self: this,
                         children: movieData.Title
@@ -46679,7 +46705,7 @@ class MovieCard extends _reactDefault.default.Component {
                     /*#__PURE__*/ _jsxRuntime.jsx("div", {
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 66
+                            lineNumber: 72
                         },
                         __self: this,
                         children: favoriteVariant(movieData._id)

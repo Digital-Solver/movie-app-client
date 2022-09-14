@@ -21,7 +21,9 @@ class MovieCard extends React.Component {
   // Lifecycle Methods
   render() {
     // Props
-    const { movieData, favorite, user } = this.props;
+    const {
+      movieData, favorite, user,
+    } = this.props;
 
     // Class Methods
     function addFavorite() {
@@ -52,6 +54,10 @@ class MovieCard extends React.Component {
     }
 
     function favoriteVariant(id) {
+      console.log('id: ', id);
+      console.log('favorites: ', favorite);
+      console.log(typeof favorite);
+
       if (!favorite.includes(id)) {
         return <Button className="movie-card-favorite-toggle" variant="not-favorite" onClick={(e) => { e.preventDefault(); addFavorite(movieData._id, movieData.Title); }} />;
       } return <Button variant="favorite" onClick={(e) => { e.preventDefault(); deleteFavorite(movieData._id, movieData.Title); }}>-</Button>;
