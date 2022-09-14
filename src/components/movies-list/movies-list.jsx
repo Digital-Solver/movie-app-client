@@ -44,6 +44,7 @@ function MoviesList(props) {
             </Col>
           ))}
         </Row>
+        <br className="movies-list-spacer" />
       </Container>
     </ >
   );

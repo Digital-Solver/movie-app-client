@@ -10,6 +10,10 @@
   align-items: center;
 }
 
+.user-info-container>p {
+  margin-block: 5px;
+}
+
 .user-info-username {
   color: #4A2E9B !important;
   font-family: "Iceberg", cursive !important;
@@ -40,6 +44,13 @@
 
 .favorite-movies-divider {
   width: 90% !important;
+  height: 75px !important;
+}
+
+.movies-list-spacer {
+  display: block;
+  content: "";
+  margin-top: 75px;
 }
 
 .favorite-movies-list-container {

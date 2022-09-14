@@ -47,9 +47,10 @@ function FavoriteMovies(props) {
   return (
     <Container fluid="xxl" className="favorite-movies-list-container">
       <hr className="favorite-movies-divider" />
-      <Row>
+      <Row className="movie-list-container">
         {getFavoriteMovies()}
       </Row>
+      <br className="movies-list-spacer" />
     </Container>
   );
 }
