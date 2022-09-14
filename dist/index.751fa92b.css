@@ -12,19 +12,68 @@
   margin-bottom: 4rem;
 }
 .movie-card {
-  width: 200px;
+  max-height: 235px;
+  width: 335px;
   margin-top: 20px;
   margin-inline: auto;
-  border-radius: 5px;
+  border-radius: 1px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: col-reverse !important;
 }
 
-.movie-card-body {
-  background-color: #77685D;
-  border-radius: 0px 0px 5px 5px;
+.movie-card:hover > img {
+  filter: brightness(25%);
+}
+
+.movie-card-image {
+  max-height: 235px;
+  width: 335px;
+  object-fit: cover;
+  object-position: 0 0;
 }
 
 .movie-card-title {
   color: white !important;
+  transform: translate(0, -130px);
+  margin-inline: auto;
+  font-family: "Iceberg", cursive !important;
+  text-align: center;
+  width: fit-content;
+  max-width: 90%;
+  font-size: 22px !important;
+}
+
+.movie-card-title:hover {
+  text-decoration: underline;
+}
+
+.btn-favorite,
+.btn-not-favorite {
+  transform: translate(290px, -265px);
+  max-width: 32px;
+  max-height: 31px;
+  border-radius: 50% !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: rgba(0, 0, 0, 0) !important;
+}
+
+.btn-favorite {
+  background: url("star-favorite.7ecd942a.svg");
+}
+
+.btn-not-favorite {
+  background: url("star-empty.a64d9da0.svg");
+}
+
+.btn-not-favorite:hover,
+.btn-favorite:hover {
+  background: url("star-hover.fad8c633.svg");
+}
+
+.movie-card-favorite-toggle {
+  width: 32px;
+  height: 31px;
 }
 .movie-view.card {
   max-width: 60%;
@@ -217,7 +266,9 @@ label {
 }
 
 .info-display-container {
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-form label {
@@ -235,6 +286,19 @@ label {
   border-radius: 2px !important;
   margin-bottom: 15px;
 }
+
+.favorite-movies-divider {
+  width: 90% !important;
+}
+
+.favorite-movies-list-container {
+  width: 90vw !important;
+  max-width: 1400px;
+}
+html {
+  overflow-y: scroll;
+}
+
 body {
   font-family: "Istok Web" !important;
 }
@@ -255,17 +319,10 @@ body {
   max-width: 90vw;
 }
 
-.btn-movie-detail, .btn-favorite {
+.btn-movie-detail {
   background-color: rgb(72, 61, 63) !important;
   border-color: rgba(0, 0, 0, 0);
   color: white !important;
-  margin: 5px;
-}
-
-.btn-favorite:hover {
-  background-color: rgb(72, 61, 63) !important;
-  border-color: #ebb505 !important;
-  color: #ebb505 !important;
   margin: 5px;
 }
 

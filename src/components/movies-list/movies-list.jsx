@@ -3,7 +3,7 @@
 
 // External Dependencies
 import React from 'react';
-import { Col } from 'react-bootstrap';
+import { Col, Row, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 // Internal Dependencies
@@ -35,11 +35,16 @@ function MoviesList(props) {
       <Col className="search-input-container" md={12}>
         <VisibilityFilterInput visibilityFilter={visibilityFilter} />
       </Col>
-      {filteredMovies.map((m) => (
-        <Col className="movie-card-container" sm key={m._id}>
-          <MovieCard className="movie-card" movieData={m} user={userdata.user.Username} />
-        </Col>
-      ))}
+
+      <Container>
+        <Row className="movie-list-container" fluid="xxl">
+          {filteredMovies.map((m) => (
+            <Col className="movie-card-container col-md-3" xxl={3} xl={4} lg={6} md={6} sm={12}>
+              <MovieCard key={m._id} className="movie-card" movieData={m} user={userdata.user.Username} favorite={userdata.user.FavoriteMovies} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </ >
   );
 }

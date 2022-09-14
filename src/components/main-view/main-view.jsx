@@ -98,6 +98,7 @@ class MainView extends React.Component {
             exact
             path="/"
             render={() => {
+              const { userdata } = this.props;
               if (!localStorage.getItem('user')) { // Show login view if there is no user logged in
                 return (
                   <Col>
@@ -107,7 +108,7 @@ class MainView extends React.Component {
               }
 
               if (movies.length === 0) { return <div className="main-view" />; } // Show empty div until data is loaded
-              return <MoviesList movies={movies} />;
+              return <MoviesList movies={movies} userdata={userdata} />;
             }}
           />
 

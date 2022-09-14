@@ -46,11 +46,9 @@ function ProfileView(props) {
           email={userdata.user.Email}
           birth={userdata.user.Birthday}
         />
-        <div>
-          <Link to={`/users/${userdata.user.Username}/edit`}>
-            <Button variant="link">edit</Button>
-          </Link>
-        </div>
+        <Link to={`/users/${userdata.user.Username}/edit`}>
+          <Button variant="link">edit</Button>
+        </Link>
       </div>
 
       <FavoriteMovies

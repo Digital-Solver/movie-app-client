@@ -51,24 +51,22 @@ class MovieCard extends React.Component {
         .catch((err) => console.log(err));
     }
 
-    function favoriteVariant() {
-      if (!favorite) {
-        return <Button variant="favorite" onClick={() => addFavorite(movieData._id, movieData.Title)}>Favorite</Button>;
-      } return <Button variant="secondary" onClick={() => deleteFavorite(movieData._id, movieData.Title)}>Remove</Button>;
+    function favoriteVariant(id) {
+      console.log(id, favorite);
+      if (!favorite.includes(id)) {
+        return <Button className="movie-card-favorite-toggle" variant="not-favorite" onClick={(e) => { e.preventDefault(); addFavorite(movieData._id, movieData.Title); }} />;
+      } return <Button variant="favorite" onClick={(e) => { e.preventDefault(); deleteFavorite(movieData._id, movieData.Title); }}>-</Button>;
     }
 
     // JSX
     return (
-      <Card key={movieData._id} className="movie-card">
-        <Card.Img variant="top" src={movieData.ImageURL} thumbnail="true" crossOrigin="anonymous" />
-        <Card.Body className="movie-card-body">
+      <Link to={`/movies/${movieData._id}`}>
+        <Card key={movieData._id} className="movie-card">
+          <Card.Img className="movie-card-image" variant="top" src={movieData.ImageURL} thumbnail="true" crossOrigin="anonymous" />
           <Card.Title className="movie-card-title">{movieData.Title}</Card.Title>
-          <Link to={`/movies/${movieData._id}`}>
-            <Button variant="movie-detail">See More</Button>
-          </Link>
-          {favoriteVariant()}
-        </Card.Body>
-      </Card>
+          <div>{favoriteVariant(movieData._id)}</div>
+        </Card>
+      </Link>
     );
   }
 }
