@@ -18,7 +18,6 @@ function MovieView(props) {
 
   const location = useLocation();
   if (!movieData) { const { movieData } = location.state; }
-  console.log(movieData);
 
   const posterAlt = `${movieData.Title} Poster`;
   // JSX

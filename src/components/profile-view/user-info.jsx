@@ -1,6 +1,7 @@
 // External Dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 // Styles
 import './profile-view.scss';
@@ -8,11 +9,10 @@ import './profile-view.scss';
 // Component
 function UserInfo(props) {
   // Props
-  const {
-    username,
-    email,
-    birth,
-  } = props;
+  const { userdata } = props;
+  const username = userdata.user.Username;
+  const email = userdata.user.Email;
+  const birth = userdata.user.Birthday || '';
 
   // JSX
   return (
@@ -25,16 +25,24 @@ function UserInfo(props) {
 }
 
 // PropTypes
+
 UserInfo.propTypes = {
-  username: PropTypes.string,
-  email: PropTypes.string,
-  birth: PropTypes.string,
-};
-UserInfo.defaultProps = {
-  username: '',
-  email: '',
-  birth: '',
+  userdata: PropTypes.shape({
+    user: PropTypes.shape({
+      Username: PropTypes.string,
+      Password: PropTypes.string,
+      Email: PropTypes.string,
+      Birthday: PropTypes.string,
+      FavoriteMovies: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
+    token: PropTypes.string,
+  }).isRequired,
 };
 
 // Export
-export default UserInfo;
+const mapStateToProps = (state) => {
+  const { userdata } = state;
+  return { userdata };
+};
+
+export default connect(mapStateToProps, null)(UserInfo);

@@ -79,6 +79,9 @@ ProfileView.propTypes = {
 };
 
 // Redux & Export
-const mapStateToProps = (state) => ({ userdata: state.userdata });
+const mapStateToProps = (state) => {
+  const { userdata, movies } = state;
+  return { userdata, movies };
+};
 
 export default connect(mapStateToProps, { setUserdata })(ProfileView);

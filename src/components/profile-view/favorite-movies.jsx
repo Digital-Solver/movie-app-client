@@ -5,6 +5,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Col, Row, Container } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 // Internal Dependencies
 import MovieCard from '../movie-card/movie-card';
@@ -70,5 +71,11 @@ FavoriteMovies.defaultProps = {
   favoriteMovies: [''],
 };
 
-// Export
-export default FavoriteMovies;
+// Redux & Export
+
+const mapStateToProps = (state) => {
+  const { movies } = state;
+  return { movies };
+};
+
+export default connect(mapStateToProps, null)(FavoriteMovies);

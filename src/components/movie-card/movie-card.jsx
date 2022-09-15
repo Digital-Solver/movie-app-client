@@ -12,6 +12,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // Internal Dependencies
 import './movie-card.scss';
@@ -21,10 +22,9 @@ class MovieCard extends React.Component {
   // Lifecycle Methods
   render() {
     // Props
-    const {
-      movieData, favorite, user,
-    } = this.props;
+    const { movieData, favorite, userdata } = this.props;
 
+    const user = userdata.user.Username;
     // Class Methods
     function addFavorite() {
       axios
@@ -78,6 +78,16 @@ class MovieCard extends React.Component {
 
 // PropTypes
 MovieCard.propTypes = {
+  userdata: PropTypes.shape({
+    user: PropTypes.shape({
+      Username: PropTypes.string,
+      Password: PropTypes.string,
+      Email: PropTypes.string,
+      Birthday: PropTypes.string,
+      FavoriteMovies: PropTypes.arrayOf(PropTypes.string),
+    }),
+    token: PropTypes.string,
+  }).isRequired,
   movieData: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
@@ -97,4 +107,10 @@ MovieCard.propTypes = {
 };
 
 // Export
-export default MovieCard;
+
+const mapStateToProps = (state) => {
+  const { userdata } = state;
+  return { userdata };
+};
+
+export default connect(mapStateToProps, null)(MovieCard);

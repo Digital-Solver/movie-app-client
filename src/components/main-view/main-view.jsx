@@ -86,7 +86,6 @@ class MainView extends React.Component {
           render={() => (
             <PrimaryNav
               onLogoutRequest={() => this.onLogoutRequest()}
-              user={localStorage.getItem('user')}
             />
           )}
         />
@@ -97,17 +96,18 @@ class MainView extends React.Component {
             exact
             path="/"
             render={() => {
-              const { userdata } = this.props;
               if (!localStorage.getItem('user')) { // Show login view if there is no user logged in
                 return (
                   <Col>
-                    <LoginView onLoginRequest={(username) => this.onLoginRequest(username)} />
+                    <LoginView
+                      onLoginRequest={(username) => this.onLoginRequest(username)}
+                    />
                   </Col>
                 );
               }
 
               if (movies.length === 0) { return <div className="main-view" />; } // Show empty div until data is loaded
-              return <MoviesList movies={movies} userdata={userdata} />;
+              return <MoviesList />;
             }}
           />
 
@@ -176,8 +176,6 @@ class MainView extends React.Component {
             path="/users/:username"
             exact
             render={() => {
-              const { userdata } = this.props;
-
               // Redirect to Login Page if not signed in
               if (!localStorage.getItem('user')) {
                 return (
@@ -191,11 +189,7 @@ class MainView extends React.Component {
               if (movies.length === 0) { return <div className="profile-view" />; }
               return (
                 <Col md="auto">
-                  <ProfileView
-                    user={userdata.user.Username}
-                    movies={movies}
-                    token={userdata.token}
-                  />
+                  <ProfileView />
                 </Col>
               );
             }}
@@ -203,12 +197,9 @@ class MainView extends React.Component {
           <Route // Edit Profile
             path="/users/:username/edit"
             exact
-            render={() => {
-              const { userdata } = this.props;
-              return (
-                <UpdateUser userdata={userdata} />
-              );
-            }}
+            render={() => (
+              <UpdateUser />
+            )}
           />
         </Row>
       </Router>

@@ -18,7 +18,6 @@ function GenreView(props) {
 
   const location = useLocation();
   const { movieData } = location.state;
-  console.log(movieData);
 
   const posterAlt = `${movieData.Title} Poster`;
   // JSX

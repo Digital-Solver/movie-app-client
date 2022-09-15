@@ -5,15 +5,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Navbar, Nav, Button } from 'react-bootstrap';
 import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 
 // Internal Dependencies
 import './primary-nav.scss';
 
 // Component
-export default function PrimaryNav(props) {
+function PrimaryNav(props) {
   // Props
-  const { onLogoutRequest, user } = props;
-
+  const { onLogoutRequest, userdata } = props;
+  const user = userdata.user.Username;
   // Methods
   const isAuth = () => {
     if (typeof window === 'undefined') {
@@ -90,5 +91,21 @@ export default function PrimaryNav(props) {
 // PropTypes
 PrimaryNav.propTypes = {
   onLogoutRequest: PropTypes.func.isRequired,
-  user: PropTypes.string.isRequired,
+  userdata: PropTypes.shape({
+    user: PropTypes.shape({
+      Username: PropTypes.string,
+      Password: PropTypes.string,
+      Email: PropTypes.string,
+      Birthday: PropTypes.string,
+      FavoriteMovies: PropTypes.arrayOf(PropTypes.string),
+    }),
+    token: PropTypes.string,
+  }).isRequired,
 };
+
+const mapStateToProps = (state) => {
+  const { userdata } = state;
+  return { userdata };
+};
+
+export default connect(mapStateToProps, null)(PrimaryNav);

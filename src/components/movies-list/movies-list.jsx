@@ -66,8 +66,8 @@ function MoviesList(props) {
 
 // Redux & Export
 const mapStateToProps = (state) => {
-  const { visibilityFilter, userdata } = state;
-  return { visibilityFilter, userdata };
+  const { visibilityFilter, userdata, movies } = state;
+  return { visibilityFilter, userdata, movies };
 };
 
 export default connect(mapStateToProps, { setUserdata })(MoviesList);

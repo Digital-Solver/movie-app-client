@@ -42294,8 +42294,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                         return /*#__PURE__*/ _react["default"].createElement(_primaryNav["default"], {
                             onLogoutRequest: function onLogoutRequest() {
                                 return _this2.onLogoutRequest();
-                            },
-                            user: localStorage.getItem("user")
+                            }
                         });
                     }
                 }), /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
@@ -42305,7 +42304,6 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     exact: true,
                     path: "/",
                     render: function render() {
-                        var userdata = _this2.props.userdata;
                         if (!localStorage.getItem("user")) // Show login view if there is no user logged in
                         return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, null, /*#__PURE__*/ _react["default"].createElement(_loginView["default"], {
                             onLoginRequest: function onLoginRequest(username) {
@@ -42316,10 +42314,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                             className: "main-view"
                         });
                          // Show empty div until data is loaded
-                        return /*#__PURE__*/ _react["default"].createElement(_moviesList["default"], {
-                            movies: movies,
-                            userdata: userdata
-                        });
+                        return /*#__PURE__*/ _react["default"].createElement(_moviesList["default"], null);
                     }
                 }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route // Registration
                 , {
@@ -42396,7 +42391,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                     path: "/users/:username",
                     exact: true,
                     render: function render() {
-                        var userdata = _this2.props.userdata; // Redirect to Login Page if not signed in
+                        // Redirect to Login Page if not signed in
                         if (!localStorage.getItem("user")) return /*#__PURE__*/ _react["default"].createElement(_loginView["default"], {
                             onLoginRequest: function onLoginRequest(username) {
                                 return _this2.onLoggedIn(username);
@@ -42408,21 +42403,14 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                         });
                         return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
                             md: "auto"
-                        }, /*#__PURE__*/ _react["default"].createElement(_profileView["default"], {
-                            user: userdata.user.Username,
-                            movies: movies,
-                            token: userdata.token
-                        }));
+                        }, /*#__PURE__*/ _react["default"].createElement(_profileView["default"], null));
                     }
                 }), /*#__PURE__*/ _react["default"].createElement(_reactRouterDom.Route // Edit Profile
                 , {
                     path: "/users/:username/edit",
                     exact: true,
                     render: function render() {
-                        var userdata = _this2.props.userdata;
-                        return /*#__PURE__*/ _react["default"].createElement(_updateUser["default"], {
-                            userdata: userdata
-                        });
+                        return /*#__PURE__*/ _react["default"].createElement(_updateUser["default"], null);
                     }
                 })));
             }
@@ -47915,10 +47903,11 @@ function MoviesList(props) {
 } // Redux & Export
 _c = MoviesList;
 var mapStateToProps = function mapStateToProps(state) {
-    var visibilityFilter = state.visibilityFilter, userdata = state.userdata;
+    var visibilityFilter = state.visibilityFilter, userdata = state.userdata, movies = state.movies;
     return {
         visibilityFilter: visibilityFilter,
-        userdata: userdata
+        userdata: userdata,
+        movies: movies
     };
 };
 var _default = (0, _reactRedux.connect)(mapStateToProps, {
@@ -48003,6 +47992,7 @@ var _axios = _interopRequireDefault(require("axios"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
+var _reactRedux = require("react-redux");
 require("./movie-card.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -48108,7 +48098,8 @@ var MovieCard = /*#__PURE__*/ function(_React$Component) {
             key: "render",
             value: function render() {
                 // Props
-                var _this$props = this.props, movieData = _this$props.movieData, favorite = _this$props.favorite, user = _this$props.user; // Class Methods
+                var _this$props = this.props, movieData = _this$props.movieData, favorite = _this$props.favorite, userdata = _this$props.userdata;
+                var user = userdata.user.Username; // Class Methods
                 function addFavorite() {
                     _axios["default"].post("https://kds-movie-api.herokuapp.com/users/".concat(user, "/favorites/").concat(movieData._id), {}, {
                         headers: {
@@ -48173,6 +48164,16 @@ var MovieCard = /*#__PURE__*/ function(_React$Component) {
     return MovieCard;
 }(_react["default"].Component); // PropTypes
 MovieCard.propTypes = {
+    userdata: _propTypes["default"].shape({
+        user: _propTypes["default"].shape({
+            Username: _propTypes["default"].string,
+            Password: _propTypes["default"].string,
+            Email: _propTypes["default"].string,
+            Birthday: _propTypes["default"].string,
+            FavoriteMovies: _propTypes["default"].arrayOf(_propTypes["default"].string)
+        }),
+        token: _propTypes["default"].string
+    }).isRequired,
     movieData: _propTypes["default"].shape({
         Title: _propTypes["default"].string.isRequired,
         Description: _propTypes["default"].string.isRequired,
@@ -48190,7 +48191,13 @@ MovieCard.propTypes = {
         ImageURL: _propTypes["default"].string.isRequired
     }).isRequired
 }; // Export
-var _default = MovieCard;
+var mapStateToProps = function mapStateToProps(state) {
+    var userdata = state.userdata;
+    return {
+        userdata: userdata
+    };
+};
+var _default = (0, _reactRedux.connect)(mapStateToProps, null)(MovieCard);
 exports["default"] = _default;
 
   $parcel$ReactRefreshHelpers$67b2.postlude(module);
@@ -48198,7 +48205,7 @@ exports["default"] = _default;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","axios":"jo6P5","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./movie-card.scss":"d6HH4","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"d6HH4":[function() {},{}],"gn3TA":[function(require,module,exports) {
+},{"react":"21dqq","axios":"jo6P5","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","react-redux":"bdVon","./movie-card.scss":"d6HH4","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"d6HH4":[function() {},{}],"gn3TA":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7070 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48228,7 +48235,6 @@ function MovieView(props) {
     var movieData = props.movieData, onBackClick = props.onBackClick;
     var location = (0, _reactRouterDom.useLocation)();
     if (!movieData) var _movieData = location.state.movieData;
-    console.log(movieData);
     var posterAlt = "".concat(movieData.Title, " Poster"); // JSX
     return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
         className: "detail-view justify-content-md-center"
@@ -48337,11 +48343,12 @@ try {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports["default"] = PrimaryNav;
+exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
 var _propTypes = require("prop-types");
+var _reactRedux = require("react-redux");
 require("./primary-nav.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -48353,7 +48360,8 @@ function _interopRequireDefault(obj) {
 // Component
 function PrimaryNav(props) {
     // Props
-    var onLogoutRequest = props.onLogoutRequest, user = props.user; // Methods
+    var onLogoutRequest = props.onLogoutRequest, userdata = props.userdata;
+    var user = userdata.user.Username; // Methods
     var isAuth = function isAuth() {
         if (typeof window === "undefined") return false;
         if (localStorage.getItem("token")) return localStorage.getItem("token");
@@ -48442,8 +48450,25 @@ function PrimaryNav(props) {
 _c = PrimaryNav;
 PrimaryNav.propTypes = {
     onLogoutRequest: _propTypes.PropTypes.func.isRequired,
-    user: _propTypes.PropTypes.string.isRequired
+    userdata: _propTypes.PropTypes.shape({
+        user: _propTypes.PropTypes.shape({
+            Username: _propTypes.PropTypes.string,
+            Password: _propTypes.PropTypes.string,
+            Email: _propTypes.PropTypes.string,
+            Birthday: _propTypes.PropTypes.string,
+            FavoriteMovies: _propTypes.PropTypes.arrayOf(_propTypes.PropTypes.string)
+        }),
+        token: _propTypes.PropTypes.string
+    }).isRequired
 };
+var mapStateToProps = function mapStateToProps(state) {
+    var userdata = state.userdata;
+    return {
+        userdata: userdata
+    };
+};
+var _default = (0, _reactRedux.connect)(mapStateToProps, null)(PrimaryNav);
+exports["default"] = _default;
 var _c;
 $RefreshReg$(_c, "PrimaryNav");
 
@@ -48452,7 +48477,7 @@ $RefreshReg$(_c, "PrimaryNav");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","prop-types":"7wKI2","./primary-nav.scss":"48Qxu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"48Qxu":[function() {},{}],"9YtA0":[function(require,module,exports) {
+},{"react":"21dqq","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","prop-types":"7wKI2","react-redux":"bdVon","./primary-nav.scss":"48Qxu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"48Qxu":[function() {},{}],"9YtA0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -49050,7 +49075,6 @@ function GenreView(props) {
     var onBackClick = props.onBackClick;
     var location = (0, _reactRouterDom.useLocation)();
     var movieData = location.state.movieData;
-    console.log(movieData);
     var posterAlt = "".concat(movieData.Title, " Poster"); // JSX
     return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
         className: "detail-view justify-content-md-center"
@@ -49258,8 +49282,10 @@ ProfileView.propTypes = {
     setUserdata: _propTypes["default"].func.isRequired
 }; // Redux & Export
 var mapStateToProps = function mapStateToProps(state) {
+    var userdata = state.userdata, movies = state.movies;
     return {
-        userdata: state.userdata
+        userdata: userdata,
+        movies: movies
     };
 };
 var _default = (0, _reactRedux.connect)(mapStateToProps, {
@@ -49288,6 +49314,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
+var _reactRedux = require("react-redux");
 require("./profile-view.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -49299,7 +49326,10 @@ function _interopRequireDefault(obj) {
 // Component
 function UserInfo(props) {
     // Props
-    var username = props.username, email = props.email, birth = props.birth; // JSX
+    var userdata = props.userdata;
+    var username = userdata.user.Username;
+    var email = userdata.user.Email;
+    var birth = userdata.user.Birthday || ""; // JSX
     return /*#__PURE__*/ _react["default"].createElement("div", {
         className: "user-info-container"
     }, /*#__PURE__*/ _react["default"].createElement("p", {
@@ -49308,16 +49338,24 @@ function UserInfo(props) {
 } // PropTypes
 _c = UserInfo;
 UserInfo.propTypes = {
-    username: _propTypes["default"].string,
-    email: _propTypes["default"].string,
-    birth: _propTypes["default"].string
-};
-UserInfo.defaultProps = {
-    username: "",
-    email: "",
-    birth: ""
+    userdata: _propTypes["default"].shape({
+        user: _propTypes["default"].shape({
+            Username: _propTypes["default"].string,
+            Password: _propTypes["default"].string,
+            Email: _propTypes["default"].string,
+            Birthday: _propTypes["default"].string,
+            FavoriteMovies: _propTypes["default"].arrayOf(_propTypes["default"].string)
+        }).isRequired,
+        token: _propTypes["default"].string
+    }).isRequired
 }; // Export
-var _default = UserInfo;
+var mapStateToProps = function mapStateToProps(state) {
+    var userdata = state.userdata;
+    return {
+        userdata: userdata
+    };
+};
+var _default = (0, _reactRedux.connect)(mapStateToProps, null)(UserInfo);
 exports["default"] = _default;
 var _c;
 $RefreshReg$(_c, "UserInfo");
@@ -49327,7 +49365,7 @@ $RefreshReg$(_c, "UserInfo");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","./profile-view.scss":"eyKYH","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"dTTQH":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-redux":"bdVon","./profile-view.scss":"eyKYH","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"dTTQH":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8767 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -49342,6 +49380,7 @@ exports["default"] = void 0;
 var _react = _interopRequireDefault(require("react"));
 var _propTypes = require("prop-types");
 var _reactBootstrap = require("react-bootstrap");
+var _reactRedux = require("react-redux");
 var _movieCard = _interopRequireDefault(require("../movie-card/movie-card"));
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
@@ -49397,8 +49436,14 @@ FavoriteMovies.defaultProps = {
     favoriteMovies: [
         ""
     ]
-}; // Export
-var _default = FavoriteMovies;
+}; // Redux & Export
+var mapStateToProps = function mapStateToProps(state) {
+    var movies = state.movies;
+    return {
+        movies: movies
+    };
+};
+var _default = (0, _reactRedux.connect)(mapStateToProps, null)(FavoriteMovies);
 exports["default"] = _default;
 var _c;
 $RefreshReg$(_c, "FavoriteMovies");
@@ -49408,7 +49453,7 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","../movie-card/movie-card":"bwuIu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"2SBwg":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","../movie-card/movie-card":"bwuIu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-redux":"bdVon"}],"2SBwg":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$95d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
