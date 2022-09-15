@@ -1,4 +1,5 @@
 /* eslint-disable react/prefer-stateless-function */
+/* eslint-disable max-len */
 
 // External Dependencies
 import React from 'react';
@@ -7,6 +8,7 @@ import {
   Button, Card, Row, Col,
 } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // Internal Dependencies
 import './detail-view.scss';
@@ -14,10 +16,10 @@ import './detail-view.scss';
 // Component
 function GenreView(props) {
   // Props
-  const { onBackClick } = props;
+  const { onBackClick, movies, genre } = props;
 
   const location = useLocation();
-  const { movieData } = location.state;
+  const { movieData } = location.state || movies.find((m) => m.Genre.Name === genre);
 
   const posterAlt = `${movieData.Title} Poster`;
   // JSX
@@ -63,5 +65,11 @@ GenreView.propTypes = {
   onBackClick: PropTypes.func.isRequired,
 };
 
-// Export
-export default GenreView;
+// Redux & Export
+
+const mapStateToProps = (state) => {
+  const { movies } = state;
+  return { movies };
+};
+
+export default connect(mapStateToProps, null)(GenreView);

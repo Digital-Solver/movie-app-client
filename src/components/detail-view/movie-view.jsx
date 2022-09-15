@@ -1,12 +1,14 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable object-curly-newline */
 /* eslint-disable react/prefer-stateless-function */
+/* eslint-disable max-len */
 
 // External Dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import {
-  Button, Card, Row, Col,
-} from 'react-bootstrap';
+import { Button, Card, Row, Col } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 // Internal Dependencies
 import './detail-view.scss';
@@ -14,10 +16,16 @@ import './detail-view.scss';
 // Component
 function MovieView(props) {
   // Class Methods
-  const { movieData, onBackClick } = props;
+  const { onBackClick, movies, movieId } = props;
 
   const location = useLocation();
-  if (!movieData) { const { movieData } = location.state; }
+
+  const movieDataFromMovieList = movies.find((m) => m._id === movieId);
+  const movieDataFromLocation = location.state;
+
+  if (movieDataFromLocation) {
+    const { movieData } = movieDataFromLocation;
+  } const movieData = movieDataFromMovieList;
 
   const posterAlt = `${movieData.Title} Poster`;
   // JSX
@@ -73,5 +81,11 @@ MovieView.propTypes = {
   onBackClick: PropTypes.func.isRequired,
 };
 
-// Export
-export default MovieView;
+// Redux & Export
+
+const mapStateToProps = (state) => {
+  const { movies } = state;
+  return { movies };
+};
+
+export default connect(mapStateToProps, null)(MovieView);

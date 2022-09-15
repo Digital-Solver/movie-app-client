@@ -1,12 +1,14 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable object-curly-newline */
+/* eslint-disable max-len */
 /* eslint-disable react/prefer-stateless-function */
 
 // External Dependencies
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  Button, Card, Row, Col,
-} from 'react-bootstrap';
+import { Button, Card, Row, Col } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 // Internal Dependencies
 import './detail-view.scss';
@@ -14,16 +16,13 @@ import './detail-view.scss';
 // Component
 function DirectorView(props) {
   // Props
-  const { onBackClick } = props;
+  const { onBackClick, movies, director } = props;
   const location = useLocation();
-  const { movieData } = location.state;
+  const { movieData } = location.state || movies.find((m) => m.Director.Name === director);
   const posterAlt = `${movieData.Title} Poster`;
 
   // Methods
-  console.log(movieData);
-  if (!movieData.Director.Death === undefined) {
-    const deathdate = movieData.Director.Death;
-  } const deathdate = 'Still Alive';
+  const deathdate = movieData.Director.Death || 'Still Alive';
 
   // JSX
   return (
@@ -74,4 +73,9 @@ DirectorView.propTypes = {
 };
 
 // Export
-export default DirectorView;
+const mapStateToProps = (state) => {
+  const { movies } = state;
+  return { movies };
+};
+
+export default connect(mapStateToProps, null)(DirectorView);

@@ -133,7 +133,7 @@ class MainView extends React.Component {
               return (
                 <Col md="auto">
                   <MovieView
-                    movieData={movies.find((m) => m._id === match.params.movieId)}
+                    movieId={match.params.movieId}
                     onBackClick={() => history.goBack()}
 
                   />
@@ -149,7 +149,7 @@ class MainView extends React.Component {
               return (
                 <Col md="auto">
                   <DirectorView
-                    movieData={movies.find((m) => m.Director.Name === match.params.directorName)}
+                    director={match.params.directorName}
                     onBackClick={() => history.goBack()}
                   />
                 </Col>
@@ -164,7 +164,7 @@ class MainView extends React.Component {
               return (
                 <Col md="auto">
                   <GenreView
-                    movieData={movies.find((m) => m.Genre.Name === match.params.genreName)}
+                    genre={match.params.genreName}
                     onBackClick={() => history.goBack()}
                   />
                 </Col>

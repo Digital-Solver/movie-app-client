@@ -42338,9 +42338,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                         return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
                             md: "auto"
                         }, /*#__PURE__*/ _react["default"].createElement(_movieView["default"], {
-                            movieData: movies.find(function(m) {
-                                return m._id === match.params.movieId;
-                            }),
+                            movieId: match.params.movieId,
                             onBackClick: function onBackClick() {
                                 return history.goBack();
                             }
@@ -42358,9 +42356,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                         return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
                             md: "auto"
                         }, /*#__PURE__*/ _react["default"].createElement(_directorView["default"], {
-                            movieData: movies.find(function(m) {
-                                return m.Director.Name === match.params.directorName;
-                            }),
+                            director: match.params.directorName,
                             onBackClick: function onBackClick() {
                                 return history.goBack();
                             }
@@ -42378,9 +42374,7 @@ var MainView = /*#__PURE__*/ function(_React$Component) {
                         return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Col, {
                             md: "auto"
                         }, /*#__PURE__*/ _react["default"].createElement(_genreView["default"], {
-                            movieData: movies.find(function(m) {
-                                return m.Genre.Name === match.params.genreName;
-                            }),
+                            genre: match.params.genreName,
                             onBackClick: function onBackClick() {
                                 return history.goBack();
                             }
@@ -47983,6 +47977,14 @@ $parcel$ReactRefreshHelpers$67b2.prelude(module);
 
 try {
 "use strict";
+function _typeof(obj) {
+    "@babel/helpers - typeof";
+    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
+        return typeof obj;
+    } : function(obj) {
+        return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    }, _typeof(obj);
+}
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -47998,14 +48000,6 @@ function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
     };
-}
-function _typeof(obj) {
-    "@babel/helpers - typeof";
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
-        return typeof obj;
-    } : function(obj) {
-        return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj);
 }
 function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
@@ -48099,6 +48093,7 @@ var MovieCard = /*#__PURE__*/ function(_React$Component) {
             value: function render() {
                 // Props
                 var _this$props = this.props, movieData = _this$props.movieData, favorite = _this$props.favorite, userdata = _this$props.userdata;
+                console.log(movieData);
                 var user = userdata.user.Username; // Class Methods
                 function addFavorite() {
                     _axios["default"].post("https://kds-movie-api.herokuapp.com/users/".concat(user, "/favorites/").concat(movieData._id), {}, {
@@ -48125,9 +48120,6 @@ var MovieCard = /*#__PURE__*/ function(_React$Component) {
                     });
                 }
                 function favoriteVariant(id) {
-                    console.log("id: ", id);
-                    console.log("favorites: ", favorite);
-                    console.log(_typeof(favorite));
                     if (!favorite.includes(id)) return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Button, {
                         className: "movie-card-favorite-toggle",
                         variant: "not-favorite",
@@ -48221,20 +48213,26 @@ var _react = _interopRequireDefault(require("react"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
+var _reactRedux = require("react-redux");
 require("./detail-view.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
     };
 }
-/* eslint-disable react/prefer-stateless-function */ // External Dependencies
+/* eslint-disable no-underscore-dangle */ /* eslint-disable object-curly-newline */ /* eslint-disable react/prefer-stateless-function */ /* eslint-disable max-len */ // External Dependencies
 // Internal Dependencies
 // Component
 function MovieView(props) {
     // Class Methods
-    var movieData = props.movieData, onBackClick = props.onBackClick;
+    var onBackClick = props.onBackClick, movies = props.movies, movieId = props.movieId;
     var location = (0, _reactRouterDom.useLocation)();
-    if (!movieData) var _movieData = location.state.movieData;
+    var movieDataFromMovieList = movies.find(function(m) {
+        return m._id === movieId;
+    });
+    var movieDataFromLocation = location.state;
+    if (movieDataFromLocation) var _movieData = movieDataFromLocation.movieData;
+    var movieData = movieDataFromMovieList;
     var posterAlt = "".concat(movieData.Title, " Poster"); // JSX
     return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
         className: "detail-view justify-content-md-center"
@@ -48321,8 +48319,14 @@ MovieView.propTypes = {
         ImageURL: _propTypes["default"].string.isRequired
     }).isRequired,
     onBackClick: _propTypes["default"].func.isRequired
-}; // Export
-var _default = MovieView;
+}; // Redux & Export
+var mapStateToProps = function mapStateToProps(state) {
+    var movies = state.movies;
+    return {
+        movies: movies
+    };
+};
+var _default = (0, _reactRedux.connect)(mapStateToProps, null)(MovieView);
 exports["default"] = _default;
 var _c;
 $RefreshReg$(_c, "MovieView");
@@ -48332,7 +48336,7 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","./detail-view.scss":"1EomO","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1EomO":[function() {},{}],"W4KBC":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","./detail-view.scss":"1EomO","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-redux":"bdVon"}],"1EomO":[function() {},{}],"W4KBC":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$389f = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48934,25 +48938,25 @@ var _react = _interopRequireDefault(require("react"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
+var _reactRedux = require("react-redux");
 require("./detail-view.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
     };
 }
-/* eslint-disable react/prefer-stateless-function */ // External Dependencies
+/* eslint-disable no-underscore-dangle */ /* eslint-disable object-curly-newline */ /* eslint-disable max-len */ /* eslint-disable react/prefer-stateless-function */ // External Dependencies
 // Internal Dependencies
 // Component
 function DirectorView(props) {
     // Props
-    var onBackClick = props.onBackClick;
+    var onBackClick = props.onBackClick, movies = props.movies, director = props.director;
     var location = (0, _reactRouterDom.useLocation)();
-    var movieData = location.state.movieData;
+    var _ref = location.state || movies.find(function(m) {
+        return m.Director.Name === director;
+    }), movieData = _ref.movieData;
     var posterAlt = "".concat(movieData.Title, " Poster"); // Methods
-    console.log(movieData);
-    movieData.Director.Death;
-    var _deathdate;
-    var deathdate = "Still Alive"; // JSX
+    var deathdate = movieData.Director.Death || "Still Alive"; // JSX
     return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
         className: "detail-view justify-content-md-center"
     }, /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Row, {
@@ -49035,7 +49039,13 @@ DirectorView.propTypes = {
     }).isRequired,
     onBackClick: _propTypes["default"].func.isRequired
 }; // Export
-var _default = DirectorView;
+var mapStateToProps = function mapStateToProps(state) {
+    var movies = state.movies;
+    return {
+        movies: movies
+    };
+};
+var _default = (0, _reactRedux.connect)(mapStateToProps, null)(DirectorView);
 exports["default"] = _default;
 var _c;
 $RefreshReg$(_c, "DirectorView");
@@ -49045,7 +49055,7 @@ $RefreshReg$(_c, "DirectorView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./detail-view.scss":"1EomO","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1EomO":[function() {},{}],"6FGbs":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./detail-view.scss":"1EomO","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-redux":"bdVon"}],"1EomO":[function() {},{}],"6FGbs":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$6f3d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -49061,20 +49071,23 @@ var _react = _interopRequireDefault(require("react"));
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
+var _reactRedux = require("react-redux");
 require("./detail-view.scss");
 function _interopRequireDefault(obj) {
     return obj && obj.__esModule ? obj : {
         "default": obj
     };
 }
-/* eslint-disable react/prefer-stateless-function */ // External Dependencies
+/* eslint-disable react/prefer-stateless-function */ /* eslint-disable max-len */ // External Dependencies
 // Internal Dependencies
 // Component
 function GenreView(props) {
     // Props
-    var onBackClick = props.onBackClick;
+    var onBackClick = props.onBackClick, movies = props.movies, genre = props.genre;
     var location = (0, _reactRouterDom.useLocation)();
-    var movieData = location.state.movieData;
+    var _ref = location.state || movies.find(function(m) {
+        return m.Genre.Name === genre;
+    }), movieData = _ref.movieData;
     var posterAlt = "".concat(movieData.Title, " Poster"); // JSX
     return /*#__PURE__*/ _react["default"].createElement(_reactBootstrap.Card, {
         className: "detail-view justify-content-md-center"
@@ -49153,8 +49166,14 @@ GenreView.propTypes = {
         ImageURL: _propTypes["default"].string.isRequired
     }).isRequired,
     onBackClick: _propTypes["default"].func.isRequired
-}; // Export
-var _default = GenreView;
+}; // Redux & Export
+var mapStateToProps = function mapStateToProps(state) {
+    var movies = state.movies;
+    return {
+        movies: movies
+    };
+};
+var _default = (0, _reactRedux.connect)(mapStateToProps, null)(GenreView);
 exports["default"] = _default;
 var _c;
 $RefreshReg$(_c, "GenreView");
@@ -49164,7 +49183,7 @@ $RefreshReg$(_c, "GenreView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./detail-view.scss":"1EomO","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1EomO":[function() {},{}],"2vVqf":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","react-redux":"bdVon","./detail-view.scss":"1EomO","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1EomO":[function() {},{}],"2vVqf":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$3c12 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -49453,7 +49472,7 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","../movie-card/movie-card":"bwuIu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-redux":"bdVon"}],"2SBwg":[function(require,module,exports) {
+},{"react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-redux":"bdVon","../movie-card/movie-card":"bwuIu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"2SBwg":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$95d1 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
