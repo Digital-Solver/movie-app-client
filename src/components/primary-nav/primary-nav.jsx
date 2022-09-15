@@ -14,7 +14,8 @@ import './primary-nav.scss';
 function PrimaryNav(props) {
   // Props
   const { onLogoutRequest, userdata } = props;
-  const user = userdata.user.Username;
+  const user = userdata.user.Username || localStorage.getItem('user');
+
   // Methods
   const isAuth = () => {
     if (typeof window === 'undefined') {

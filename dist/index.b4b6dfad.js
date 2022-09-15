@@ -48361,7 +48361,7 @@ function _interopRequireDefault(obj) {
 function PrimaryNav(props) {
     // Props
     var onLogoutRequest = props.onLogoutRequest, userdata = props.userdata;
-    var user = userdata.user.Username; // Methods
+    var user = userdata.user.Username || localStorage.getItem("user"); // Methods
     var isAuth = function isAuth() {
         if (typeof window === "undefined") return false;
         if (localStorage.getItem("token")) return localStorage.getItem("token");
