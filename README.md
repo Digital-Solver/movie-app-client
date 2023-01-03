@@ -41,7 +41,7 @@ Working on the Scynapse project was a fantastic learning opportunity for me. It 
 * React
 * Redux
 * HTML
-* CSS
+* SCSS & Bootstrap
 
 ## Usage
 
