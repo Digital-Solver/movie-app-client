@@ -2,7 +2,7 @@
 
 Live Site: https://kds-scynapse.netlify.app/
 
-Scynapse is a full-stack web application that allows users to access information about movies and save their favorites. Built using the MERN stack (MongoDB, Express, React, and Node.js), Scynapse consists of a server-side API and database, and a client-side interface.
+Scynapse is a full-stack web application that allows users to access information about movies and save their favorites. Built using the MERN stack (MongoDB, Express, React, and Node.js), Scynapse consists of a server-side API and database, and a client-side interface. This is the repository for the React client-side code.
 
 As the developer of Scynapse, I was responsible for building both the server-side and client-side of the application. One of the main challenges I faced was integrating the React front-end with the Express backend and MongoDB database. It required a lot of testing and debugging, but I was eventually able to successfully connect the two and retrieve and manipulate data as needed.
 
